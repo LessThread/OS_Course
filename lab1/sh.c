@@ -9,38 +9,44 @@
 #include <sys/wait.h>
 
 // Simplifed xv6 shell.
+// Parser: lyc
 
 #define MAXARGS 10
 
 // All commands have at least a type. Have looked at the type, the code
 // typically casts the *cmd to some specific cmd type.
+
+//规定命令类型
 struct cmd {
   int type;          //  ' ' (exec), | (pipe), '<' or '>' for redirection
 };
 
+//可执行命令，case为" "
 struct execcmd {
   int type;              // ' '
-  char *argv[MAXARGS];   // arguments to the command to be exec-ed
+  char *argv[MAXARGS];   // arguments to the command to be exec-ed 命令行参数
 };
 
+//重定向命令 case为<>
 struct redircmd {
   int type;          // < or > 
-  struct cmd *cmd;   // the command to be run (e.g., an execcmd)
-  char *file;        // the input/output file
-  int flags;         // flags for open() indicating read or write
-  int fd;            // the file descriptor number to use for the file
+  struct cmd *cmd;   // the command to be run (e.g., an execcmd) 被重定向的命令
+  char *file;        // the input/output file 输入输出文件
+  int flags;         // flags for open() indicating read or write 读写标记
+  int fd;            // the file descriptor number to use for the file 
 };
 
+//管道命令（也是重定向了）case为|
 struct pipecmd {
   int type;          // |
-  struct cmd *left;  // left side of pipe
-  struct cmd *right; // right side of pipe
+  struct cmd *left;  // left side of pipe 左管道命令
+  struct cmd *right; // right side of pipe 右管道命令
 };
 
-int fork1(void);  // Fork but exits on failure.
+int fork1(void);  // Fork but exits on failure. fork函数，失败时退出
 struct cmd *parsecmd(char*);
 
-// Execute cmd.  Never returns.
+// Execute cmd.  Never returns. 重复读取不会退出
 void
 runcmd(struct cmd *cmd)
 {
@@ -82,15 +88,26 @@ runcmd(struct cmd *cmd)
   _exit(0);
 }
 
-int
+int //实现了路径追踪
 getcmd(char *buf, int nbuf)
 {
-  if (isatty(fileno(stdin)))
-    fprintf(stdout, "6.828$ ");
-  memset(buf, 0, nbuf);
-  if(fgets(buf, nbuf, stdin) == 0)
-    return -1; // EOF
-  return 0;
+    
+    if (isatty(fileno(stdin))) //如果是标准输入环境则显示
+    {
+        char pPath[256] = { 0 };
+        getcwd(pPath, 256);
+        fprintf(stdout, "lyc@6.828_shell:");
+        fprintf(stdout, pPath);
+        fprintf(stdout, "$ ");
+    }
+    memset(buf, 0, nbuf);
+    
+    if (fgets(buf, nbuf, stdin) == 0)
+    {
+        return -1; // EOF
+
+    }
+    return 0;
 }
 
 int
@@ -116,6 +133,7 @@ main(void)
   exit(0);
 }
 
+//fork函数的实现，作为系统函数的外壳函数，-1则抛出异常（perror是标准c库函数）
 int
 fork1(void)
 {
