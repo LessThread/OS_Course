@@ -1,0 +1,1 @@
+gcc work.c -o work.out

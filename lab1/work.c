@@ -44,23 +44,23 @@ struct cmd *parsecmd(char*);
 
 void implementEcmd(struct execcmd* ecmd)
 {
-    //ÔÚ¸ùÄ¿Â¼µÄbinÏÂÖ´ÐÐÃüÁî
+    //åœ¨æ ¹ç›®å½•çš„binä¸‹æ‰§è¡Œå‘½ä»¤
     char path[20] = "/bin/";
     strcat(path, ecmd->argv[0]);
    
-    //Èç¹ûÖ´ÐÐÊ§°Ü£¬Ôòµ÷Õûµ½usrÓÃ»§Ä¿Â¼ÏÂÖ´ÐÐ
+    //å¦‚æžœæ‰§è¡Œå¤±è´¥ï¼Œåˆ™è°ƒæ•´åˆ°usrç”¨æˆ·ç›®å½•ä¸‹æ‰§è¡Œ
     if (  execv(path, ecmd->argv)== -1) 
     {
         strcpy(path, "/usr/bin/");
         strcat(path, ecmd->argv[0]);
 
-        //Èç¹ûÖ´ÐÐÊ§°Ü£¬Ôòµ÷Õûµ½µ±Ç°Ä¿Â¼ÏÂÖ´ÐÐ
+        //å¦‚æžœæ‰§è¡Œå¤±è´¥ï¼Œåˆ™è°ƒæ•´åˆ°å½“å‰ç›®å½•ä¸‹æ‰§è¡Œ
         if (execv(path, ecmd->argv) == -1) 
         {
             getcwd(path, 256);
             strcat(path, ecmd->argv[0]);
 
-            //È«²¿Ê§°Ü£¬Å×³ö´íÎó
+            //å…¨éƒ¨å¤±è´¥ï¼ŒæŠ›å‡ºé”™è¯¯
             if (execv(path, ecmd->argv) == -1)
             {
                 perror(ecmd->argv[0]);
@@ -69,13 +69,13 @@ void implementEcmd(struct execcmd* ecmd)
         }
     }
 
-    //»òÕß¿ÉÒÔÓÃsystem callº¯ÊýÊµÏÖ
+    //æˆ–è€…å¯ä»¥ç”¨system callå‡½æ•°å®žçŽ°
     //int code=system(ecmd->argv);
 }
 
 void implementRcmd(struct redircmd* rcmd)
 {
-    //ÊÍ·ÅÔ­ÎÄ¼þÃèÊö,×ö´íÎó´¦Àí
+    //é‡Šæ”¾åŽŸæ–‡ä»¶æè¿°,åšé”™è¯¯å¤„ç†
     if (close(rcmd->fd)==-1)
     {
         char err[] = "Close fd: ";
@@ -84,8 +84,8 @@ void implementRcmd(struct redircmd* rcmd)
         _exit(0);
     }
 
-    //´ò¿ªÎÄ¼þ²¢¼ì²éÈ¨ÏÞ
-    //Í¨¹ý¹Ø±ÕºÍÖØÐÂ´ò¿ªÊ¹µÃÃèÊö·û²»±äµÄÇé¿öÏÂÌæ»»ÁËÊäÈëÊä³ö£¬ÊµÏÖÖØ¶¨Ïò
+    //æ‰“å¼€æ–‡ä»¶å¹¶æ£€æŸ¥æƒé™
+    //é€šè¿‡å…³é—­å’Œé‡æ–°æ‰“å¼€ä½¿å¾—æè¿°ç¬¦ä¸å˜çš„æƒ…å†µä¸‹æ›¿æ¢äº†è¾“å…¥è¾“å‡ºï¼Œå®žçŽ°é‡å®šå‘
     if (open(rcmd->file, rcmd->flags, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH) == -1)
     {
         char err[] = "Open ";
@@ -95,9 +95,27 @@ void implementRcmd(struct redircmd* rcmd)
     }
 }
 
-void implementPcmd(struct pipecmd* pcmd)
+void implementPcmd(struct pipecmd* pcmd,int p[])
 {
-    
+    if (pipe(p) == -1) { perror("pipe"); } //ç”Ÿæˆç®¡é“å‚¨å­˜åœ¨p1 p2ï¼›
+    int code = fork1();
+    if(code==-1){ perror("fork1"); }
+    if(code==0)
+    {
+        close(1);
+        dup(p[1]);//å¤åˆ¶ç®¡é“å†™å…¥ç¬¦åˆ°æ–°çš„æ–‡ä»¶è¡¨ä¸­ï¼Œæˆä¸ºæ–°çš„æœ€å°æè¿°ç¬¦
+        //close(p[0]);
+        //close(p[1]);//å…³é—­æºç®¡é“ï¼Œåªç•™ä¸‹é•œåƒç®¡é“
+        runcmd(pcmd->left);
+    }
+    else
+    {
+        close(0);
+        dup(p[0]);
+        //close(p[0]);
+        //close(p[1]);
+        runcmd(pcmd->right);
+    }
 }
 
 //...
@@ -108,7 +126,7 @@ void implementPcmd(struct pipecmd* pcmd)
 void
 runcmd(struct cmd *cmd)
 {
-  int p[2], r;
+  int p[2], r;//pç”¨äºŽç¼“å†²åŒºå»ºç«‹
   struct execcmd *ecmd;
   struct pipecmd *pcmd;
   struct redircmd *rcmd;
@@ -132,12 +150,12 @@ runcmd(struct cmd *cmd)
   case '<':
     rcmd = (struct redircmd*)cmd;
     implementRcmd(rcmd);
-    runcmd(rcmd->cmd);
+    runcmd(rcmd->cmd);//é€’å½’ï¼ˆè¿”å›žï¼‰è°ƒç”¨
     break;
 
   case '|':
     pcmd = (struct pipecmd*)cmd;
-    implementRcmd(pcmd);
+    implementPcmd(pcmd,p);
     break;
   }    
   _exit(0);
@@ -146,12 +164,31 @@ runcmd(struct cmd *cmd)
 int
 getcmd(char *buf, int nbuf)
 {
-  if (isatty(fileno(stdin)))
-    fprintf(stdout, "6.828$ ");
-  memset(buf, 0, nbuf);
-  if(fgets(buf, nbuf, stdin) == 0)
-    return -1; // EOF
-  return 0;
+    /*
+      if (isatty(fileno(stdin)))
+      fprintf(stdout, "6.828$ ");
+      memset(buf, 0, nbuf);
+      if(fgets(buf, nbuf, stdin) == 0)
+      return -1; // EOF
+      return 0;
+    */
+
+    if (isatty(fileno(stdin))) //å¦‚æžœæ˜¯æ ‡å‡†è¾“å…¥çŽ¯å¢ƒåˆ™æ˜¾ç¤º
+    {
+        char pPath[256] = { 0 };
+        getcwd(pPath, 256);
+        fprintf(stdout, "lyc@6.828_shell:");
+        fprintf(stdout, pPath);
+        fprintf(stdout, "$ ");
+    }
+    memset(buf, 0, nbuf);
+    
+    if (fgets(buf, nbuf, stdin) == 0)
+    {
+        return -1; // EOF
+
+    }
+    return 0;
 }
 
 int
