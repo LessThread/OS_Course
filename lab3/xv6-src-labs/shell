@@ -1,0 +1,6 @@
+
+trace 32 grep hello README  
+trace 2147483647 grep hello README  
+grep hello README  
+trace 2 usertests forkforkfork  
+sysinfotest
