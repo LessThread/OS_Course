@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/faq/faq-env/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:45:20 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>实验环境问题 - 操作系统2022秋 | 哈工大（深圳）</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u5b9e\u9a8c\u73af\u5883\u95ee\u9898";
+        var mkdocs_page_input_path = "faq\\faq-env.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../index.html" class="icon icon-home"> 操作系统2022秋 | 哈工大（深圳）
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://hitsz-cslab.gitee.io/os-labs/search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">实验概述</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../index.html">实验须知</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../env/index.html">实验平台以及环境配置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">实验实用工具</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Linux/index.html">Linux开发环境基础知识</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env/index.html">远程实验平台使用指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env_gdb/index.html">远程实验平台环境图形化调试指南</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OS竞赛招新</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../oscomp/oscomp/index.html">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">常见问题</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="index.html">实验环境问题</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. 高版本工具兼容问题</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11-xv6qemu600">1.1 xv6如何在QEMU&gt;=6.0.0上启动？</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12-gcc-12">1.2 使用高版本gcc (≥12)出现报错</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-vscode">2. VSCode无法连接实验平台</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21-vs-codessh-connect-to-host-102491298-port-22-connection-timed-out">2.1  VS Code连接远程实验平台时提示ssh: connect to host 10.249.12.98 port 22: Connection timed out？</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22-vs-codebad-owner-or-permission">2.2 VS Code连接远程实验平台时出现bad owner or permission报错？</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#23-clone-xv6-labs-2020">2.3 在远程实验平台上clone xv6-labs-2020失败？</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#24-vs-codemkdir-cannot-create-directory-homestudentsxxx">2.4 VS Code连接远程实验平台时提示mkdir: cannot create directory '/home/students/XXX'</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-vscodegdb">3. VSCode无法用GDB图形化调试</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31-failed-to-attach-remote-communication-error">3.1 远程实验平台图形化无法调试Failed to attach: Remote communication error？</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32-vscodefailed-to-attach-127001xxx-connection-timed-out-from-target-select-remote-1270011xxx">3.2 远程平台调试时VSCode报错Failed to attach: 127.0.0.1:XXX: Connection timed out. (from target-select remote 127.0.0.11:XXX)?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#33-vscodefailed-to-attach-truncated-register-37-in-remote-g-packet">3.3 远程平台调试时VSCode报错Failed to attach: Truncated register 37 in remote 'g' packet?</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-xv6">4 xv6运行报错</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#41-make-qemuis-another-process-using-the-image-fsimg">4.1 远程平台make qemu报错Is another process using the image [fs.img]?</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5-git">5 git常见问题</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#51">5.1 无法推送怎么办？</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#52">5.2 我怎么知道我修改了哪些文件？</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#53-checkout">5.3 为什么我不能切换分支（checkout）？</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab1/index.html">Lab1问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab3/index.html">Lab3问题</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab1：XV6与Unix实用程序</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part3/index.html">实验步骤</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab2：系统调用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part5/index.html">GDB调试系统调用（补充材料）</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab3：锁机制的应用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part4/index.html">xv-6中Lock的实现（选读）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part5/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab4：页表</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab5：基于FUSE的青春版EXT2文件系统</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-1/index.html">环境搭建与上手</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-2/index.html">任务一：熟悉DDRIVER驱动</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-3/index.html">任务二：基于FUSE实现青春版EXT2文件系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-4/index.html">选做任务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part5/index.html">实验提示</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">操作系统2022秋 | 哈工大（深圳）</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>常见问题 &raquo;</li><li>实验环境问题</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div class="admonition tip">
+<p class="admonition-title">温馨提示</p>
+<p>本文档会不定时更新同学们在实验过程中可能会出现的问题以及对应的解决办法，供同学们参考。特别感谢给本课程实验反馈问题、建议以及意见的同学。</p>
+</div>
+<h1 id="_1">实验环境问题<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="1">1. 高版本工具兼容问题<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h3 id="11-xv6qemu600">1.1 xv6如何在QEMU&gt;=6.0.0上启动？<a class="headerlink" href="#11-xv6qemu600" title="Permanent link">&para;</a></h3>
+<p>具体解决方案详见piazza ：<a href="https://piazza.com/class/l7fs47nofoc4pm/post/8">https://piazza.com/class/l7fs47nofoc4pm/post/8</a></p>
+<p><img alt="qemu" src="../faq.assets/qemu.png" /></p>
+<p>Patch文件：<a href="../../code/pmp.patch">pmp.patch</a></p>
+<p>该问题的解决方案来自20级某位大佬的分享，非常感谢这位大佬的贡献~~</p>
+<h3 id="12-gcc-12">1.2 使用高版本gcc (≥12)出现报错<a class="headerlink" href="#12-gcc-12" title="Permanent link">&para;</a></h3>
+<p>具体解决方案详见piazza ：<a href="https://piazza.com/class/l7fs47nofoc4pm/post/22">https://piazza.com/class/l7fs47nofoc4pm/post/22</a> </p>
+<p><img alt="gcc" src="../faq.assets/gcc.png" /></p>
+<hr />
+<h2 id="2-vscode">2. VSCode无法连接实验平台<a class="headerlink" href="#2-vscode" title="Permanent link">&para;</a></h2>
+<h3 id="21-vs-codessh-connect-to-host-102491298-port-22-connection-timed-out">2.1  VS Code连接远程实验平台时提示<code>ssh: connect to host 10.249.12.98 port 22: Connection timed out</code>？<a class="headerlink" href="#21-vs-codessh-connect-to-host-102491298-port-22-connection-timed-out" title="Permanent link">&para;</a></h3>
+<p>端口号写错了，请参考实验指导书要求来连接。</p>
+<p><a href="../../remote_env/index.html">https://hitsz-cslab.gitee.io/os-labs/remote_env/</a></p>
+<p>远程实验平台IP地址： <code>10.249.12.98</code> ，端口号： <code>6666</code></p>
+<h3 id="22-vs-codebad-owner-or-permission">2.2 VS Code连接远程实验平台时出现<code>bad owner or permission</code>报错？<a class="headerlink" href="#22-vs-codebad-owner-or-permission" title="Permanent link">&para;</a></h3>
+<p>解决方法：进入路径<code>C:\Users\用户名\.ssh</code>，右击config文件进入属性中高级安全管理，选择禁止继承，并且删除所有此对象中继承的权限。</p>
+<p>具体可以查看：<a href="https://www.cnblogs.com/Akkuman/p/11187776.html">https://www.cnblogs.com/Akkuman/p/11187776.html</a></p>
+<h3 id="23-clone-xv6-labs-2020">2.3 在远程实验平台上clone xv6-labs-2020失败？<a class="headerlink" href="#23-clone-xv6-labs-2020" title="Permanent link">&para;</a></h3>
+<p>如图：</p>
+<p><img alt="image-20220916095456586" src="../faq-env.assets/image-20220916095456586.png" /></p>
+<p>原因：</p>
+<p>远程实验平台给每位同学做了资源限额管理，出现这个问题的同学，有可能是之前的《计算机设计与实践》实验包<code>cdp-tests</code>占用了太多空间，你需要删除<code>cdp-tests/waveform</code>目录下的所有波形图文件（主要是波形图文件太大了）。</p>
+<p>使用mobaxterm登录，输入如下命令：</p>
+<p><img alt="image-20220916154734658" src="../faq-env.assets/image-20220916154734658.png" /></p>
+<p>使用<code>rm -rf *</code>删除后，应该就能clone xv6-labs-2020。</p>
+<h3 id="24-vs-codemkdir-cannot-create-directory-homestudentsxxx">2.4 VS Code连接远程实验平台时提示<code>mkdir: cannot create directory '/home/students/XXX'</code><a class="headerlink" href="#24-vs-codemkdir-cannot-create-directory-homestudentsxxx" title="Permanent link">&para;</a></h3>
+<p>如图：</p>
+<p><img alt="image-20220916154922685" src="../faq-env.assets/image-20220916154922685.png" /></p>
+<p><img alt="image-20220916155011110" src="../faq-env.assets/image-20220916155011110.png" /></p>
+<p>原因：</p>
+<p>与上述问题一样，也是因为资源限额的问题。之前的《计算机设计与实践》实验包<code>cdp-tests</code>占用了太多空间，你需要删除<code>cdp-tests/waveform</code>目录下的所有波形图文件（主要是波形图文件太大了）。</p>
+<p>使用mobaxterm登录，输入如下命令：</p>
+<p><img alt="image-20220916154734658" src="../faq-env.assets/image-20220916154734658.png" /></p>
+<hr />
+<h2 id="3-vscodegdb">3. VSCode无法用GDB图形化调试<a class="headerlink" href="#3-vscodegdb" title="Permanent link">&para;</a></h2>
+<h3 id="31-failed-to-attach-remote-communication-error">3.1 远程实验平台图形化无法调试<code>Failed to attach: Remote communication error</code>？<a class="headerlink" href="#31-failed-to-attach-remote-communication-error" title="Permanent link">&para;</a></h3>
+<p>VSCode远程调试时，提示如下错误：</p>
+<p><img alt="gdb1" src="../faq.assets/gdb1.jpg" /></p>
+<p>具体解决方案详见piazza ：<a href="https://piazza.com/class/l7fs47nofoc4pm/post/20">https://piazza.com/class/l7fs47nofoc4pm/post/20</a></p>
+<p>打开xv6工作目录下的.gdbint文件，将第三行<code>target remote 127.0.0.1:***</code>用<code>#</code>注释掉。</p>
+<p><img alt="gdb2" src="../faq.assets/gdb2.jpg" /></p>
+<h3 id="32-vscodefailed-to-attach-127001xxx-connection-timed-out-from-target-select-remote-1270011xxx">3.2 远程平台调试时VSCode报错<code>Failed to attach: 127.0.0.1:XXX: Connection timed out. (from target-select remote 127.0.0.11:XXX)</code>?<a class="headerlink" href="#32-vscodefailed-to-attach-127001xxx-connection-timed-out-from-target-select-remote-1270011xxx" title="Permanent link">&para;</a></h3>
+<p>如图：</p>
+<p><img alt="qemu3" src="../faq.assets/qemu3.png" /></p>
+<p>原因：</p>
+<p>没有在终端输入make qemu-gdb，直接点了VSCode的debug的三角形符号进行调试。</p>
+<p>或者，请检查launch.json的GDB端口号是否写对？</p>
+<h3 id="33-vscodefailed-to-attach-truncated-register-37-in-remote-g-packet">3.3 远程平台调试时VSCode报错<code>Failed to attach: Truncated register 37 in remote 'g' packet</code>?<a class="headerlink" href="#33-vscodefailed-to-attach-truncated-register-37-in-remote-g-packet" title="Permanent link">&para;</a></h3>
+<p>如图：</p>
+<p><img alt="image-20220915205054529" src="../faq-env.assets/image-20220915205054529.png" /></p>
+<p>原因：</p>
+<p>VSCode工作区路径不是XV6路径，嵌套了外面一层文件夹。</p>
+<p><img alt="image-20220915205018098" src="../faq-env.assets/image-20220915205018098.png" /></p>
+<p>解决方法：</p>
+<p>首先 <strong>确认你的VS Code工作区路径是否是你的xv6路径，没有额外嵌套一层文件夹</strong> 。按下<code>Ctrl+`</code>，呼出终端，输入<code>ls</code>。你应该会看到如下情景：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">ldap_example@OSLabExecNode0:~/xv6-labs-2020$ </span>ls
+<span class="go">conf  fs.img  grade-lab-util  gradelib.py  gradelib.pyc  kernel  LICENSE  Makefile  mkfs  README  user</span>
+</code></pre></div>
+<p>如果不是，打开新的工作区，选择xv6所在的文件夹打开即可。正确的工作区应该如下显示：</p>
+<p><img alt="image-20220915210332246" src="../faq-env.assets/image-20220915210332246.png" /></p>
+<hr />
+<h2 id="4-xv6">4 xv6运行报错<a class="headerlink" href="#4-xv6" title="Permanent link">&para;</a></h2>
+<h3 id="41-make-qemuis-another-process-using-the-image-fsimg">4.1 远程平台make qemu报错<code>Is another process using the image [fs.img]</code>?<a class="headerlink" href="#41-make-qemuis-another-process-using-the-image-fsimg" title="Permanent link">&para;</a></h3>
+<p>如图：</p>
+<p><img alt="qemu2" src="../faq.assets/qemu2.png" /></p>
+<p>用ps或top命令查看一下是不是已经开启了qemu？如果qemu已经在运行，请先结束该进程。</p>
+<p>具体解决方案详见piazza ：<a href="https://piazza.com/class/l7fs47nofoc4pm/post/23">https://piazza.com/class/l7fs47nofoc4pm/post/23</a> </p>
+<p>另外一种解决方案：输入在xv6-labs-2020目录下输入<code>make clean</code>清除fs.img，然后再运行<code>make qemu</code></p>
+<p><img alt="image-20220916094737504" src="../faq-env.assets/image-20220916094737504.png" /></p>
+<hr />
+<h2 id="5-git">5 git常见问题<a class="headerlink" href="#5-git" title="Permanent link">&para;</a></h2>
+<h3 id="51">5.1 无法推送怎么办？<a class="headerlink" href="#51" title="Permanent link">&para;</a></h3>
+<p>如果你尝试推送到远程仓库，或者从远程仓库拉取，但是git却显示出这样的错误：</p>
+<div class="highlight"><pre><span></span><code><span class="go">git@gitee.com: Permission denied (publickey).</span>
+<span class="go">fatal: Could not read from remote repository.</span>
+
+<span class="go">Please make sure you have the correct access rights </span>
+<span class="go">and the repository exists</span>
+</code></pre></div>
+<p>这表明你没有权限推送到这个远程仓库。一般而言，这是由于你没有设置好自己的ssh密钥造成的。请参照<a href="../../tools/index.html#34-ssh">3.4节 ssh密钥设置</a>，设置自己的ssh密钥。</p>
+<h3 id="52">5.2 我怎么知道我修改了哪些文件？<a class="headerlink" href="#52" title="Permanent link">&para;</a></h3>
+<p>通常而言，实验要求同学们提交 <strong>所有</strong> 被修改过的文件。通过将当前工作路径与上游仓库（课程实验提供的仓库）对应分支的内容相比较，可以方便地知道自己曾经修改过哪些文件，并打包提交。这里，我们将当前分支与上游仓库的<code>syscall</code>分支相比较：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">lgz_admin@OSLabExecNode0:~/git_demo/xv6-labs-2020$ </span>git fetch --all
+<span class="go">Fetching origin</span>
+<span class="go">Fetching upstream</span>
+<span class="gp">lgz_admin@OSLabExecNode0:~/git_demo/xv6-labs-2020$ </span>git diff --stat upstream/syscall *
+<span class="go"> kernel/kalloc.c  | 2 ++</span>
+<span class="go"> kernel/syscall.c | 1 +</span>
+<span class="go"> kernel/syscall.h | 1 +</span>
+<span class="go"> kernel/sysinfo.h | 1 +</span>
+<span class="go"> 4 files changed, 5 insertions(+)</span>
+</code></pre></div>
+<p>要比较其他分支，将第二条指令中的<code>syscall</code>改为对应分支名即可。</p>
+<div class="admonition warning">
+<p class="admonition-title">请先在本地切换到对应分支！</p>
+<p>在比较的时候，你需要将本地分支与上游对应分支进行比较。举例而言，你不会想比较本地的<code>util</code>分支和远程的<code>syscall</code>分支，因为这两个不是一个实验的。请先使用<code>git checkout 分支名</code>以切换到对应分支，并在使用<code>git diff --stat upstream/分支名 *</code>时指定 <strong>同一个</strong> 上游分支。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">未设置上游仓库？</p>
+<p>如果git报告“<code>fatal: ambiguous argument 'upstream/分支名': unknown revision or path not in the working tree.</code>”，说明你尚未设置上游仓库。请先按本指南中的<a href="../../tools/index.html#31">3.1-同步上游仓库</a>一节完成上游仓库的设置与同步，再进行比较。</p>
+</div>
+<h3 id="53-checkout">5.3 为什么我不能切换分支（checkout）？<a class="headerlink" href="#53-checkout" title="Permanent link">&para;</a></h3>
+<p>通常而言，不能切换分支的主要原因是你当前有尚未保存的修改，此时checkout的话会触发以下错误：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">lgz_admin@OSLabExecNode0: ~/git_demo/xv6-labs-2020$ </span>git checkout util                                                                                                ─╯
+<span class="go">error: Your local changes to the following files would be overwritten by checkout:</span>
+<span class="go">        Makefile</span>
+<span class="go">Please commit your changes or stash them before you switch branches.</span>
+<span class="go">Aborting</span>
+</code></pre></div>
+<p>通过<code>git status</code>指令，我们可以检查当前git的状态。如果你的输出如下所示：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">lgz_admin@OSLabExecNode0: ~/git_demo/xv6-labs-2020$ </span>git status
+<span class="go">On branch syscall</span>
+<span class="go">Your branch is up to date with &#39;origin/syscall&#39;.</span>
+
+<span class="go">Changes not staged for commit:</span>
+<span class="go">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span>
+<span class="go">  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)</span>
+<span class="go">        modified:   Makefile</span>
+
+<span class="go">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span>
+</code></pre></div>
+<p>这说明当前你的工作区有尚未保存的更改。请参考<a href="../../tools/index.html#331">3.3.1 使用命令行完成操作</a>或者<a href="../../tools/index.html#332-vs-code">3.3.2 使用VS Code内建的图形化界面完成操作</a>节，完成commit操作。
+或者，如果你希望直接放弃掉上一次commit后的 <strong>所有更改</strong> ，那么你也可以使用<code>-f</code>选项强制切换分支，例如<code>git checkout -f syscall</code>。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../oscomp/oscomp/index.html" class="btn btn-neutral float-left" title="2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../lab1/index.html" class="btn btn-neutral float-right" title="Lab1问题">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2023 哈尔滨工业大学（深圳）</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../oscomp/oscomp/index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../lab1/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../index.html';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/baidu-tongji.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/faq/faq-env/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:46:07 GMT -->
+</html>

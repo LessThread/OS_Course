@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab3/part4/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:48:34 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>xv-6中Lock的实现（选读） - 操作系统2022秋 | 哈工大（深圳）</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "xv-6\u4e2dLock\u7684\u5b9e\u73b0\uff08\u9009\u8bfb\uff09";
+        var mkdocs_page_input_path = "lab3\\part4.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../index.html" class="icon icon-home"> 操作系统2022秋 | 哈工大（深圳）
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://hitsz-cslab.gitee.io/os-labs/search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">实验概述</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../index.html">实验须知</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../env/index.html">实验平台以及环境配置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">实验实用工具</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Linux/index.html">Linux开发环境基础知识</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env/index.html">远程实验平台使用指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env_gdb/index.html">远程实验平台环境图形化调试指南</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OS竞赛招新</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../oscomp/oscomp/index.html">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">常见问题</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/faq-env/index.html">实验环境问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab1/index.html">Lab1问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab3/index.html">Lab3问题</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab1：XV6与Unix实用程序</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part3/index.html">实验步骤</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab2：系统调用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part5/index.html">GDB调试系统调用（补充材料）</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab3：锁机制的应用</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="index.html">xv-6中Lock的实现（选读）</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. 锁的基本实验原理</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-kalloc">2. 锁与kalloc</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-bio">3. 锁与bio</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31">3.1 自旋锁</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32">3.2 睡眠锁</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-kalloctest">4. 测评程序kalloctest对锁的检测</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part5/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab4：页表</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab5：基于FUSE的青春版EXT2文件系统</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-1/index.html">环境搭建与上手</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-2/index.html">任务一：熟悉DDRIVER驱动</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-3/index.html">任务二：基于FUSE实现青春版EXT2文件系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-4/index.html">选做任务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part5/index.html">实验提示</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">操作系统2022秋 | 哈工大（深圳）</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Lab3：锁机制的应用 &raquo;</li><li>xv-6中Lock的实现（选读）</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="xv6lock">xv6中Lock的实现（选读）<a class="headerlink" href="#xv6lock" title="Permanent link">&para;</a></h1>
+<p>这部分深入探讨了锁的基本原理、实现方法和使用方法，可能有些难以理解，超出了本实验的水平要求，但仍然在知识范围内，因此可供感兴趣的同学进行参考。</p>
+<h2 id="1">1. 锁的基本实验原理<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>kalloc.c中调用acquire()和release()来获取锁和释放锁。首先需要知道的是锁的acquire（或者叫P）和release（V）的实现并不是一件简单的事情。我们先来看一个最naive的实现：</p>
+<div class="highlight"><pre><span></span><code><span class="mf">1.</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">acquire</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">spinlock</span><span class="w"> </span><span class="o">*</span><span class="n">lk</span><span class="p">)</span><span class="w"> </span><span class="c1">// does not work!</span>
+<span class="mf">2.</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="mf">3.</span><span class="w">      </span><span class="k">for</span><span class="p">(;;)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="mf">4.</span><span class="w">          </span><span class="k">if</span><span class="p">(</span><span class="n">lk</span><span class="o">-&gt;</span><span class="n">locked</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="mf">5.</span><span class="w">              </span><span class="n">lk</span><span class="o">-&gt;</span><span class="n">locked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="mf">6.</span><span class="w">              </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="mf">7.</span><span class="w">          </span><span class="p">}</span><span class="w"></span>
+<span class="mf">8.</span><span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="mf">9.</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>这个代码非常容易理解，如果lk被锁上了，那就继续循环，如果lk未被锁上，那就给它加锁并退出。但这个实现是有缺陷的，让我们试想一下以下场景：</p>
+<div class="admonition note">
+<p class="admonition-title">某个错误场景</p>
+<ul>
+<li>lk一开始没有被锁上，即lk-&gt;locked = 0; </li>
+<li>然后CPU0在跑进程A而CPU1在跑进程B，A和B同时对这个锁发起了acquire；</li>
+<li>我们所希望看到的是，锁被且只被A或B中的一个进程锁住，而另一个进程则继续在for中循环等待。</li>
+<li>但是，假设CPU0和CPU1同时执行到了第6行，那么会发生什么呢？</li>
+<li>没错，两个CPU都发现lk-&gt;locked == 0，因为另一个CPU还没有来得及改动lk-&gt;locked;</li>
+<li>这就会导致A和B同时获得锁，并从acquire中返回，这显然不是我们希望看到的。</li>
+</ul>
+</div>
+<p>那acquire到底是怎么实现的呢？这个仅凭软件是无法实现的，需要硬件参与辅助实现。
+在这里我们先介绍一条特殊的CPU指令amoswap。amoswap实现了在一条指令完成一次 load 和 store，更具体的说，就是可以将一个寄存器的值和某一内存地址的值做交换，将指定内存地址的值放入寄存器，同时将寄存器的值放入内存。此外，CPU还会保证某一CPU核在执行这一指令时，其他CPU核不能读或写对应的内存地址。</p>
+<div class="admonition tip">
+<p class="admonition-title">amoswap指令和__sync_lock_test_and_set</p>
+<p>在C语言中使用这一汇编指令的语句调用是<code>__sync_lock_test_and_set()</code>。
+这一函数接收两个参数，要写入的地址和要写入的值，返回值是写入地址原来的值。
+请仔细比较amoswap指令和__sync_lock_test_and_set行为上的相似之处，
+确保你已经大致知道__sync_lock_test_and_set是如何使用amoswap实现功能。</p>
+</div>
+<p>了解了__sync_lock_test_and_set之后，我们在回到acquire的问题上来。先看看xv6中是如何实现acquire的。</p>
+<div class="highlight"><pre><span></span><code><span class="mf">1.</span><span class="w">    </span><span class="c1">// Acquire the lock.</span>
+<span class="mf">2.</span><span class="w">    </span><span class="c1">// Loops (spins) until the lock is acquired.</span>
+<span class="mf">3.</span><span class="w">    </span><span class="kt">void</span><span class="w"></span>
+<span class="mf">4.</span><span class="w">    </span><span class="n">acquire</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">spinlock</span><span class="w"> </span><span class="o">*</span><span class="n">lk</span><span class="p">)</span><span class="w"></span>
+<span class="mf">5.</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="mf">6.</span><span class="w">        </span><span class="n">push_off</span><span class="p">();</span><span class="w"> </span><span class="c1">// disable interrupts to avoid deadlock.</span>
+<span class="mf">7.</span><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">holding</span><span class="p">(</span><span class="n">lk</span><span class="p">))</span><span class="w"></span>
+<span class="mf">8.</span><span class="w">            </span><span class="n">panic</span><span class="p">(</span><span class="s">&quot;acquire&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="mf">9.</span><span class="w">        </span><span class="n">__sync_fetch_and_add</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">lk</span><span class="o">-&gt;</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="mf">10.</span><span class="w">        </span><span class="c1">// On RISC-V, sync_lock_test_and_set turns into anatomic swap:</span>
+<span class="mf">11.</span><span class="w">        </span><span class="c1">//   a5 = 1</span>
+<span class="mf">12.</span><span class="w">        </span><span class="c1">//   s1 = &amp;lk-&gt;locked</span>
+<span class="mf">13.</span><span class="w">        </span><span class="c1">//   amoswap.w.aq a5, a5, (s1)</span>
+<span class="mf">14.</span><span class="w">        </span><span class="k">while</span><span class="p">(</span><span class="n">__sync_lock_test_and_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lk</span><span class="o">-&gt;</span><span class="n">locked</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="mf">15.</span><span class="w">            </span><span class="n">__sync_fetch_and_add</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lk</span><span class="o">-&gt;</span><span class="n">nts</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="mf">16.</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="mf">17.</span><span class="w">        </span><span class="c1">// Tell the C compiler and the processor to not moveloads or stores</span>
+<span class="mf">18.</span><span class="w">        </span><span class="c1">// past this point, to ensure that the criticalsection&#39;s memory</span>
+<span class="mf">19.</span><span class="w">        </span><span class="c1">// references happen after the lock is acquired.</span>
+<span class="mf">20.</span><span class="w">        </span><span class="n">__sync_synchronize</span><span class="p">();</span><span class="w"></span>
+<span class="mf">21.</span><span class="w">        </span><span class="c1">// Record info about lock acquisition for holding() anddebugging.</span>
+<span class="mf">22.</span><span class="w">        </span><span class="n">lk</span><span class="o">-&gt;</span><span class="n">cpu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mycpu</span><span class="p">();</span><span class="w"></span>
+<span class="mf">23.</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>我们需要注意的是14-16行的while循环。这里使用了<code>__sync_lock_test_and_set()</code>（使用amoswap），保证了对lk-&gt;locked读写的一致性。下面我们来分析以下具体的工作流程。</p>
+<ul>
+<li>
+<p>当lk-&gt;locked==0，即当前锁空闲时，__sync_lock_test_and_set()在返回0的同时，会往lk-&gt;locked写入1，即上锁。整个过程因为由amoswap实现，所以不会被其的CPU核所干扰。返回0之后退出while循环，符合我们的预期。</p>
+</li>
+<li>
+<p>当lk-&gt;locked==1，即当前锁被锁定时，__sync_lock_test_and_set在返回1的同时，往lk-&gt;locked里写入了1。事实上在锁被锁定后我们不应该往lk-&gt;locked里写东西（当然，除了解锁的时候），但是因为锁本来就是1，再写入一个1相当于没有改变内容，所以也没差。同时，因为返回了1，我们知道当前锁被锁住了，所以会继续在while中循环。</p>
+</li>
+<li>
+<p>至于第15行代码所做的事，这个和锁的功能无关，但当然它有另外的作用。这次不做解释，有兴趣的同学可以自行研究。</p>
+</li>
+</ul>
+<p>到这里对Lock的实现解释就结束了。在进行下一步的阅读前，强烈建议对上面的两个实现做比较和揣摩，直到你对为什么锁要使用__sync_lock_test_and_set有了清晰的认识。</p>
+<p>注：以上解释可在xv6的Locking章节中找到。</p>
+<h2 id="2-kalloc">2. 锁与kalloc<a class="headerlink" href="#2-kalloc" title="Permanent link">&para;</a></h2>
+<p>在前面的实验原理部分，我们已经解释了“<code>kalloc</code>在什么情况下使用了锁？”这个问题。那为什么要在操作freelist的时候上锁呢？上锁必然是为了防止并行运行的时候出问题，如果我们能设想出一场景（这个场景显然是并行情况下的）让没上锁的链表操作出问题，那就可以解释为什么要上锁了。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Allocate one 4096-byte page of physical memory.</span>
+<span class="c1">// Returns a pointer that the kernel can use.</span>
+<span class="c1">// Returns 0 if the memory cannot be allocated.</span>
+<span class="mi">68</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="mi">69</span><span class="w"> </span><span class="n">kalloc</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<span class="mi">70</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="mi">71</span><span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">run</span><span class="w"> </span><span class="o">*</span><span class="n">r</span><span class="p">;</span><span class="w"></span>
+<span class="mi">72</span><span class="w"></span>
+<span class="mi">73</span><span class="w">  </span><span class="n">acquire</span><span class="p">(</span><span class="o">&amp;</span><span class="n">kmem</span><span class="p">.</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
+<span class="mi">74</span><span class="w">  </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kmem</span><span class="p">.</span><span class="n">freelist</span><span class="p">;</span><span class="w"></span>
+<span class="mi">75</span><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="w"></span>
+<span class="mi">76</span><span class="w">    </span><span class="n">kmem</span><span class="p">.</span><span class="n">freelist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span><span class="w"></span>
+<span class="mi">77</span><span class="w">  </span><span class="n">release</span><span class="p">(</span><span class="o">&amp;</span><span class="n">kmem</span><span class="p">.</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
+<span class="mi">78</span><span class="w"></span>
+<span class="mi">79</span><span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="w"></span>
+<span class="mi">80</span><span class="w">    </span><span class="n">memset</span><span class="p">((</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">PGSIZE</span><span class="p">);</span><span class="w"> </span><span class="c1">// fill with junk</span>
+<span class="mi">81</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="n">r</span><span class="p">;</span><span class="w"></span>
+<span class="mi">82</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">某个错误场景</p>
+<p>以kalloc()函数为例（见kernel/kalloc.c）。假设第73和77行的锁操作被注释掉了，那么就可能有两个CPU，记为CPU0和CPU1，同时执行到第74行。然后，两个CPU就会从freelist中拿出同一个内存块，这就会导致两个进程共用一块内存，但对于进程来说它认为它得到的内存是独享的，这样A进程再往这块内存中写数据时，会把B之前写进去的数据破坏掉，这显然不是我们所希望的。所以kalloc()里从freelist中取内存块的操作需要锁，CPU0在取的时候CPU1陷入等待，直到CPU0把freelist更新完解锁后，CPU1再进去取，从而保证每个内存块只被一个进程取走。</p>
+</div>
+<p>对kfree函数，请同学们自行想象一个没有锁会出现错误的场景，在此不再做讨论。</p>
+<h2 id="3-bio">3. 锁与bio<a class="headerlink" href="#3-bio" title="Permanent link">&para;</a></h2>
+<p>在bio.c中，一共使用两种类型的锁：自旋锁<code>spinlock</code>（bcache.lock）和睡眠锁<code>sleeplock</code>（b.lock）。</p>
+<h3 id="31">3.1 <strong>自旋锁</strong><a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<p><em>bcache.lock</em> 用于表示当前访问的bcache缓存块数据结构是否被锁住。 当bcache.lock为0时表示未锁住，能够访问当前数据结构bcache，如果为1，即暂时无法获得锁，则不断循环、自旋、等待锁重新可用。</p>
+<ul>
+<li>
+<p><em>bget()</em> 在操作bcache数据结构（修改refcnt、dev、blockno、valid）时，需要获取到自旋锁 bcache.lock，操作完成后再释放该锁。</p>
+</li>
+<li>
+<p><em>brelse()</em> 需要获取到自旋锁 bcache.lock，才能将refcnt（引用计数）减1，且只有在refcnt为0时，将该数据缓存块插入到bcache.head链表后面，操作完成后再释放该锁。</p>
+</li>
+<li>
+<p><em>bpin()和bunpin()</em> 获取到锁后，才能修改refcnt，操作完成后再释放该锁。</p>
+</li>
+</ul>
+<h3 id="32">3.2 <strong>睡眠锁</strong><a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<p>b.lock用于表示bcache缓存块数据结构中的当前缓存数据块buf是否被锁住，当b.lock为1时，则调用sleep()睡眠等待锁重新可用，为0则表示锁已经被释放。睡眠锁的三个接口函数如下：</p>
+<ul>
+<li>
+<p><em>acquiresleep()</em>：查询b.lock是否被锁，如果被锁了，就睡眠，让出CPU，直到wakeup()唤醒后，获取到锁，并将b.lock置1。</p>
+</li>
+<li>
+<p><em>releasesleep()</em>：释放锁，并调用wakeup()。</p>
+</li>
+<li>
+<p><em>holdingsleep()</em>：返回锁的状态（1：锁住或0：未锁）。</p>
+</li>
+</ul>
+<p>睡眠锁的使用：  </p>
+<ul>
+<li><em>bget()</em> 在获取到缓存块（命中的缓存块，或者，未命中时通过LRU算法替换出来缓存中的缓存块）后，调用acquiresleep()获取睡眠锁。</li>
+<li><em>bwrite()</em> 在写入到磁盘之前，先调用holdingsleep()查询是否已经获取到该睡眠锁，确保有带锁而入。</li>
+<li><em>brelse()</em> 也先调用holdingsleep()查询是否已经获取到该睡眠锁，确保有带锁后，才调用releasesleep()释放该锁。</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">自旋锁和睡眠锁的区别</p>
+<p>Spinlock<br />
+      1. 在短时间内进行轻量级加锁;<br />
+      2. 获取过程一直进行忙循环—旋转—等待锁重新可用（占用CPU时间长）；<br />
+      3. xv6要求在持有spinlock期间，中断不允许发生。    </p>
+<p>sleep-lock<br />
+      1. 适合长时间持有；<br />
+      2. 获取锁期间可以让出CPU；  <br />
+      3. 持有Sleep-lock期间允许中断发生，但不允许在中断程序中使用。  </p>
+</div>
+<h2 id="4-kalloctest">4. 测评程序kalloctest对锁的检测<a class="headerlink" href="#4-kalloctest" title="Permanent link">&para;</a></h2>
+<p>测评程序会检查锁被阻塞的情况，还记得“XV6中Lock的实现”中提到的acquire代码吗？</p>
+<div class="highlight"><pre><span></span><code><span class="mf">1.</span><span class="w">    </span><span class="c1">// Acquire the lock.</span>
+<span class="mf">2.</span><span class="w">    </span><span class="c1">// Loops (spins) until the lock is acquired.</span>
+<span class="mf">3.</span><span class="w">    </span><span class="kt">void</span><span class="w"></span>
+<span class="mf">4.</span><span class="w">    </span><span class="n">acquire</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">spinlock</span><span class="w"> </span><span class="o">*</span><span class="n">lk</span><span class="p">)</span><span class="w"></span>
+<span class="mf">5.</span><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="mf">6.</span><span class="w">        </span><span class="n">push_off</span><span class="p">();</span><span class="w"> </span><span class="c1">// disable interrupts to avoid deadlock.</span>
+<span class="mf">7.</span><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">holding</span><span class="p">(</span><span class="n">lk</span><span class="p">))</span><span class="w"></span>
+<span class="mf">8.</span><span class="w">            </span><span class="n">panic</span><span class="p">(</span><span class="s">&quot;acquire&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="mf">9.</span><span class="w">        </span><span class="n">__sync_fetch_and_add</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">lk</span><span class="o">-&gt;</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="mf">10.</span><span class="w">        </span><span class="c1">// On RISC-V, sync_lock_test_and_set turns into anatomic swap:</span>
+<span class="mf">11.</span><span class="w">        </span><span class="c1">//   a5 = 1</span>
+<span class="mf">12.</span><span class="w">        </span><span class="c1">//   s1 = &amp;lk-&gt;locked</span>
+<span class="mf">13.</span><span class="w">        </span><span class="c1">//   amoswap.w.aq a5, a5, (s1)</span>
+<span class="mf">14.</span><span class="w">        </span><span class="k">while</span><span class="p">(</span><span class="n">__sync_lock_test_and_set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lk</span><span class="o">-&gt;</span><span class="n">locked</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="mf">15.</span><span class="w">            </span><span class="n">__sync_fetch_and_add</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lk</span><span class="o">-&gt;</span><span class="n">nts</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="mf">16.</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="mf">17.</span><span class="w">        </span><span class="c1">// Tell the C compiler and the processor to not moveloads or stores</span>
+<span class="mf">18.</span><span class="w">        </span><span class="c1">// past this point, to ensure that the criticalsection&#39;s memory</span>
+<span class="mf">19.</span><span class="w">        </span><span class="c1">// references happen after the lock is acquired.</span>
+<span class="mf">20.</span><span class="w">        </span><span class="n">__sync_synchronize</span><span class="p">();</span><span class="w"></span>
+<span class="mf">21.</span><span class="w">        </span><span class="c1">// Record info about lock acquisition for holding() anddebugging.</span>
+<span class="mf">22.</span><span class="w">        </span><span class="n">lk</span><span class="o">-&gt;</span><span class="n">cpu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mycpu</span><span class="p">();</span><span class="w"></span>
+<span class="mf">23.</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p><code>lk-&gt;n</code>：即#acquire，获取锁的次数。</p>
+<p><code>lk-&gt;nts</code>：即#fetch-and-add，没有获取到锁的次数。</p>
+<p>每当执行一次acquire()函数，第9行<code>__sync_fetch_and_add(&amp;(lk-&gt;n), 1);</code>就会将lk-&gt;n加1，当执行到第14行时，如果 <code>__sync_lock_test_and_set(&amp;lk-&gt;locked, 1)</code>的返回值为1（即锁已被其他进程锁上），lk-&gt;nts的值就会加1，而测评程序会检查lk-&gt;nts的值。当lk-&gt;nts值接近0时，才能通过测试。所以这次实验中需要做的就是减少进程中的锁冲突，尽量让进程在获取锁时，锁的状态都是未被锁上的。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../part3/index.html" class="btn btn-neutral float-left" title="实验实现"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../part5/index.html" class="btn btn-neutral float-right" title="提交文档">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2023 哈尔滨工业大学（深圳）</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../part3/index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../part5/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../index.html';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/baidu-tongji.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab3/part4/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:48:34 GMT -->
+</html>

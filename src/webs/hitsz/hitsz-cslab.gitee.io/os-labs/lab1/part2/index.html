@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab1/part2/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:46:35 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>实验原理 - 操作系统2022秋 | 哈工大（深圳）</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u5b9e\u9a8c\u539f\u7406";
+        var mkdocs_page_input_path = "lab1\\part2.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../index.html" class="icon icon-home"> 操作系统2022秋 | 哈工大（深圳）
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://hitsz-cslab.gitee.io/os-labs/search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">实验概述</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../index.html">实验须知</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../env/index.html">实验平台以及环境配置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">实验实用工具</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Linux/index.html">Linux开发环境基础知识</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env/index.html">远程实验平台使用指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env_gdb/index.html">远程实验平台环境图形化调试指南</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OS竞赛招新</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../oscomp/oscomp/index.html">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">常见问题</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/faq-env/index.html">实验环境问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab1/index.html">Lab1问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab3/index.html">Lab3问题</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab1：XV6与Unix实用程序</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="index.html">实验原理</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-mit-6s0812020">1. MIT 6.S081/2020</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11">1.1 参考资料</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12-xv6">1.2 XV6总统架构简介</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2. 用户程序</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21">2.1 用户程序的使用</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22">2.2 用户程序的实现</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-xv6">3. xv6的系统调用接口</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4">4.管道</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5">5. 质数筛选的模型</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#6xv6">6.我们需要注意的：xv6入门指南的入门指南</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part3/index.html">实验步骤</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab2：系统调用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part5/index.html">GDB调试系统调用（补充材料）</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab3：锁机制的应用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part4/index.html">xv-6中Lock的实现（选读）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part5/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab4：页表</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab5：基于FUSE的青春版EXT2文件系统</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-1/index.html">环境搭建与上手</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-2/index.html">任务一：熟悉DDRIVER驱动</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-3/index.html">任务二：基于FUSE实现青春版EXT2文件系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-4/index.html">选做任务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part5/index.html">实验提示</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">操作系统2022秋 | 哈工大（深圳）</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Lab1：XV6与Unix实用程序 &raquo;</li><li>实验原理</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">实验原理<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">提示</p>
+<p>本部分我们将理解实验中的操作系统xv6的相关模型，这些模型看起来非常抽象，因此在介绍完之后，我们将加入一章” <strong>我们需要注意的</strong> “，来将其串通。</p>
+</div>
+<h2 id="1-mit-6s0812020">1. MIT 6.S081/2020<a class="headerlink" href="#1-mit-6s0812020" title="Permanent link">&para;</a></h2>
+<h3 id="11">1.1 参考资料<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p>XV6是由麻省理工学院(MIT)开发的一个教学目的的操作系统，它是在x86处理器上用ANSI标准C重新实现的Unix第六版(即v6)，课程编号为6.828。2019年被移植到RISC-V之上，并设置了6.S081。</p>
+<p>XV6的主要特征：</p>
+<ul>
+<li>开源，精简，代码仅两万行左右；</li>
+<li>功能完善，可全面理解操作系统的原理及实现；</li>
+<li>基于RISC-V、X86等架构，有利于深入理解体系结构；</li>
+<li>类Unix系统，可延伸学习其他常见操作系统，例如Linux、MacOS等。</li>
+</ul>
+<p>1) 官方网站：<a href="https://pdos.csail.mit.edu/6.828/2020/index.html">https://pdos.csail.mit.edu/6.828/2020/index.html</a></p>
+<p>2) xv6 book：<a href="https://pdos.csail.mit.edu/6.828/2020/xv6/book-riscv-rev1.pdf">https://pdos.csail.mit.edu/6.828/2020/xv6/book-riscv-rev1.pdf</a></p>
+<p><img alt="image-20201017231152704" src="../part2.assets/image-20201017231152704.png" /></p>
+<p>这份官方文档，是阅读xv6源码过程中最好的参考资料，在完成所有xv6相关实验的过程中，若对源码有任何的疑问，可随时查看这份文档进行学习。</p>
+<p>3) 6.S081所有实验项目（针对每个实验，都有详细的指导和提示）：</p>
+<p><img alt="image-20210913143744152" src="../part2.assets/image-20210913143744152.png" /></p>
+<h3 id="12-xv6">1.2 XV6总统架构简介<a class="headerlink" href="#12-xv6" title="Permanent link">&para;</a></h3>
+<p>与大多数Unix操作系统一样，XV6采用宏内核结构，它包含操作系统一些最基本的要素，包括系统调用、进程调度、内存管理、中断处理和文件系统等。XV6区分内核态和用户态，代表应用程序的用户态进程运行在CPU的用户态（又称非特权模式，用户模式），无法直接访问系统硬件和操作系统中的系统数据，而操作系统运行在CPU的核心态（又称特权模式，内核模式），可以访问系统硬件和核心数据。</p>
+<p><img alt="xv6组织结构" src="../part2.assets/vx6%e7%bb%84%e7%bb%87%e7%bb%93%e6%9e%84.png" /></p>
+<h2 id="2">2. 用户程序<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="21">2.1 用户程序的使用<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>我们一般通过 <strong>命令行</strong> （shell）来使用没有图形化界面的操作系统（如Linux）。当我们向shell输入命令时，shell会解释命令并执行对应的 <strong>用户程序</strong> 。实际上，输入命令中的第一个字符串用于指示我们希望执行的用户程序，而后续的字符则为我们希望传递给用户程序的参数。例如在Linux的shell中输入如下命令：</p>
+<div class="highlight"><pre><span></span><code>$ cp file_a file_b
+</code></pre></div>
+<p>其中"cp"表示我们希望执行目录/usr/bin下的用户程序cp，该程序用于复制文件。而"file_a"和"file_b"将作为参数传递给程序cp，用以告知复制的源文件和目的文件。需要注意的是，第一个字符串实际上代表可执行文件所在的位置，即该命令和命令"/usr/bin/cp file_a file_b"是完全等价的。因为目录"/usr/bin"在 <strong>环境变量</strong> PATH中，所以我们可以简写为"cp"，交由操作系统通过环境变量寻找可执行文件。</p>
+<h3 id="22">2.2 用户程序的实现<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<p>用户程序相当于用户使用操作系统的桥梁，用户通过命令行执行用户程序，用户程序则使用系统提供的一系列服务完成我们想要的功能。这里”系统提供的服务“即所谓的 <strong>系统调用</strong> （syscall）。本次实验就需要利用xv6提供的系统调用实现一些实用的用户程序。</p>
+<p>用户程序在执行前通常需要接收一些参数，如上文提及的“file_a”和“file_b”。正常情况下，C语言中main函数的定义为：</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[]);</span><span class="w"></span>
+</code></pre></div>
+<p>其中argc就表示参数的数量，argv则为存储参数所在地址的数组。在命令行中输入的参数将作为 <strong>字符串</strong> 存储于用户栈，而argv存储的字符串指针则分别指向这些参数。</p>
+<p>例如在执行命令“cp file_a file_b”时，程序cp的main函数接收到的参数为：argc=3，argv=["cp", "file_a", "file_b"，null]。</p>
+<p>argv的最后一个元素必须为空指针（即数值0），用以标志参数的结束。argv的第一个元素则为需要执行的程序。</p>
+<h2 id="3-xv6">3. xv6的系统调用接口<a class="headerlink" href="#3-xv6" title="Permanent link">&para;</a></h2>
+<p>系统调用被封装为函数以向用户提供接口，用户程序可以通过函数调用的方式请求操作系统的服务，常见的系统调用接口定义如下：（系统调用接口头文件user/user.h）</p>
+<table>
+<thead>
+<tr>
+<th><strong>系统调用接口名</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int fork(void)</td>
+<td>Create a process, return child’s PID.</td>
+</tr>
+<tr>
+<td>int exit(int status)</td>
+<td>Terminate the current process; status reported to wait(). No return.</td>
+</tr>
+<tr>
+<td>int wait(int *status)</td>
+<td>Wait for a child to exit; exit status in *status; returns child PID.</td>
+</tr>
+<tr>
+<td>int kill(int pid)</td>
+<td>Terminate process PID. Returns 0, or -1 for error.</td>
+</tr>
+<tr>
+<td>int getpid(void)</td>
+<td>Return the current process’s PID.</td>
+</tr>
+<tr>
+<td>int sleep(int n)</td>
+<td>Pause for n clock ticks.</td>
+</tr>
+<tr>
+<td>int exec(char *filename,char *argv[])</td>
+<td>Load a file and execute it with arguments; only returns if error.</td>
+</tr>
+<tr>
+<td>char* sbrk(int n)</td>
+<td>Grow process’s memory by n bytes. Returns start of new memory.</td>
+</tr>
+<tr>
+<td>int open(char* filename, int flags)</td>
+<td>Open a file; flags indicate read/write; returns an fd (file descriptor).</td>
+</tr>
+<tr>
+<td>int read(int fd, void* buf, int n)</td>
+<td>Read n bytes into buf; returns number read; or 0 if end of file.</td>
+</tr>
+<tr>
+<td>int write(int fd, void* buf, int n)</td>
+<td>Write n bytes from buf to file descriptor fd; returns n.</td>
+</tr>
+<tr>
+<td>int close(int fd)</td>
+<td>Release open file fd.</td>
+</tr>
+<tr>
+<td>int dup(int fd)</td>
+<td>Return a new file descriptor referring to the same file as fd.</td>
+</tr>
+<tr>
+<td>int pipe(int p[])</td>
+<td>Create a pipe, put read/write file descriptors in p[0] and p[1].</td>
+</tr>
+<tr>
+<td>int chdir(char *dirname)</td>
+<td>Change the current directory.</td>
+</tr>
+<tr>
+<td>int mkdir(char *dirname)</td>
+<td>Create a new directory.</td>
+</tr>
+<tr>
+<td>int mknod(char *name, short major, short minor)</td>
+<td>Create a device file.</td>
+</tr>
+<tr>
+<td>int fstat(int fd, struct stat *st)</td>
+<td>Place info about an open file into *st.</td>
+</tr>
+<tr>
+<td>int link(char *f1, char*f2)</td>
+<td>Create another name (file2) for the file file1.</td>
+</tr>
+<tr>
+<td>int unlink(char* filename)</td>
+<td>Remove a file.</td>
+</tr>
+</tbody>
+</table>
+<p>图表摘自《xv6 book》P11，具体信息可以参阅。</p>
+<h2 id="4">4.管道<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<div class="admonition 管道机制简介">
+<p class="admonition-title">管道机制简介</p>
+<p>管道是一种父子进程间或子子进程间的进程间通信机制，它由xv6操作系统提供，并可通过直接编程或在shell程序下轻松把不同进程的输入和输出连接起来。</p>
+<p>直接编程方式：xv6提供了pipe系统调用接口，我们可以在本节实验中直接使用。</p>
+<p>shell命令方式：“|”是管道符号，即两个命令之间的一道竖杠。我们可以通过管道符号组合的命令，实现不同进程（父子进程间或子子进程间）的通信，从而在不改变应用程序代码的情况下，让操作系统具有进程间信息交互和功能组合的能力。详见<a href="../../Linux/index.html#82">管道</a></p>
+</div>
+<p>管道（pipe）是一种最基本的进程间通信机制。管道分为 <strong>读出端</strong> 和 <strong>写入端</strong> 两个部分，进程可以向写端写入数据，也可以从读端读出数据。通过pipe系统调用，内核会为用户进程创建管道，同时返回两个文件描述符，用以描述管道的读写端，例如：</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span><span class="w"></span>
+<span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pipe</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"> </span><span class="cm">/*正常创建后，p[1]为管道写入端，p[0]为管道读出端*/</span><span class="w"> </span>
+</code></pre></div>
+<p>通过文件描述符，程序可以按读写文件的形式读写管道，例如：</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">w_len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">write</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">r_len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<div class="admonition 文件描述符">
+<p class="admonition-title">文件描述符</p>
+<p>Unix/Linux中一切皆文件，包括标准输入设备（键盘）和标准输出设备（显示器）在内的所有计算机硬件都是文件。同样地，xv6也会给每个文件分配一个整数的ID，也就是文件描述符（File Descriptor），它代表了一个内核管理的对象，进程可对这个对象进行读写操作。文件描述符都是从0开始计数，按照约定，其中0是标准输入，1是标准输出，2是标准错误输出。shell程序中始终打开了这三个文件描述符，作为控制台的默认文件描述符。</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>文件描述符</th>
+<th>文件名</th>
+<th>类型</th>
+<th>硬件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>stdin</td>
+<td>标准输入文件</td>
+<td>键盘</td>
+</tr>
+<tr>
+<td>1</td>
+<td>stdout</td>
+<td>标准输出文件</td>
+<td>显示器</td>
+</tr>
+<tr>
+<td>2</td>
+<td>stderr</td>
+<td>标准错误输出文件</td>
+<td>显示器</td>
+</tr>
+</tbody>
+</table>
+<p>管道实际上是内核开辟的一段长度有限的缓冲区，管道的读写就是对缓冲区的读写。需要注意的是，管道的读取是阻塞的：如果管道的写入端一直未写入数据，那么调用read时进程会一直等待，直至管道内有数据可读时才会完成读取并返回读取的长度。同样，管道的写入也是阻塞的：如果管道被写满，那么调用write时进程也会陷入等待，直至数据被读出端读出。当然，读写管道不会永远地阻塞，如果读管道时发现 <strong>所有</strong> 写入端已经关闭，那么读函数将不会等待，而是直接返回。写管道时也具备类似的性质。</p>
+<p>进程通常只持有某个管道的读出端或者写入端，因此使用的时候需要将另一端关闭，例如：</p>
+<div class="highlight"><pre><span></span><code><span class="cm">/* 子进程读管道，父进程写管道 */</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fork</span><span class="p">();</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="cm">/* 子进程 */</span><span class="w"></span>
+<span class="w">    </span><span class="n">close</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"> </span><span class="c1">// 关闭写端</span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="n">read</span><span class="p">(...);</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="n">close</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"> </span><span class="c1">// 读取完成，关闭读端</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="cm">/* 父进程 */</span><span class="w"></span>
+<span class="w">    </span><span class="n">close</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span><span class="w"> </span><span class="c1">// 关闭读端</span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="n">write</span><span class="p">(...);</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="n">close</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span><span class="w"> </span><span class="c1">// 写入完成，关闭写端</span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>管道详细信息可以参阅《xv6 book》P15~P17。</p>
+<h2 id="5">5. 质数筛选的模型<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<p>利用进程管道实现，其逻辑伪码为：</p>
+<div class="highlight"><pre><span></span><code>p = get a number from left neighbor
+print p
+loop:
+    n = get a number from left neighbor
+    if (p does not divide n)
+        send n to right neighbor
+</code></pre></div>
+<p>筛选思路：使用系统调用pipe创建管道，使用系统调用fork创建子进程。主进程将所有数据（例2~11）输入到管道的左侧，第一个子进程从管道读出并筛选出2，排除掉2的倍数，其他数字再写入下一管道；第二个子进程读出并筛选出3，排除掉3的倍数，其他数字写入到下一管道；第三个子进程读出筛选出5，依次类推……如下图所示：</p>
+<p><img alt="image-20201017231043674" src="../part2.assets/image-20201017231043674.png" /></p>
+<p>上图中，首先将2的整数倍的数去掉，再将3的整数倍的数去掉，依次类推。</p>
+<p>使用管道筛选质数是由Unix管道的发明者Doug Mcllroy提出来的，详见：<a href="https://swtch.com/~rsc/thread/">Bell Labs and CSP Threads</a></p>
+<h2 id="6xv6">6.我们需要注意的：xv6入门指南的入门指南<a class="headerlink" href="#6xv6" title="Permanent link">&para;</a></h2>
+<p>前四个部分的叙述非常抽象，我们在这一部分将其 <strong>融会贯通</strong> 起来，看看其间的关系。</p>
+<p>xv6是一个操作系统，但是在这一章我们 <strong>不打算修改</strong> 操作系统，而是编写应用程序，去 <strong>使用</strong> 操作系统。我们编写的最简单的应用程序如下：</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello world&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>这段代码对我们来说太过熟悉，以至于我们会以为这与操作系统毫无关系。实际上， <em>printf</em> 这个函数调用了操作系统的服务，这个就是第三部分提到的”系统调用接口“，长得和函数一样，用起来也和函数一样。</p>
+<p>现在我们来看看xv6里面的简单程序长啥样：</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;user.h&quot;</span><span class="cp"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[]){</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello world&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>这就是最简单的xv6应用程序啦，下面我们来一一介绍每一行的意义：</p>
+<ul>
+<li>第一行include了xv6自带的库函数，打开它你会看到里面有两种函数，一种是system call，即第三部分提到的”系统调用接口“，另一种就是我们平常用到的辅助函数，xv6帮你写好的那种，比如 <em>strlen</em> 。今后我们可能也会用到别的库，自己引用进来就好。</li>
+<li>第二行，发现怎么有两个参数啊？这其实就是第二部分<a href="#21">用户程序的实现</a>所说的。当我们启动一个程序的时候，需要给它一些信息，这样程序就知道它被启动的目的是什么了。</li>
+<li>第三行，调用的就是一个系统调用了。在之后的程序编写中，我们需要操作系统帮忙的时候，我们就要 <strong>使用第三部分中罗列的各种系统调用，以函数的形式使用它</strong> 。</li>
+<li>第四行的exit一定不要漏了，现代操作系统中linux和windows都可以用return 0退出程序，这是它设计的好的缘故，但是xv6则 <strong>需要使用系统调用exit显式的退出程序</strong> ，要不然这个程序就没完了。</li>
+</ul>
+<p>知道了基本程序该如何编写后，各种应用程序也就只是逻辑的问题了，如果不放心，自己编个应用程序试试看先，也不错。</p>
+<p>下面，我们就正式进入到各实验的细节中。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../part1/index.html" class="btn btn-neutral float-left" title="实验概述"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../part3/index.html" class="btn btn-neutral float-right" title="实验步骤">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2023 哈尔滨工业大学（深圳）</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../part1/index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../part3/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../index.html';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/baidu-tongji.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab1/part2/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:46:42 GMT -->
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/remote_env_gdb/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:41:45 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>远程实验平台环境图形化调试指南 - 操作系统2022秋 | 哈工大（深圳）</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u8fdc\u7a0b\u5b9e\u9a8c\u5e73\u53f0\u73af\u5883\u56fe\u5f62\u5316\u8c03\u8bd5\u6307\u5357";
+        var mkdocs_page_input_path = "remote_env_gdb.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../index.html" class="icon icon-home"> 操作系统2022秋 | 哈工大（深圳）
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://hitsz-cslab.gitee.io/os-labs/search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">实验概述</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../index.html">实验须知</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../env/index.html">实验平台以及环境配置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tools/index.html">实验实用工具</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux/index.html">Linux开发环境基础知识</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../remote_env/index.html">远程实验平台使用指南</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="index.html">远程实验平台环境图形化调试指南</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-gdb">1. 设置GDB信任</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-gdb">2. 获取专属GDB端口号</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-vs-code">3. 设置VS Code</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4">4. 基础使用教学</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#41">4.1 单步跳过</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#42">4.2 断点功能</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#43">4.3 单步调试（步入函数）、单步跳出与局部变量</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#44">4.4 略微高级一点的技巧</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#441">4.4.1 单步汇编调试、汇编显示</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#442">4.4.2 寄存器内容分析</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#443">4.4.3 内存内容</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#444">4.4.4 用户态程序调试</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#445">4.4.5 其他...</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OS竞赛招新</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../oscomp/oscomp/index.html">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">常见问题</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/faq-env/index.html">实验环境问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/lab1/index.html">Lab1问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/lab3/index.html">Lab3问题</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab1：XV6与Unix实用程序</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab1/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab1/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab1/part3/index.html">实验步骤</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab1/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab2：系统调用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab2/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab2/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab2/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab2/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab2/part5/index.html">GDB调试系统调用（补充材料）</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab3：锁机制的应用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab3/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab3/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab3/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab3/part4/index.html">xv-6中Lock的实现（选读）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab3/part5/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab4：页表</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab4/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab4/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab4/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab4/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab5：基于FUSE的青春版EXT2文件系统</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part3-1/index.html">环境搭建与上手</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part3-2/index.html">任务一：熟悉DDRIVER驱动</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part3-3/index.html">任务二：基于FUSE实现青春版EXT2文件系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part3-4/index.html">选做任务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part5/index.html">实验提示</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">操作系统2022秋 | 哈工大（深圳）</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>实验概述 &raquo;</li><li>远程实验平台环境图形化调试指南</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">远程实验平台环境图形化调试指南<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">调试说明</p>
+<p>通常来说，使用简单粗暴的<code>printf大法</code>（在特定的地方打印日志）就能够处理绝大多数的bug。但是对于大型的项目开发或数量超多的源码，printf大法就不能快速地去定位问题所在。功能强大的GDB调试是Linux系统下的一个程序调试利器，使用GDB调试可以说是作为Linux下的程序员应当要掌握的一大技能。然而，GDB因其命令行的方式想必会挡住了一大波同学，默默地继续使用printf。那有没有带图形化调试界面的调试方法呢？</p>
+<p>接下来，我们为同学们介绍调试手段的重头戏：使用VS Code来调试xv6 :-) </p>
+</div>
+<p>为了给同学们演示如何用VSCode图形化调试XV6，我们录制了两个演示视频：</p>
+<iframe 
+    width= 600  
+    height= 400
+    src="http://player.bilibili.com/player.html?aid=603268135&amp;bvid=BV1ZB4y1E7X5&amp;cid=842011406&amp;page=1" 
+    scrolling="no" 
+    border="0" 
+    frameborder="no" 
+    framespacing="0" 
+    allowfullscreen="true"
+> </iframe>
+
+<iframe 
+    width= 600  
+    height= 400
+    src="http://player.bilibili.com/player.html?aid=773255983&amp;bvid=BV1i14y1Y7ZZ&amp;cid=842019673&amp;page=1" 
+    scrolling="no" 
+    border="0" 
+    frameborder="no" 
+    framespacing="0" 
+    allowfullscreen="true"
+> </iframe>
+
+<p>如果视频不太清晰，建议到bilibili上观看。</p>
+<ol>
+<li>【1. VSCode调试xv6内核代码】 <a href="https://www.bilibili.com/video/BV1ZB4y1E7X5?share_source=copy_web&amp;vd_source=a822dcda3537564ccdd0bb45aa0afe33">https://www.bilibili.com/video/BV1ZB4y1E7X5?share_source=copy_web&amp;vd_source=a822dcda3537564ccdd0bb45aa0afe33</a></li>
+<li>【2. VSCode调试xv6用户代码】 <a href="https://www.bilibili.com/video/BV1i14y1Y7ZZ?share_source=copy_web&amp;vd_source=a822dcda3537564ccdd0bb45aa0afe33">https://www.bilibili.com/video/BV1i14y1Y7ZZ?share_source=copy_web&amp;vd_source=a822dcda3537564ccdd0bb45aa0afe33</a></li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">注意事项</p>
+<p>如果不想使用VS Code调试，还是想在远程实验环境使用gdb命令行的同学，请使用可以支持多种硬件体系架构的“gdb-multiarch”而非“gdb”或者“riscv64-unknown-elf-gdb”。</p>
+<ol>
+<li>打开终端，到xv6-labs-2020目录下输入：</li>
+</ol>
+<div class="highlight"><pre><span></span><code>make qemu-gdb
+</code></pre></div>
+<ol>
+<li>打开另外一个终端，到xv6-labs-2020目录下输入</li>
+</ol>
+<div class="highlight"><pre><span></span><code>gdb-multiarch
+</code></pre></div>
+<p><img alt="image-20210927103527736" src="../remote_env_gdb.assets/image-20210927103527736.png" /></p>
+</div>
+<p>使用远程实验平台和VS Code，可以方便快捷地使用图形化界面完成调试功能。以下是设置步骤。</p>
+<h2 id="1-gdb">1. 设置GDB信任<a class="headerlink" href="#1-gdb" title="Permanent link">&para;</a></h2>
+<p>在终端中，输入：</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;set auto-load safe-path /&quot;</span> &gt;&gt;  ~/.gdbinit
+</code></pre></div>
+<p>这会关闭gdb的autoload信任机制——别担心，你们没有管理员权限，搞不坏远程环境的。</p>
+<h2 id="2-gdb">2. 获取专属GDB端口号<a class="headerlink" href="#2-gdb" title="Permanent link">&para;</a></h2>
+<p>接下来，获取你专属的GDB端口号。在控制台输入<code>expr $(id -u) % 5000 + 25000</code>并回车，你应该能得到一串数字：</p>
+<div class="highlight"><pre><span></span><code>ldap_example@OSLabExecNode0:~$ expr <span class="k">$(</span>id -u<span class="k">)</span> % <span class="m">5000</span> + <span class="m">25000</span>
+<span class="m">25001</span>    // ← 这个
+</code></pre></div>
+<p>请记好这串数字，后面会用到。</p>
+<h2 id="3-vs-code">3. 设置VS Code<a class="headerlink" href="#3-vs-code" title="Permanent link">&para;</a></h2>
+<p>首先 <strong>确认你的VS Code工作区路径是否是你的xv6路径，没有额外嵌套一层文件夹</strong> 。按下<code>Ctrl+`</code>，呼出终端，输入<code>ls</code>。你应该会看到如下情景：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">ldap_example@OSLabExecNode0:~/xv6-labs-2020$ </span>ls
+<span class="go">conf  fs.img  grade-lab-util  gradelib.py  gradelib.pyc  kernel  LICENSE  Makefile  mkfs  README  user</span>
+</code></pre></div>
+<p>如果不是，打开新的工作区，选择xv6所在的文件夹打开即可。</p>
+<p><strong>在VS Code左侧，点击扩展选项，搜索、安装<code>Native Debug</code>插件</strong> ，点击安装：</p>
+<p><img alt="native_debug" src="../remote_env_gdb.assets/native_debug.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">插件推荐</p>
+<p>同时，我们也强烈推荐你安装VS Code的C/C++插件。这会给你带来自动补全、Ctrl-点击跳转等各种方便的功能。</p>
+</div>
+<p>在VS Code左侧，点击“运行和调试”选项，如图：</p>
+<p><img alt="debug_tab" src="../remote_env_gdb.assets/debug_tab.png" /></p>
+<p>选择<code>创建launch.json文件</code>，选择GDB。</p>
+<p><img alt="gen_profile" src="../remote_env_gdb.assets/gen_profile.png" /></p>
+<p>这会打开一个名为<code>launch.json</code>的文件。将其中内容全部替换为如下：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.2.0&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gdb&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;attach&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Attach to gdbserver&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;executable&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceRoot}/kernel/kernel&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;gdbpath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gdb-multiarch&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;remote&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">            </span>
+<span class="w">            </span><span class="nt">&quot;target&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;127.0.0.1:此前你得到的GDB端口号&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceRoot}&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;setupCommands&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;source ${workspaceFolder}/.gdbinit&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>其中，第十行<code>"target": "127.0.0.1:此前你得到的GDB端口号",</code>第二个冒号后中文内容 <strong>替换</strong> 为此前你通过<code>expr $(id -u) % 5000 + 25000</code>得到的数字，比如25001。Ctrl+S以保存。</p>
+<p>如此，配置便宣告完成，可以使用。</p>
+<h2 id="4">4. 基础使用教学<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>默认启用的是xv6内核的调试。若要调试用户程序，方法参见下方<a href="#444">4.4.4 用户态程序调试</a>节。</p>
+</div>
+<p>为演示起见，我们在<code>kernel/main.c</code>的第13行打下一个断点，如图。
+<img alt="bp" src="../remote_env_gdb.assets/bp.png" />
+断点可以靠使用鼠标点击行号左侧设置。</p>
+<p>在下方命令行输入<code>make qemu-gdb</code>。qemu会自动启动，gdb开始等待接入。按下F5， <strong>或者</strong> 点击左侧按钮运行与调试，并点击左上角绿色三角（Attach to gdb)：</p>
+<p><img alt="run_gdb" src="../remote_env_gdb.assets/run_gdb.png" />
+现在，内核成功运行，并且停止在了断点处，如图所示：
+<img alt="bp_stop" src="../remote_env_gdb.assets/bp_stop.png" />
+这证明了我们的配置与GDB运行正常。</p>
+<p>上方的数个按键，分别是“运行”、“单步跳过（下一行）”，“单步调试（步入函数）”，“单步跳出（跳出函数）”，“回退（不支持）”，“反向（不支持）”，“重启（不支持）”，“断开”，如下所示：
+<img alt="buttons" src="../remote_env_gdb.assets/buttons.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">注意</p>
+<p>每次调试完成，务必使用红色按钮 <strong>断开</strong> GDB调试，并在命令行中 <code>Ctrl-A, X</code>以停止qemu。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注意</p>
+<p>运行时不应对源文件进行任何修改。此时修改并无任何意义。如果需要更改程序，请停止调试、完成修改再重新开始调试。</p>
+</div>
+<p>点击单步，你可能会发现语句飞的到处都是。这是因为，xv6实验时默认是开启多核处理的。如下图左侧所示，现在有三个线程在同时运行，代表三颗CPU核心：</p>
+<p><img alt="cores" src="../remote_env_gdb.assets/cores.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>如果不想开启多核心，可以在运行<code>make qemu-gdb</code>时使用<code>CPUS=1</code>，以单核模式启动，即输入命令变为<code>make qemu-gdb CPUS=1</code>。</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">注意</p>
+<p>开启多核心是许多lab检查的必要条件，因为有些lab下需要处理多核心之间竞争问题。手动指定CPUS仅用于调试用途，如果你提交的代码仅可在单核下运行、而不能在通常情况下运行，你将无法得到分数或只能得到部分分数。此时你应当关注锁与竞争相关的问题。</p>
+</div>
+<p>为了便于演示起见，后续以单核模式执行。</p>
+<h3 id="41">4.1 单步跳过<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<p>左侧第二个按钮为单步跳过（向下一行）按钮。点击它可以让程序向下运行一行。如下所示为初态：</p>
+<p><img alt="step_init" src="../remote_env_gdb.assets/step_init.png" /></p>
+<p>按下单步跳过按钮，则程序向下执行一行：</p>
+<p><img alt="step_fin" src="../remote_env_gdb.assets/step_fin.png" /></p>
+<h3 id="42">4.2 断点功能<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
+<p>运行时也可设置断点。程序将在运行到断点时停止。点击行号左侧即可设置断点。以该状态为初态，我们可以发现在17行处有一个未触发的断点：</p>
+<p><img alt="step_fin" src="../remote_env_gdb.assets/step_fin.png" /></p>
+<p>点击“运行”（左侧第一个按钮），程序将自动运行到下一个断点并停止：</p>
+<p><img alt="bp_fin" src="../remote_env_gdb.assets/bp_fin.png" /></p>
+<p>从输出可见其输出了一个回车，并停止在了该语句执行之前。</p>
+<h3 id="43">4.3 单步调试（步入函数）、单步跳出与局部变量<a class="headerlink" href="#43" title="Permanent link">&para;</a></h3>
+<p>上回我们停在了一个<code>printf</code>处。我们现在将进入<code>printf</code>函数内部进行研究。我们点击单步调试按钮（左数第3个），这会带我们进入<code>printf</code>函数的第一条可执行语句：</p>
+<p><img alt="step_into_1" src="../remote_env_gdb.assets/step_into_1.png" /></p>
+<p>此时，左上角会显示当前的局部变量。<code>&lt;optimized out&gt;</code>表明其已被优化掉不可见，这有可能因为其 <strong>暂时尚未被初始化</strong> 。如图，继续使用单步跳过（下一行），进入第78行，我们会发现部分此前显示<code>&lt;optimized out&gt;</code>的变量已经可见：</p>
+<p><img alt="step_into_2" src="../remote_env_gdb.assets/step_into_2.png" /></p>
+<p>复杂的变量（如结构体）可以展开以查看内容。</p>
+<p>当你完成该函数处的调试与研究，可以点击单步跳出（左侧第4个按钮）以跳出该函数。如图，命令行处显示对应信息，表明该函数已被执行完成；调试器现在停在了函数外：</p>
+<p><img alt="step_into_3" src="../remote_env_gdb.assets/step_into_3.png" /></p>
+<h3 id="44">4.4 略微高级一点的技巧<a class="headerlink" href="#44" title="Permanent link">&para;</a></h3>
+<p>以上内容皆可依靠GUI完成，并且已经可以覆盖绝大多数需求。如果你需要其他一些高级功能，或者仅仅只是想要了解更多——欢迎。
+这部分将更为简短，并且默认你们拥有一定程度的前置知识。
+以下内容均需要通过调试控制台操作。
+<img alt="debug_cons" src="../remote_env_gdb.assets/debug_cons.png" /></p>
+<h4 id="441">4.4.1 单步汇编调试、汇编显示<a class="headerlink" href="#441" title="Permanent link">&para;</a></h4>
+<p>我们以Trampoline处的调试作为示例。我们可以进入userret处：</p>
+<p><img alt="si_1" src="../remote_env_gdb.assets/si_1.png" /></p>
+<p>单步跳过该指令，进入trampoline的userret。通过<code>disas $pc, $pc+20</code>，可以显示接下来20byte的汇编指令，可以发现我们确实进入了userret处：</p>
+<p><img alt="si_2" src="../remote_env_gdb.assets/si_2.png" /></p>
+<p>或者使用<code>display/10i $pc</code>可以让gdb持续自动显示从pc起的10条指令。</p>
+<p><img alt="si_3" src="../remote_env_gdb.assets/si_3.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">注意</p>
+<p>这里直接<code>b uservec</code>是不可行的，这是由Trampoline的特殊性导致的。可以自行阅读、理解一下为什么。</p>
+</div>
+<h4 id="442">4.4.2 寄存器内容分析<a class="headerlink" href="#442" title="Permanent link">&para;</a></h4>
+<p>使用<code>info reg</code>可以显示当前CPU的寄存器。</p>
+<p><img alt="reg" src="../remote_env_gdb.assets/reg.png" /></p>
+<h4 id="443">4.4.3 内存内容<a class="headerlink" href="#443" title="Permanent link">&para;</a></h4>
+<p>使用<code>x/字节数b *地址</code>可以展示内存内容：</p>
+<p><img alt="mem" src="../remote_env_gdb.assets/mem.png" /></p>
+<h4 id="444">4.4.4 用户态程序调试<a class="headerlink" href="#444" title="Permanent link">&para;</a></h4>
+<p>xv6的内核态和用户态并不共享页表，调试符号也完全不同。调试用户程序需要加载对应的用户程序调试符号，我们将通过调试控制台完成这一项操作。我们以调试自带的用户程序“ls"为例。  </p>
+<p><strong>Step1：</strong> 先在终端输入“make qemu-gdb”。</p>
+<p>接着，按下F5， <strong>或者</strong> 点击左侧按钮运行与调试，并点击左上角绿色三角（Attach to gdb)。</p>
+<p>再点击“运行”，让xv6正常运行，直到出现“$”，表示已经进入shell中。</p>
+<p><img alt="image-20220924102228129" src="../remote_env_gdb.assets/image-20220924102228129.png" /></p>
+<p><strong>Step2：</strong> 在调试控制台，输入“interrupt”。</p>
+<p><img alt="image-20220924102353055" src="../remote_env_gdb.assets/image-20220924102353055.png" /></p>
+<p><strong>Step3：</strong> 我们知道，在进入Trampoline切换前最后一行C代码位于<code>kernel/trap.c:128</code>处，我们将断点打在此处，继续点击“运行”。</p>
+<p><img alt="image-20220924102844921" src="../remote_env_gdb.assets/image-20220924102844921.png" /></p>
+<p><strong>Step4：</strong> 在xv6的shell中输入<code>ls</code>，以启动<code>ls</code>程序；程序停留在<code>kernel/trap.c:128</code>处。</p>
+<p><img alt="image-20220924102934345" src="../remote_env_gdb.assets/image-20220924102934345.png" /></p>
+<p><strong>Step5：</strong> 接下来，我们需要确认对应xv6的用户程序入口点，我们有两种方法可以确认应用程序的入口点：</p>
+<ol>
+<li>通过readelf确认应用程序入口点。</li>
+<li>在VSCode上直接打开该应用程序的源代码，找打main()函数，并在main()函数里打上断点。</li>
+</ol>
+<p>以下分别介绍两种方法：</p>
+<div class="admonition summary">
+<p class="admonition-title"><strong>方法一:</strong>  通过readelf确认应用程序入口点</p>
+<p>ls的elf文件位于<code>user/_ls</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">lgz_stu@OSLabExecNode1:~/xv6-labs-2020$ </span>readelf -h user/_ls
+<span class="go">ELF Header:</span>
+<span class="go">  Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00 </span>
+<span class="go">  Class:                             ELF64</span>
+<span class="go">  Data:                              2&#39;s complement, little endian</span>
+<span class="go">  Version:                           1 (current)</span>
+<span class="go">  OS/ABI:                            UNIX - System V</span>
+<span class="go">  ABI Version:                       0</span>
+<span class="go">  Type:                              EXEC (Executable file)</span>
+<span class="go">  Machine:                           RISC-V</span>
+<span class="go">  Version:                           0x1</span>
+<span class="go">  Entry point address:               0x27a</span>
+<span class="go">  Start of program headers:          64 (bytes into file)</span>
+<span class="go">  Start of section headers:          25064 (bytes into file)</span>
+<span class="go">  Flags:                             0x5, RVC, double-float ABI</span>
+<span class="go">  Size of this header:               64 (bytes)</span>
+<span class="go">  Size of program headers:           56 (bytes)</span>
+<span class="go">  Number of program headers:         1</span>
+<span class="go">  Size of section headers:           64 (bytes)</span>
+<span class="go">  Number of section headers:         18</span>
+<span class="go">  Section header string table index: 17</span>
+</code></pre></div>
+<p>可见其中显示<code>Entry point address: 0x27a</code>，应用程序入口点位于<code>0x27a</code>处。随后，我们用上面的方法开始调试，并将断点打在即将返回用户态处。</p>
+<p>我们前往调试控制台，在其中输入<code>b *0x27a</code>，即将断点置于<code>ls</code>程序入口处：</p>
+<p><img alt="ls_bmain" src="../remote_env_gdb.assets/ls_bmain.png" /></p>
+</div>
+<div class="admonition info">
+<p class="admonition-title"><strong>方法二:</strong>  在应用程序的源代码main()函数打断点</p>
+<p>在VSCode中，打开user/ls.c文件，找到main()函数，在第78行打上断点。</p>
+<p><img alt="image-20220923143519150" src="../remote_env_gdb.assets/image-20220923143519150.png" /></p>
+</div>
+<p>通过上述两个方法都可以确认应用程序的入口点，将断点打在应用程序的main()上。</p>
+<p><strong>Step6：</strong> 接下来，我们需要在调试窗口左下角删除原有的内核态断点，并通过调试控制台，加载<code>ls</code>的调试符号。在其中输入<code>file user/_ls</code>：</p>
+<p><img alt="del_bp" src="../remote_env_gdb.assets/del_bp.png" />
+<img alt="file_ls" src="../remote_env_gdb.assets/file_ls.png" /></p>
+<p><strong>Step7：</strong> 点击“运行”。可以看到已经进入了ls.c的main函数中。</p>
+<p><img alt="image-20220924104328493" src="../remote_env_gdb.assets/image-20220924104328493.png" /></p>
+<p><strong>Step8：</strong> 此时，可以在user/ls.c文件中直接打上断点，下图是在user/ls.c中的第78行打断点。如果已经在78行打过断点，可以忽略这一步。</p>
+<p><img alt="image-20210928095130751" src="../remote_env_gdb.assets/image-20210928095130751.png" /></p>
+<p><strong>Step9：</strong> 接下来，继续执行。qemu将停止在<code>ls</code>程序的第78行。</p>
+<p><img alt="image-20210928095306503" src="../remote_env_gdb.assets/image-20210928095306503.png" /></p>
+<p>点击上方的单步调试按钮，我们发现vscode的GUI调试工具现也以可以正常工作。</p>
+<p><img alt="ls_debug" src="../remote_env_gdb.assets/ls_debug.png" /></p>
+<p>此后的各种调试流程与调试内核时相同。</p>
+<h4 id="445">4.4.5 其他...<a class="headerlink" href="#445" title="Permanent link">&para;</a></h4>
+<p>剩下的可以自行寻找GDB的手册。此外，由于我们的实验运行在qemu上，且使用的是较为新颖的RISC-V架构，故而常常会有不支持或者错误的情况发生，这是正常的。同学们可以试试自行解决问题。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../remote_env/index.html" class="btn btn-neutral float-left" title="远程实验平台使用指南"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../oscomp/oscomp/index.html" class="btn btn-neutral float-right" title="2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2023 哈尔滨工业大学（深圳）</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../remote_env/index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../oscomp/oscomp/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../index.html';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../js/baidu-tongji.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/remote_env_gdb/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:44:50 GMT -->
+</html>

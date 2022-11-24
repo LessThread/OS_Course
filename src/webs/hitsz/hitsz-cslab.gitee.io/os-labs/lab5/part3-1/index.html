@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab5/part3-1/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:49:33 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>环境搭建与上手 - 操作系统2022秋 | 哈工大（深圳）</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u73af\u5883\u642d\u5efa\u4e0e\u4e0a\u624b";
+        var mkdocs_page_input_path = "lab5\\part3-1.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../index.html" class="icon icon-home"> 操作系统2022秋 | 哈工大（深圳）
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://hitsz-cslab.gitee.io/os-labs/search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">实验概述</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../index.html">实验须知</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../env/index.html">实验平台以及环境配置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">实验实用工具</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Linux/index.html">Linux开发环境基础知识</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env/index.html">远程实验平台使用指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env_gdb/index.html">远程实验平台环境图形化调试指南</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OS竞赛招新</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../oscomp/oscomp/index.html">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">常见问题</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/faq-env/index.html">实验环境问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab1/index.html">Lab1问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab3/index.html">Lab3问题</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab1：XV6与Unix实用程序</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part3/index.html">实验步骤</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab2：系统调用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part5/index.html">GDB调试系统调用（补充材料）</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab3：锁机制的应用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part4/index.html">xv-6中Lock的实现（选读）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part5/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab4：页表</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab5：基于FUSE的青春版EXT2文件系统</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="index.html">环境搭建与上手</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. 实验包结构介绍</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2. 配置开发环境</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-ddriver">3. DDRIVER脚本的运用</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4">4. 项目编译</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part3-2/index.html">任务一：熟悉DDRIVER驱动</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part3-3/index.html">任务二：基于FUSE实现青春版EXT2文件系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part3-4/index.html">选做任务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part5/index.html">实验提示</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">操作系统2022秋 | 哈工大（深圳）</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Lab5：基于FUSE的青春版EXT2文件系统 &raquo;</li><li>环境搭建与上手</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">环境搭建与上手<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="1">1. 实验包结构介绍<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>本次实验充分考虑到 <strong>上手成本</strong> ，因此我们编写了简单的环境配置脚本，帮助大家一键配置开发环境。实验包代码获取途径：</p>
+<div class="highlight"><pre><span></span><code><span class="gp"># </span>git clone https://gitee.com/ftutorials/user-land-filesystem.git
+</code></pre></div>
+<p>实验包的结构如下：</p>
+<div class="highlight"><pre><span></span><code>user-land-filesystem/
+├── driver
+│   ├── ddriver.sh
+│   ├── kernel_ddriver
+│   └── user_ddriver
+├── fs
+│   ├── samples
+│   ├── simplefs
+│   └── template
+├── LICENSE
+├── README.md
+├── setenv.sh
+└── tests
+    ├── README.md
+    └── test_ddriver
+</code></pre></div>
+<ul>
+<li><code>driver</code></li>
+</ul>
+<p>存放驱动代码。其中<code>kernel_ddriver</code>为内核驱动，<code>user_ddriver</code>为用户驱动，<code>ddriver.sh</code>为控制 <strong>ddriver</strong> 驱动的脚本。进入user-land-filesystem目录，可以运行如下命令尝鲜：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@localhost user-land-filesystem]# </span>./driver/ddriver.sh 
+</code></pre></div>
+<ul>
+<li><code>fs</code></li>
+</ul>
+<p>存放 <strong>实现的FUSE文件系统</strong> 。其中<code>samples</code>为<code>myfs</code>文件系统，<code>simplefs</code>为类<code>EXT2</code>文件系统（缺少数据位图），<code>template</code>用于生成文件系统的代码结构，可忽略。</p>
+<ul>
+<li><code>LICENSE</code></li>
+</ul>
+<p>开源许可，本实验遵循 <strong>GPL v3</strong> 开源许可。</p>
+<ul>
+<li><code>tests</code></li>
+</ul>
+<p>该文件夹存放DDRIVER用户驱动代码。</p>
+<ul>
+<li><code>setenv.sh</code></li>
+</ul>
+<p>用于配置FUSE文件系统开发环境。</p>
+<h2 id="2">2. 配置开发环境<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>运行<code>./setenv.sh</code>后，即可按照指导一步一步来建立环境：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">teststu_8@OSLabExecNode0:~/user-land-filesystem$ </span>./setenv.sh 
+<span class="go">请输入工作目录名称 ([工作]目录将被至于./fs目录下): newfs</span>
+<span class="go">...</span>
+<span class="go">生成工作路径:  /home/guests/teststu_8/user-land-filesystem/fs/newfs</span>
+<span class="go">请输入项目名称: newfs</span>
+<span class="go">...</span>
+</code></pre></div>
+<p>其中，工作目录名称即开发该文件系统的 <strong>文件夹名称</strong> 。可以看到，它在<code>fs</code>目录下新建了一个<code>newfs</code>目录作为工作目录。</p>
+<p>接着，项目名称即真正的文件系统名称，可以是文件系统的简写，例如：nfs（代表newfs），这里要注意项目名不能有 <strong>特殊符号、空格</strong> 等。</p>
+<p>项目建立完成之后的结构<code>newfs</code>如下所示：</p>
+<div class="highlight"><pre><span></span><code>./fs/newfs/
+├── .vscode
+├── CMake
+│   └── FindFUSE.cmake
+├── CMakeLists.txt
+├── include
+│    ├── ddriver_ctl_user.h
+│    ├── ddriver.h
+│    ├── fs.layout
+│    ├── newfs.h
+│    └── types.h
+├── README.md
+├── SPEC.txt
+├── src
+│   └── newfs.c
+└── tests
+    ├── checkbm
+    │   ├── checkbm.py
+    │   ├── golden-sfs.json
+    │   └── golden.json
+    ├── mnt
+    ├── stages
+    │   ├── cp.sh
+    │   ├── ls.sh
+    │   ├── mkdir.sh
+    │   ├── mount.sh
+    │   ├── remount.sh
+    │   ├── rw.sh
+    │   └── touch.sh 
+    ├── fs_test.sh
+    ├── main.sh
+    └── test.sh
+</code></pre></div>
+<p>这个结构可以自行修改添加，不过要记得 <strong>重新配置CMake</strong> 。本次实验要求很简单， <strong>跑过<code>tests</code>下的<code>test.sh</code>的基础功能测试就算完成</strong> 。</p>
+<h2 id="3-ddriver">3. DDRIVER脚本的运用<a class="headerlink" href="#3-ddriver" title="Permanent link">&para;</a></h2>
+<p>为了方便对 <strong>ddriver</strong> 设备进行控制，我们将ddriver.sh脚本链接到了 <strong>Linux命令系统</strong> 中，接下来，大家先到<code>个人目录</code>下运行source ~/.bashrc，然后同学们就可以在任何目录下访问到ddriver.sh脚本。该脚本的主要用途如下： </p>
+<div class="highlight"><pre><span></span><code><span class="gp">teststu_8@OSLabExecNode0:~/$ </span><span class="nb">source</span> ~/.bashrc 
+<span class="gp">teststu_8@OSLabExecNode0:~/$ </span>ddriver 
+
+<span class="go">====================================================================</span>
+<span class="go">]]]]]]]]    ]]]]]]]]             </span>
+<span class="go">]      ]]   ]      ]]   ]   ]]   ]]   ]]    ]]    ]-------]   ]   ]]   </span>
+<span class="go">]       ]   ]       ]   ] ]]     ]]    ]]  ]]     ]_______/   ] ]]     </span>
+<span class="go">]      ]]   ]      ]]   ]]       ]]     ]  ]      \           ]]      </span>
+<span class="go">]]]]]]]]    ]]]]]]]]    ]]       ]]      ]]        ]]]]]]]]   ]]  </span>
+<span class="go">====================================================================</span>
+
+<span class="go">用法: ddriver [options]</span>
+<span class="go">options: </span>
+<span class="go">-i [k|u]      安装ddriver: [k] - kernel / [u] - user</span>
+<span class="go">-t            测试ddriver[请忽略]</span>
+<span class="go">-d            导出ddriver至当前工作目录[PWD]</span>
+<span class="go">-r            擦除ddriver</span>
+<span class="go">-l            显示ddriver的Log</span>
+<span class="go">-v            显示ddriver的类型[内核模块 / 用户静态链接库]</span>
+<span class="go">-h            打印本帮助菜单</span>
+<span class="go">====================================================================</span>
+</code></pre></div>
+<p>常用的功能是<code>-v</code>、<code>-d</code>与<code>-r</code>，它们的用途分别是 <strong>查看ddriver设备类型及设备位置</strong> 、 <strong>将ddriver设备镜像导出到当前目录下</strong> 、 <strong>将ddriver设备擦除干净</strong> 。用法如下：</p>
+<div class="highlight"><pre><span></span><code><span class="go">====================================================================</span>
+<span class="gp"># </span>查看设备位置和类型
+<span class="gp">teststu_8@OSLabExecNode0:~$ </span>ddriver -v
+<span class="go">静态链接库设备: /home/guests/teststu_8/ddriver</span>
+<span class="gp">teststu_8@OSLabExecNode0:~$ </span>
+
+<span class="go">====================================================================</span>
+<span class="gp"># </span>将ddriver设备导出到当前目录下
+<span class="gp">teststu_8@OSLabExecNode0:~/$ </span>ddriver -d
+<span class="go">[sudo] password for teststu_8: </span>
+<span class="go">目标设备 /home/guests/teststu_8/ddriver</span>
+<span class="go">8192+0 records in</span>
+<span class="go">8192+0 records out</span>
+<span class="go">4194304 bytes (4.2 MB, 4.0 MiB) copied, 0.094218 s, 44.5 MB/s</span>
+<span class="go">文件已导出至/home/guests/teststu_8/ddriver_dump，请安装HexEditor插件查看其内容</span>
+<span class="gp">teststu_8@OSLabExecNode0:~/$ </span>ls
+<span class="go">ddriver_dump </span>
+<span class="gp">teststu_8@OSLabExecNode0:~/$</span>
+
+<span class="go">====================================================================</span>
+<span class="gp"># </span>将ddriver设备擦除干净
+<span class="gp">teststu_8@OSLabExecNode0:~/$ </span>ddriver -r
+<span class="go">目标设备 /home/guests/teststu_8/ddriver</span>
+<span class="go">8192+0 records in</span>
+<span class="go">8192+0 records out</span>
+<span class="go">4194304 bytes (4.2 MB, 4.0 MiB) copied, 0.0506111 s, 82.9 MB/s</span>
+<span class="gp">teststu_8@OSLabExecNode0:~/$ </span>cat ./ddriver_dump
+<span class="gp">teststu_8@OSLabExecNode0:~/$</span>
+</code></pre></div>
+<h2 id="4">4. 项目编译<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p>项目编译的过程在新建项目的SPEC.txt文件中有所交代，这里提出来讲一讲：</p>
+<ul>
+<li><strong>Step 1</strong> . SSH打开<code>./fs/newfs</code>。打开VS Code软件，点击左上角 "文件" → "打开文件夹"，选择实验包目录下的fs/newfs文件夹。</li>
+</ul>
+<p><img alt="image-20211024145359896" src="../part3.assets/image-20211024145359896.png" /></p>
+<ul>
+<li><strong>Step 2</strong> . 在远程实验平台上安装CMake、CMake Tools、C/C++三个插件。</li>
+</ul>
+<p><img alt="image-20221108102247328" src="../part3-1.assets/image-20221108102247328.png" /></p>
+<p><img alt="image-20221108102514630" src="../part3-1.assets/image-20221108102514630.png" /></p>
+<p><img alt="image-20221118212435901" src="../part3-1.assets/image-20221118212435901.png" /></p>
+<ul>
+<li><strong>Step 3</strong> . 打开CMakeLists.txt文件</li>
+<li><strong>Step 4</strong> . ctrl + shift + p呼出命令菜单</li>
+<li><strong>Step 5</strong> . 输入CMake: Configure</li>
+<li><strong>Step 6</strong> . 选择X86_64版本的GCC：</li>
+</ul>
+<p><img alt="image-20221108103122575" src="../part3-1.assets/image-20221108103122575.png" /></p>
+<ul>
+<li><strong>Step 7</strong> . 点击VSCode左下角“管理”按钮，选择“设置”，然后在弹出的窗口中输入<code>@ext:ms-vscode.cmake-tools generator</code>，再点击“远程[SSH:10.249.12.98]”选项栏，在Cmake: Generator选项框中填入<code>Unix Makefiles</code>。</li>
+</ul>
+<p><img alt="image-20221108111316672" src="../part3-1.assets/image-20221108111316672.png" /></p>
+<ul>
+<li><strong>Step 8</strong> . 再次用ctrl + shift + p呼出命令菜单，输入CMake: Configure，查看输出窗口是否有“Generator” (已用!!!!!标记)</li>
+</ul>
+<p><img alt="image-20211024145654250" src="../part3.assets/image-20211024145654250.png" /></p>
+<p>若 <strong>CMAKE_GENERATOR</strong> 为 <strong>Unix Makefiles</strong> ，请手动修改<code>.vscode/tasks.json</code>的<code>command</code>为<code>make</code>，若为 <strong>Ninja</strong> ，请手动修改<code>.vscode/tasks.json</code>的<code>command</code>为<code>ninja</code>，如下图所示：</p>
+<p><img alt="image-20211024145843557" src="../part3.assets/image-20211024145843557.png" /></p>
+<ul>
+<li>
+<p><strong>Step 9</strong> . 到<code>newfs/src/newfs.c</code>目录，打断点</p>
+</li>
+<li>
+<p><strong>Step 10</strong> . 按下F5进行调试</p>
+</li>
+</ul>
+<p><img alt="image-20211024151032944" src="../part3.assets/image-20211024151032944.png" /></p>
+<p>编译运行原理：</p>
+<ul>
+<li><strong>编译。</strong> 编译环节利用CMakeLists工程自动帮助我们编译，这里要安装CMake Tools等拓展，相信大家前面也装过了。其中，按下F5后，VSCode会首先运行<code>.vscode</code>目录下<code>tasks.json</code>中的命令：</li>
+</ul>
+<p><img alt="image-20211024151616888" src="../part3.assets/image-20211024151616888.png" /></p>
+<p>该命令执行的操作就是在CMakeLists生成的<code>build</code>目录下运行<code>make</code>，由此完成自动编译。</p>
+<ul>
+<li><strong>运行。</strong> 运行过程是在<code>.vscode</code>目录下<code>launch.json</code>中定义：</li>
+</ul>
+<p><img alt="image-20211024151733598" src="../part3.assets/image-20211024151733598.png" /></p>
+<p>把运行命令展开实际上是：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">teststu_8@OSLabExecNode0:~/user-land-filesystem/fs/newfs$ </span>./build/newfs --device<span class="o">=</span>/home/guests/teststu_8/ddriver -f -d -s ./tests/mnt/
+</code></pre></div>
+<p>正如我们前面 <strong>实验原理 - FUSE架构</strong> 中说到的那样， <strong>FUSE文件系统</strong> 的挂载不需要使用<code>mount</code>命令，而是直接用编译出来的二进制文件。上述命令的意义为： <strong>将设备/home/guests/teststu_8/ddriver</strong> 以 <strong>newfs文件系统</strong> 形式， <strong>挂载</strong> 到 <strong>./tests/mnt目录</strong> 下。</p>
+<p>进而衍生出 <strong>FUSE文件系统</strong> 的 <strong>卸载</strong> ，同样，与传统内核文件系统卸载不同，它的卸载命令为：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">teststu_8@OSLabExecNode0:~/user-land-filesystem/fs/newfs$ </span>fusermount -u ./tests/mnt
+<span class="gp">teststu_8@OSLabExecNode0:~/user-land-filesystem/fs/newfs$ </span>
+</code></pre></div>
+<p>这里使用<code>fusermount -u</code>命令进行FUSE文件系统的卸载。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../part2/index.html" class="btn btn-neutral float-left" title="实验原理"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../part3-2/index.html" class="btn btn-neutral float-right" title="任务一：熟悉DDRIVER驱动">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2023 哈尔滨工业大学（深圳）</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../part2/index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../part3-2/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../index.html';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/baidu-tongji.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab5/part3-1/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:50:29 GMT -->
+</html>

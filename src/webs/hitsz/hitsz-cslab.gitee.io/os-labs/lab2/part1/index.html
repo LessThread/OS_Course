@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab2/part1/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:46:58 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>实验概述 - 操作系统2022秋 | 哈工大（深圳）</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u5b9e\u9a8c\u6982\u8ff0";
+        var mkdocs_page_input_path = "lab2\\part1.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../index.html" class="icon icon-home"> 操作系统2022秋 | 哈工大（深圳）
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://hitsz-cslab.gitee.io/os-labs/search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">实验概述</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../index.html">实验须知</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../env/index.html">实验平台以及环境配置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">实验实用工具</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Linux/index.html">Linux开发环境基础知识</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env/index.html">远程实验平台使用指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env_gdb/index.html">远程实验平台环境图形化调试指南</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OS竞赛招新</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../oscomp/oscomp/index.html">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">常见问题</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/faq-env/index.html">实验环境问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab1/index.html">Lab1问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab3/index.html">Lab3问题</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab1：XV6与Unix实用程序</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part3/index.html">实验步骤</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab2：系统调用</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="index.html">实验概述</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">1.  实验目的</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2.  实验学时</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">3.  实验内容及要求</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31">3.1 切换分支</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32">3.2 任务一：系统调用信息打印</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#321">3.2.1 系统调用接口定义</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#322">3.2.2 运行结果</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#33-sysinfo">3.3 任务二：添加系统调用sysinfo</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#34">3.4 测试</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part5/index.html">GDB调试系统调用（补充材料）</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab3：锁机制的应用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part4/index.html">xv-6中Lock的实现（选读）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part5/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab4：页表</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab5：基于FUSE的青春版EXT2文件系统</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-1/index.html">环境搭建与上手</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-2/index.html">任务一：熟悉DDRIVER驱动</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-3/index.html">任务二：基于FUSE实现青春版EXT2文件系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-4/index.html">选做任务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part5/index.html">实验提示</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">操作系统2022秋 | 哈工大（深圳）</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Lab2：系统调用 &raquo;</li><li>实验概述</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">实验概述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">温（守）馨（住）提（红）示（线）</p>
+<p>本课程实验已引入代码自动查重系统，请同学们保持<a href="https://integrity.mit.edu/">学术诚信</a>！</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">提示</p>
+<p>本节实验与理论课的 <strong>“导论与操作系统结构”</strong> 和 <strong>“进程与线程：进程”</strong> 这两章课程内容相关，在开始实验前，请复习这两章课程内容。</p>
+</div>
+<h2 id="1">1.  实验目的<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>本节实验的目的是对操作系统的系统调用模块进行修改，尽可能在真正修改操作系统之前，先对操作系统有一定的了解。</p>
+<ol>
+<li>了解xv6系统调用的工作原理。</li>
+<li>熟悉xv6通过系统调用给用户程序提供服务的机制。</li>
+</ol>
+<h2 id="2">2.  实验学时<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>本实验为4学时。</p>
+<h2 id="3">3.  实验内容及要求<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>实验要求可以参考<code>MIT XV6 lab2</code>提供的官方说明：<a href="https://pdos.csail.mit.edu/6.828/2020/labs/syscallhtml">Lab: System calls(mit.edu)</a>， <strong>但请以指导书为准，否则可能无法通过测试！</strong> </p>
+<h3 id="31">3.1 切换分支<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">请先同步上游远程仓库，并注意切换到syscall分支进行试验</p>
+<p>本次实验基于syscall分支，请同学们注意切换。</p>
+<p><strong>Step 1.</strong> 首先，保存实验一的代码，请参考实验实用工具的<a href="../../tools/index.html#331">3.3.1 使用命令行完成操作</a>或者<a href="../../tools/index.html#332-vs-code">3.3.2 使用VS Code内建的图形化界面完成操作</a>这两小节，完成commit操作。或者， <strong>如果你希望直接放弃掉上一次commit后的所有更改</strong> ，那么你也可以使用-f选项强制切换分支，例如<code>git checkout -f syscall</code>。</p>
+<p><strong>Step 2.</strong> 切换的方法可以参考实验 -&gt; 实验实用工具 -&gt; <a href="../../tools/index.html#31">3.1同步上游仓库 ~ 3.3.3 合并冲突更改</a>。</p>
+</div>
+<p>本次实验需要为xv6实现一些必要的系统调用和功能，在完成这些之后，你就可以正常使用<code>trace</code>程序和<code>sysinfotest</code>测试程序。具体来说，本实验有两部分：</p>
+<h3 id="32">3.2 任务一：系统调用信息打印<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<p>在该任务中，你需要在xv6加入具有跟踪功能的<code>trace</code>系统调用，它可以打印系统调用信息，来帮助你在之后的实验中进行debug。</p>
+<p><strong>具体要求：添加一个名为 <em>trace</em> 的系统调用。</strong> </p>
+<h4 id="321">3.2.1 系统调用接口定义<a class="headerlink" href="#321" title="Permanent link">&para;</a></h4>
+<p><code>int trace(int mask)</code></p>
+<ol>
+<li><strong>参数<code>mask</code></strong> ：每一位对应一个系统调用，位的比特值与系统调用编号相对应，指示是否需要追踪其对应的系统调用。<br />
+（1）如调用<code>trace(1 &lt;&lt; SYS_fork)</code>，则代表只追踪系统调用fork，其中SYS_fork是在kernel/syscall.h中定义的fork系统调用的编号。<br />
+（2）如调用<code>trace(0xffffffff)</code>，则代表追踪所有系统调用。  </li>
+<li><strong>返回值</strong> ：正常执行返回0，异常返回-1。  </li>
+<li><strong>功能</strong> ：设置该程序的<code>mask</code>。<br />
+（1）设置mask之后，内核每 <strong>处理完一次系统调用后</strong> ，即系统调用返回前，若mask指示了该系统调用，则打印对应信息。<br />
+（2）打印格式： <code>PID: sys_$name(arg0) -&gt; return_value</code> <br />
+其中<code>$name</code>为需要追踪的系统调用的名称；<code>arg0</code>为需要追踪的系统调用的第一个参数，<code>return_value</code>为需要追踪的系统调用的返回值，以十进制型打印。</li>
+</ol>
+<h4 id="322">3.2.2 运行结果<a class="headerlink" href="#322" title="Permanent link">&para;</a></h4>
+<p>实验提供了一个trace（见 <code>user/trace.c</code>）用户级应用程序，该程序首先通过trace系统调用设置需要跟踪的系统调用，然后再启动另一个程序，打印出该程序执行指定系统调用的情况。</p>
+<div class="admonition note">
+<p class="admonition-title">提示</p>
+<p>大家不要修改 <code>user/trace.c</code>应用程序，它只是用于测试<a href="#321">3.2.1 新增的trace系统调用</a>。</p>
+</div>
+<p>在你添加完该系统调用之后，运行用户程序 trace运行正确的情况下，你可以看到以下输出：</p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span>cs@localhost xv6-labs-2020<span class="o">]</span>$ make qemu
+
+/* 一大波输出 …… */
+
+xv6 kernel is booting
+
+hart <span class="m">2</span> starting
+hart <span class="m">1</span> starting
+init: starting sh
+$
+
+/* 例子1，手动输入:trace <span class="m">32</span> grep hello README */
+
+$ trace <span class="m">32</span> grep hello README
+<span class="m">3</span>: sys_read<span class="o">(</span><span class="m">3</span><span class="o">)</span> -&gt; <span class="m">1023</span>
+<span class="m">3</span>: sys_read<span class="o">(</span><span class="m">3</span><span class="o">)</span> -&gt; <span class="m">966</span>
+<span class="m">3</span>: sys_read<span class="o">(</span><span class="m">3</span><span class="o">)</span> -&gt; <span class="m">70</span>
+<span class="m">3</span>: sys_read<span class="o">(</span><span class="m">3</span><span class="o">)</span> -&gt; <span class="m">0</span>
+$
+
+/* 例子2，手动输入:trace <span class="m">2147483647</span> grep hello README */
+
+$ trace <span class="m">2147483647</span> grep hello README
+<span class="m">4</span>: sys_trace<span class="o">(</span><span class="m">2147483647</span><span class="o">)</span> -&gt; <span class="m">0</span>
+<span class="m">4</span>: sys_exec<span class="o">(</span><span class="m">12240</span><span class="o">)</span> -&gt; <span class="m">3</span>
+<span class="m">4</span>: sys_open<span class="o">(</span><span class="m">12240</span><span class="o">)</span> -&gt; <span class="m">3</span>
+<span class="m">4</span>: sys_read<span class="o">(</span><span class="m">3</span><span class="o">)</span> -&gt; <span class="m">1023</span>
+<span class="m">4</span>: sys_read<span class="o">(</span><span class="m">3</span><span class="o">)</span> -&gt; <span class="m">966</span>
+<span class="m">4</span>: sys_read<span class="o">(</span><span class="m">3</span><span class="o">)</span> -&gt; <span class="m">70</span>
+<span class="m">4</span>: sys_read<span class="o">(</span><span class="m">3</span><span class="o">)</span> -&gt; <span class="m">0</span>
+<span class="m">4</span>: sys_close<span class="o">(</span><span class="m">3</span><span class="o">)</span> -&gt; <span class="m">0</span>
+$
+
+/* 例子3，手动输入:grep hello README */
+
+$ grep hello README
+$
+
+
+/* 例子4，手动输入:trace <span class="m">2</span> usertests forkforkfork */
+
+$ trace <span class="m">2</span> usertests forkforkfork
+usertests starting
+<span class="nb">test</span> forkforkfork: <span class="m">407</span>: syscall fork -&gt; <span class="m">408</span>
+<span class="m">408</span>: sys_fork<span class="o">(</span>-1<span class="o">)</span> -&gt; <span class="m">409</span>
+<span class="m">409</span>: sys_fork<span class="o">(</span>-1<span class="o">)</span> -&gt; <span class="m">410</span>
+<span class="m">410</span>: sys_fork<span class="o">(</span>-1<span class="o">)</span> -&gt; <span class="m">411</span>
+<span class="m">409</span>: sys_fork<span class="o">(</span>-1<span class="o">)</span> -&gt; <span class="m">412</span>
+<span class="m">410</span>: sys_fork<span class="o">(</span>-1<span class="o">)</span> -&gt; <span class="m">413</span>
+<span class="m">409</span>: sys_fork<span class="o">(</span>-1<span class="o">)</span> -&gt; <span class="m">414</span>
+<span class="m">411</span>: sys_fork<span class="o">(</span>-1<span class="o">)</span> -&gt; <span class="m">415</span>
+...
+$   
+</code></pre></div>
+<p>我们先不着急动手，先看看结果长什么样。</p>
+<ol>
+<li>
+<p>在 <strong>第一个例子</strong> 中，<code>trace 32 grep hello README</code>，其中，trace表示我们希望执行用户态应用程序trace（见user/trace.c），后面则是trace应用程序附带的入参：</p>
+<ul>
+<li><code>32</code>是"1 &lt;&lt; SYS_read"，表示只追踪系统调用read；  </li>
+<li><code>grep</code>是trace应用程序中通过"exec"启动的另一个程序（见 user/grep.    c）；  </li>
+<li><code>hello README</code>则是grep程序的入参；  </li>
+<li>该命令的作用是使用grep程序查找README文件中匹配"hello"的行，并将其所使用到的read系统调用的信息打印出来，打印的格式为：<code>PID: sys_read(read系统调用的arg0) -&gt; read系统调用的return_value</code>。</li>
+</ul>
+</li>
+<li>
+<p>在 <strong>第二个例子</strong> 中，trace也是启动了<code>grep</code>程序，同时追踪所有的系统调用其中<code>2147583647</code>是<code>31</code>位bit全置一的十进制整型。可以看出，打的第一条信息就是系统调用trace，其第一个参数即命令行中输入2147583647。</p>
+</li>
+<li>
+<p>在 <strong>第三个例子</strong> 中，启动了<code>grep</code>程序，但是没有使用trace，所以什么trace都不会出现。</p>
+</li>
+<li>
+<p>在 <strong>第四个例子</strong> 中，trace启动了<code>usertests</code>程序中<code>forkforkfork</code>（见 user/usertests.c），追踪系统调用了fork，每次fork后代都会打印对的进程id。</p>
+<ul>
+<li>
+<p>该例中的fork实际上并没有参数，方便起见，你可以直接打印用于传该参数的寄存器的值，它可能是任意值。</p>
+</li>
+<li>
+<p>forkforkfork 会一直不停的fork子进程，直到进程数超过<code>NPROC</code>，其定义见kernel/param.h。</p>
+</li>
+<li>
+<p>usertests是实验提供的用于测试xv6的系统调用，详见user/usertests.c。</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="cm">/* user/usertest.c */</span><span class="w"></span>
+<span class="c1">//Tests xv6 system calls.  usertests without arguments runs them all</span>
+<span class="c1">// and usertests &lt;name&gt; runs &lt;name&gt; test. The test runner creates for</span>
+<span class="c1">// each test a process and based on the exit status of the process,</span>
+<span class="c1">// the test runner reports &quot;OK&quot; or &quot;FAILED&quot;.  Some tests result in</span>
+<span class="c1">// kernel printing usertrap messages, which can be ignored if test</span>
+<span class="c1">// prints &quot;OK&quot;.</span>
+</code></pre></div>
+</li>
+</ol>
+<h3 id="33-sysinfo">3.3 任务二：添加系统调用sysinfo<a class="headerlink" href="#33-sysinfo" title="Permanent link">&para;</a></h3>
+<p>在该任务中，你需要加入一条新的系统调用，叫做<code>sysinfo</code>。该系统调用将收集xv6运行的一些信息。
+sysinfo只需要一个参数，这个参数是结构体 <code>sysinfo</code>的指针， <strong>这个结构体在kernel/sysinfo.h</strong> 可以找到。xv6内核的工作就是把这个结构体填上应有的数值。下面介绍结构体每个成员的含义</p>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="mi">1</span><span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">sysinfo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w"> </span><span class="mi">2</span><span class="w">    </span><span class="n">uint64</span><span class="w"> </span><span class="n">freemem</span><span class="p">;</span><span class="w">   </span><span class="c1">// amount of free memory (bytes)</span>
+<span class="w"> </span><span class="mi">3</span><span class="w">    </span><span class="n">uint64</span><span class="w"> </span><span class="n">nproc</span><span class="p">;</span><span class="w">     </span><span class="c1">// number of process</span>
+<span class="w"> </span><span class="mi">4</span><span class="w">    </span><span class="n">uint64</span><span class="w"> </span><span class="n">freefd</span><span class="p">;</span><span class="w">    </span><span class="c1">// number of free file descriptor</span>
+<span class="w"> </span><span class="mi">5</span><span class="w">  </span><span class="p">};</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li><code>freemem</code>：当前剩余的内存 <strong>字节</strong> 数</li>
+<li><code>nproc</code>： <strong>状态为UNUSED</strong> 的进程个数</li>
+<li><code>freefd</code>：当前进程可用文件描述符的数量，即 <strong>尚未使用</strong> 的文件描述符数量</li>
+</ul>
+<p>实验提供了一个<code>sysinfotest</code>用户级应用程序（见<code>user/sysinfotest.c</code>），依次测试剩余的内存字节数、UNUSED的进程个数、未被使用的文件描述符数量。</p>
+<p>完成任务后，你可以在xv6中运行<code>sysinfotest</code>程序，通过测试会显示如下内容：</p>
+<p><img alt="image-20211005130943125" src="../part1.assets/image-20211005130943125.png" /></p>
+<h3 id="34">3.4 测试<a class="headerlink" href="#34" title="Permanent link">&para;</a></h3>
+<p>当完成上述的两个任务后，与Lab1一样，你也需要在在xv6-labs-2020目录下，新建time.txt文件，在该文件中写入你做完这个实验所花费的时间（估算一下就行，单位是小时），只需要写一个整数即可。</p>
+<p>最后，在命令行输入 <code>make grade</code> 进行测试。如果通过测试，会显示如下内容：</p>
+<p><img alt="image-20211005131516101" src="../part1.assets/image-20211005131516101.png" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../lab1/part4/index.html" class="btn btn-neutral float-left" title="提交文档"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../part2/index.html" class="btn btn-neutral float-right" title="实验原理">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2023 哈尔滨工业大学（深圳）</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../lab1/part4/index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../part2/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../index.html';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/baidu-tongji.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab2/part1/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:47:01 GMT -->
+</html>

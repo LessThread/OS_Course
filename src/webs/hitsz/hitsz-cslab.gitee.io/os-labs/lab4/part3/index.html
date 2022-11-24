@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab4/part3/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:48:54 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>实验实现 - 操作系统2022秋 | 哈工大（深圳）</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u5b9e\u9a8c\u5b9e\u73b0";
+        var mkdocs_page_input_path = "lab4\\part3.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../index.html" class="icon icon-home"> 操作系统2022秋 | 哈工大（深圳）
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://hitsz-cslab.gitee.io/os-labs/search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">实验概述</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../index.html">实验须知</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../env/index.html">实验平台以及环境配置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">实验实用工具</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Linux/index.html">Linux开发环境基础知识</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env/index.html">远程实验平台使用指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env_gdb/index.html">远程实验平台环境图形化调试指南</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OS竞赛招新</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../oscomp/oscomp/index.html">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">常见问题</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/faq-env/index.html">实验环境问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab1/index.html">Lab1问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab3/index.html">Lab3问题</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab1：XV6与Unix实用程序</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part3/index.html">实验步骤</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab2：系统调用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part5/index.html">GDB调试系统调用（补充材料）</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab3：锁机制的应用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part4/index.html">xv-6中Lock的实现（选读）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part5/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab4：页表</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="index.html">实验实现</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#0">0. 任务零：回答问题</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. 任务一 ：打印页表</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11">1.1 流程</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12">1.2 实现</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2  任务二 独立内核页表</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21">2.1 流程</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22">2.2 实现</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">3  任务三 简化软件模拟地址翻译</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31">3.1 流程</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32">3.2 实现</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab5：基于FUSE的青春版EXT2文件系统</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-1/index.html">环境搭建与上手</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-2/index.html">任务一：熟悉DDRIVER驱动</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-3/index.html">任务二：基于FUSE实现青春版EXT2文件系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-4/index.html">选做任务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part5/index.html">实验提示</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">操作系统2022秋 | 哈工大（深圳）</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Lab4：页表 &raquo;</li><li>实验实现</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">实验实现<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>这里，我们将对一些实现的细节做一定的提醒。但是完整的流程需要自己把握，我们 <strong>不会给出每一步实现步骤</strong> 。因此，最重要的还是阅读 “<a href="../part2/index.html">实验原理</a>” 内容，得出自己的解决方案，然后参考 ”实验实现“ 这部分的内容。</p>
+<p>值得注意的是，xv6的代码是可以参考的，可以看看相关实验原理是怎么实现的。同时，还可以插桩，使用printf等方法看看具体的内容。同时，还可以阅读 xv6 指导书，看看背后的设计机理。</p>
+<div class="admonition note">
+<p class="admonition-title">温馨提示</p>
+<p>本次实验的后两个任务非常硬核，但真正凸显了操作系统的魅力。虽然最后一个任务的分值不多，我们依然建议你努力尝试，如果能坚持做完，就一定会对操作系统的内存管理有更高层次的认知。</p>
+</div>
+<p>本次实验 <strong>你可能会用到很多kernel/vm.c中的函数</strong> ，它们有比较完善的注释，请仔细阅读理解。</p>
+<h2 id="0">0. 任务零：回答问题<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">回答问题</p>
+<p>任务开始之前，我们应该先要首先回答一些原理性的问题，这部分应该被包含在实验报告中：</p>
+<ol>
+<li>
+<p>查阅资料，简要阐述页表机制为什么会被发明，它有什么好处？</p>
+</li>
+<li>
+<p>按照步骤，阐述SV39标准下，给定一个64位虚拟地址为0x123456789ABCDEF的时候，是如何一步一步得到最终的物理地址的？（页表内容可以自行假设）</p>
+</li>
+<li>
+<p>我们注意到，虚拟地址的L2, L1, L0 均为9位。这实际上是设计中的必然结果，它们只能是9位，不能是10位或者是8位，你能说出其中的理由吗？（提示：一个页目录的大小必须与页的大小等大）</p>
+</li>
+<li>
+<p>在“实验原理”部分，我们知道SV39中的39是什么意思。但是其实还有一种标准，叫做SV48，采用了四级页表而非三级页表，你能模仿“实验原理”部分示意图，画出SV48页表的数据结构和翻译的模式图示吗？（SV39原图如下）</p>
+</li>
+</ol>
+<p><img alt="image-20211009204518009" src="../part3.assets/image-20211009204518009.png" /></p>
+</div>
+<h2 id="1">1. 任务一 ：打印页表<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>本任务中，你需要加入 <strong>页表打印功能</strong> ，来帮助你在之后的实验中进行debug。</p>
+<p><code>void vmprint(pagetable_t pgtbl)</code></p>
+<h3 id="11">1.1 流程<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> ：更新本地代码，切换到pgtbl分支。</p>
+<p><strong>Step 2</strong> ：理解页表的原理。</p>
+<p><strong>Step 3</strong> ：实现 <code>vmprint()</code> ，并在 <code>exec()</code> 函数中插入语句 <code>if(p-&gt;pid==1) vmprint(p-&gt;pagetable)</code>， 这条语句插在 <code>exec.c</code> 中 <code>return argc</code> 代码之前，即在第一个进程启动时打印页表信息。</p>
+<div class="admonition info">
+<p class="admonition-title">拓展阅读：xv6第一个进程</p>
+<p>我们从xv6的启动来分析：</p>
+<ul>
+<li>上电后，先运行ROM的bootloader，bootloader再加载xv6内核到内存0x80000000处，然后从xv6内核的<code>_entry</code>开始。那为什么不加载到0x0地址呢？原因是0x0~0x80000000之间包含了I/O设备，详见《XV6 book》Figure3.3。</li>
+<li><code>_entry</code>用于设置C代码的运行指定栈，完成后就跳转到<code>start</code>函数执行C代码。</li>
+<li><code>start</code>函数处于机器模式下，初始化计时器中断，为切换到管理模式做好准备，然后到<code>main</code>函数开始执行。</li>
+<li><code>main</code>函数初始化一些设备和子系统，调用<code>userinit</code>来创建第一个进程。</li>
+<li>第一个进程执行了一个小程序<code>user/initcode.S</code>，通过系统调用<code>exec</code>执行一个新的程序<code>user/init</code>。</li>
+<li><code>user/init</code>创建了一个控制台设备文件，并作为文件描述符0，1，2来打开它。之后在for(;;)无限循环中启动shell，并处理僵尸进程。这样，系统就启动了。</li>
+</ul>
+</div>
+<p><strong>Step 4</strong> ：启动测试程序进行测试。</p>
+<h3 id="12">1.2 实现<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>把 <code>vmprint()</code> 放在 <code>kernel/vm.c</code>。   </p>
+</li>
+<li>
+<p>可以使用 <code>kernel/riscv.h</code> 中尾部的宏定义 ，比如：</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="mi">323</span><span class="w">  </span><span class="err">#</span><span class="n">define</span><span class="w"> </span><span class="n">PGSIZE</span><span class="w"> </span><span class="mi">4096</span><span class="w"> </span><span class="c1">// bytes per page</span>
+<span class="mi">324</span><span class="w">  </span><span class="err">#</span><span class="n">define</span><span class="w"> </span><span class="n">PGSHIFT</span><span class="w"> </span><span class="mi">12</span><span class="w">  </span><span class="c1">// bits of offset within a page</span>
+
+<span class="mi">329</span><span class="w">  </span><span class="err">#</span><span class="n">define</span><span class="w"> </span><span class="n">PTE_V</span><span class="w"> </span><span class="p">(</span><span class="mf">1L</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="c1">// valid</span>
+<span class="mi">330</span><span class="w">  </span><span class="err">#</span><span class="n">define</span><span class="w"> </span><span class="n">PTE_R</span><span class="w"> </span><span class="p">(</span><span class="mf">1L</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="mi">331</span><span class="w">  </span><span class="err">#</span><span class="n">define</span><span class="w"> </span><span class="n">PTE_W</span><span class="w"> </span><span class="p">(</span><span class="mf">1L</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="mi">332</span><span class="w">  </span><span class="err">#</span><span class="n">define</span><span class="w"> </span><span class="n">PTE_X</span><span class="w"> </span><span class="p">(</span><span class="mf">1L</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+<span class="mi">333</span><span class="w">  </span><span class="err">#</span><span class="n">define</span><span class="w"> </span><span class="n">PTE_U</span><span class="w"> </span><span class="p">(</span><span class="mf">1L</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="c1">// 1 -&gt; user can access</span>
+<span class="mi">334</span><span class="w"></span>
+<span class="mi">335</span><span class="w">  </span><span class="c1">// shift a physical address to the right place for a PTE.</span>
+<span class="mi">336</span><span class="w">  </span><span class="err">#</span><span class="n">define</span><span class="w"> </span><span class="n">PA2PTE</span><span class="p">(</span><span class="n">pa</span><span class="p">)</span><span class="w"> </span><span class="p">((((</span><span class="n">uint64</span><span class="p">)</span><span class="n">pa</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"></span>
+<span class="mi">337</span><span class="w"></span>
+<span class="mi">338</span><span class="w">  </span><span class="err">#</span><span class="n">define</span><span class="w"> </span><span class="n">PTE2PA</span><span class="p">(</span><span class="n">pte</span><span class="p">)</span><span class="w"> </span><span class="p">(((</span><span class="n">pte</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">12</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li><code>kernel/vm.c</code>中的函数 <code>freewalk()</code> 能帮助你理解遍历页表的过程。  </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1">// Recursively free page-table pages.</span>
+<span class="c1">// All leaf mappings must already have been removed.</span>
+<span class="mi">275</span><span class="w"> </span><span class="kt">void</span><span class="w"></span>
+<span class="mi">276</span><span class="w"> </span><span class="n">freewalk</span><span class="p">(</span><span class="n">pagetable_t</span><span class="w"> </span><span class="n">pagetable</span><span class="p">)</span><span class="w"></span>
+<span class="mi">277</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="mi">278</span><span class="w">  </span><span class="c1">// there are 2^9 = 512 PTEs in a page table.</span>
+<span class="w">  </span><span class="c1">// 遍历一个页表页的PTE表项 </span>
+<span class="mi">279</span><span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">512</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
+<span class="mi">280</span><span class="w">    </span><span class="n">pte_t</span><span class="w"> </span><span class="n">pte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pagetable</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"> </span><span class="c1">//获取第i条PTE </span>
+
+<span class="w">    </span><span class="cm">/*判断PTE的Flag位，如果还有下一级页表(即当前是根页表或次页表)，</span>
+<span class="cm">    则递归调用freewalk释放页表项，并将对应的PTE清零*/</span><span class="w"></span>
+<span class="mi">281</span><span class="w">    </span><span class="k">if</span><span class="p">((</span><span class="n">pte</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">PTE_V</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">pte</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">PTE_R</span><span class="o">|</span><span class="n">PTE_W</span><span class="o">|</span><span class="n">PTE_X</span><span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span><span class="w"> </span>
+<span class="mi">282</span><span class="w">      </span><span class="c1">// this PTE points to a lower-level page table.</span>
+<span class="mi">283</span><span class="w">      </span><span class="n">uint64</span><span class="w"> </span><span class="n">child</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PTE2PA</span><span class="p">(</span><span class="n">pte</span><span class="p">);</span><span class="w"> </span><span class="c1">// 将PTE转为为物理地址</span>
+<span class="mi">284</span><span class="w">      </span><span class="n">freewalk</span><span class="p">((</span><span class="n">pagetable_t</span><span class="p">)</span><span class="n">child</span><span class="p">);</span><span class="w"> </span><span class="c1">// 递归调用freewalk</span>
+<span class="mi">285</span><span class="w">      </span><span class="n">pagetable</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// 清零</span>
+<span class="mi">286</span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">pte</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">PTE_V</span><span class="p">){</span><span class="w"> </span>
+<span class="w">    </span><span class="cm">/*如果叶子页表的虚拟地址还有映射到物理地址，报错panic。</span>
+<span class="cm">    因为调用freewalk之前应该会先uvmunmap释放物理内存*/</span><span class="w">    </span>
+<span class="mi">287</span><span class="w">      </span><span class="n">panic</span><span class="p">(</span><span class="s">&quot;freewalk: leaf&quot;</span><span class="p">);</span><span class="w"> </span>
+<span class="mi">288</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="mi">289</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="mi">290</span><span class="w">  </span><span class="n">kfree</span><span class="p">((</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="n">pagetable</span><span class="p">);</span><span class="w"> </span><span class="c1">// 释放pagetable指向的物理页</span>
+<span class="mi">291</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li>
+<p>在 <code>kernel/defs.h</code> 中定义 <code>vmprint()</code> 的接口，这样你才能在 <code>exec()</code> 中使用它。  </p>
+</li>
+<li>
+<p>使用 <code>printf()</code> 打印页表数据中的指针时，你可以直接使用 <code>%p</code> 标示。  </p>
+</li>
+</ul>
+<h2 id="2">2  任务二 独立内核页表<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>我们需要 <strong>将共享内核页表改成独立内核页表</strong> ，使得每个进程拥有自己独立的内核页表。</p>
+<h3 id="21">2.1 流程<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> ：修改<code>kernel/proc.h</code>中的 <code>struct proc</code>， 增加两个新成员：<code>pagetable_t k_pagetable;</code>和<code>uint64 kstack_pa;</code>，分别用于给每个进程中设置一个内核独立页表和内核栈的物理地址。</p>
+<p><strong>Step 2</strong> ：仿照<code>kvminit()</code> 函数重新写一个创建内核页表的函数。</p>
+<ul>
+<li><strong>为进程分配内核页表的一种解决方案</strong> ：不要修改全局的内核页表（kernel/vm.c中的<code>pagetable_t kernel_pagetable</code>），而是直接创建一个新的内核页表，并将其地址<code>k_pagetable</code>返回。实现的时候不要映射CLINT，否则会在任务三发生地址重合问题。应该要在Step 4 <code>allocproc()</code> 中调用它。</li>
+</ul>
+<p><strong>Step 3</strong> ：修改procinit函数。procinit()是在系统引导时（见<code>kernel/main.c</code>的main函数），用于给进程分配内核栈的物理页并在页表建立映射。</p>
+<ul>
+<li><strong>参考优化方法</strong> ：把procinit()中内核栈的物理地址pa拷贝到PCB新增的成员<code>kstack_pa</code>中，同时还需要保留内核栈在全局页表kernel_pagetable的映射，然后在Step 4 <code>allocproc()</code>中再把它映射到进程的内核页表里。关于内核栈说明，见<a href="../part2/index.html#34">实验原理 3.4</a>.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">为什么要保留初始内核页表？</p>
+<p>保留原有的kvminit()以及kernel/vm.c中kernel_pagetable，因为有些时候CPU可能并未执行用户进程。</p>
+</div>
+<p><strong>Step 4</strong> ：修改allocproc函数。allocproc()会在系统启动时被第一个进程和fork调用。在allocproc函数里调用Step 2 创建的函数设置内核页表，并且调用kvmmap函数将Step 3 设置的内核栈映射到页表<code>k_pagetable</code>里。</p>
+<div class="admonition tip">
+<p class="admonition-title">allocproc函数功能说明</p>
+<p>在进程表中查找空闲PCB，如果找到，初始化在内核中运行所需的状态，并保持p-&gt;lock返回。如果没有空闲PCB，或者内存分配失败，则返回0。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">关于内核栈映射</p>
+<p>注意，要保证在每一个进程的内核页表中映射该进程的内核栈。xv6本会在 procinit() 中分配内核栈的物理页并在页表建立映射。但是现在，应该在allocproc()中实现该功能，因为执行procinit()的时候进程的内核页表还未被创建。你可以在procinit()中只保留内存的分配，但在allocproc()中完成映射。</p>
+</div>
+<p><strong>Step 5</strong> ：修改调度器（scheduler），使得切换进程的时候切换内核页表。</p>
+<ul>
+<li>
+<p><strong>参考方法</strong> ：在进程切换的同时也要切换页表将其放入寄存器<code>satp</code>中，请借鉴 kvminithart()的页表载入方式），在调用 w_satp() 之后调用 sfence_vma()，具体原理可查阅实验原理的<a href="../part2/index.html#33">3.3 内核对用户空间的访问</a>。</p>
+</li>
+<li>
+<p><strong>无进程运行的适配</strong> ：当目前没有进程运行的时候，scheduler() 应该要satp载入全局的内核页表kernel_pagetable (kernel/vm.c)。</p>
+</li>
+<li>
+<p>关于scheduler调度器，可以参考<a href="https://www.bilibili.com/video/BV1Te4y1i77z?share_source=copy_web&amp;vd_source=225a99017e082147ac525beeddd6e3e2">HITSZ操作系统课程组讲解XV6（三）内存管理</a></p>
+</li>
+</ul>
+<p><img alt="image-20221025161426577" src="../part3.assets/image-20221025161426577.png" /></p>
+<p><strong>Step 6</strong> ：当进程结束的时候，你需要修改freeproc()函数来释放对应的内核页表。你需要找到 <strong>释放页表但不释放叶子页表指向的物理页帧</strong> 的方法。你可参考kernel/vm.c中的freewalk，其用于释放整个页表，但要求叶子页表的页项已经被清空。</p>
+<ul>
+<li>虽然我们为每个进程引入了内核页表，但是内核的代码和数据都还是唯一的。这意味着，在各个内核页表的叶子页表中，页表项指向了共享的物理页，如下图所示：</li>
+</ul>
+<p><img alt="页表释放示意" src="../part3.assets/%e9%a1%b5%e8%a1%a8%e9%87%8a%e6%94%be%e7%a4%ba%e6%84%8f.png" /></p>
+<ul>
+<li>因此，在我们释放某个进程的内核页表的时候，不应该把这个共享物理页帧释放，否则会产生非常严重的后果！ </li>
+</ul>
+<p><strong>Step 7</strong> ：通过<code>usertests</code>和<code>kvmtest</code>测试。</p>
+<h3 id="22">2.2 实现<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<p>这里有必要提醒一下同学，要以最简单的方法以及工程量最小的方法实现，最好不要因为优化等问题，大改内核机制。</p>
+<ul>
+<li>好好利用 <code>vmprint()</code> 来帮助debug。</li>
+<li>页表的bug通常会导致映射缺失的traps，访存失败，指令运行错误等报错。如果 <strong>内核</strong> 缺失了地址映射造成了页缺失（page fault），通常会打印个 <code>sepc=0x00000000XXXXXXXX</code> ，这代表的是出错时pc的值，你可以查<code>kernel/kernel.asm</code> 看看 <strong>对应地址</strong> 的代码的含义。   </li>
+<li>你的实现可以修改原有的函数或者是新增函数，最好放在 <code>kernel/vm.c +kernel/proc.c</code> 中，但是 <strong>千万不要修改</strong> <code>kernel/vmcopyin.c +kernel/stats.c + user/usertests.c + user/stats.c</code>。</li>
+</ul>
+<h2 id="3">3  任务三 简化软件模拟地址翻译<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">具体要求</p>
+<p>我们需要 <strong>在独立内核页表加上用户页表的映射，同时替换 <code>copyin()/copyinstr()</code> 为 <code>copyin_new()/copyinstr_new()</code></strong> ，使得内核能够不必花费大量时间，用软件模拟的方法一步一步遍历页表，而是直接利用硬件。</p>
+</div>
+<h3 id="31">3.1 流程<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> ：写一个<code>XXX</code>函数把进程的用户页表映射到内核页表中，同时在defs.h中声明。</p>
+<ul>
+<li>
+<p><strong>推荐一种较为优雅的实现方法</strong> ：内核页表直接共享用户页表的叶子页表，即内核页表中次页表的部分目录项直接指向用户页表的叶子页表。这样可以不必将用户页表的页表项全部复制进内核页表，也不必修改页表项标志位，简化实现的同时也可以提升性能，但在页表回收的时候需要避免重复回收。</p>
+</li>
+<li>
+<p>提示：前面已经提到用户地址空间的范围为0x0-0xC000000，见“<a href="../part2/index.html#35">实验原理 3.5</a>”。试计算，多少个次级页表项就能涵盖整个用户地址空间？</p>
+</li>
+</ul>
+<p><img alt="用户共享页表" src="../part3.assets/%e7%94%a8%e6%88%b7%e5%85%b1%e4%ba%ab%e9%a1%b5%e8%a1%a8.png" /></p>
+<p><strong>Step 2</strong> ：用函数 <code>copyin_new()</code> （在 <code>kernel/vmcopyin.c</code>中定义）代替 <code>copyin()</code> （在 <code>kernel/vm.c</code>中定义）。确保程序 <strong>能运行</strong> 之后再用 <code>copyinstr_new()</code> 以代替 <code>copyinstr()</code>。</p>
+<p><strong>Step 3</strong> ：在独立内核页表加上用户页表的映射，以保证刚刚替换地新函数能够使用。注意独立内核页表的用户页表的映射的标志位的选择。标志位User一旦被设置，内核就不能访问该虚拟地址了。</p>
+<ul>
+<li><strong>推荐方案</strong> ：在调用copyin_new()/ copyinstr_new()之前修改sstatus寄存器的SUM位：<code>w_sstatus(r_sstatus() | SSTATUS_SUM);</code> 在凋用copyin_new()/ copyinstr_new()之后去掉sstatus寄存器的SUM位：<code>w_sstatus(r_sstatus() &amp; ~SSTATUS_SUM);</code></li>
+</ul>
+<p><strong>Step 4</strong> ：在独立内核页表加上用户页表的映射的时候，每一次用户页表被修改了映射的同时，都要修改对应独立内核页表的相应部分保持同步。这通常在 fork(), exec(), sbrk()中发生，其中sbrk()调用growproc()来实现内存分配或回收。也就是，需要在fork()、exec()和growproc()这三个函数里将改变后的进程页表同步到内核页表中。</p>
+<p><strong>Step 5</strong> ：注意：第一个进程也需要将用户页表映射到内核页表中，见kernel/proc.c: userinit()。</p>
+<p><strong>Step 6</strong> ：通过 usertests, make grade。</p>
+<h3 id="32">3.2 实现<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>注意独立内核页表的用户页表的映射的 <strong>标志位</strong> 的选择。（标志位User一旦被设置，内核就不能访问该虚拟地址了）</p>
+</li>
+<li>
+<p>再次提醒地址重合问题，见“<a href="../part2/index.html#35">实验原理 3.5</a>”.</p>
+</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../part2/index.html" class="btn btn-neutral float-left" title="实验原理"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../part4/index.html" class="btn btn-neutral float-right" title="提交文档">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2023 哈尔滨工业大学（深圳）</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../part2/index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../part4/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../index.html';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/baidu-tongji.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab4/part3/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:49:06 GMT -->
+</html>

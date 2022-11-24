@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab4/part2/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:48:38 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>实验原理 - 操作系统2022秋 | 哈工大（深圳）</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u5b9e\u9a8c\u539f\u7406";
+        var mkdocs_page_input_path = "lab4\\part2.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../index.html" class="icon icon-home"> 操作系统2022秋 | 哈工大（深圳）
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://hitsz-cslab.gitee.io/os-labs/search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">实验概述</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../index.html">实验须知</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../env/index.html">实验平台以及环境配置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">实验实用工具</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Linux/index.html">Linux开发环境基础知识</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env/index.html">远程实验平台使用指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env_gdb/index.html">远程实验平台环境图形化调试指南</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OS竞赛招新</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../oscomp/oscomp/index.html">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">常见问题</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/faq-env/index.html">实验环境问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab1/index.html">Lab1问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab3/index.html">Lab3问题</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab1：XV6与Unix实用程序</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part3/index.html">实验步骤</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab2：系统调用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part5/index.html">GDB调试系统调用（补充材料）</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab3：锁机制的应用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part4/index.html">xv-6中Lock的实现（选读）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part5/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab4：页表</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="index.html">实验原理</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. 虚拟内存管理</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11">1.1 地址空间</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12">1.2 数据结构</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#13">1.3 使用方法</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2. 页表</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21">2.1 页表是什么</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22">2.2 页表的数据结构（重要）</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#221">2.2.1 虚实地址</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#222">2.2.2 页表</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#223">2.2.3 页表项</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#23">2.3 虚实地址翻译流程</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-xv6">3. xv6中的虚拟内存管理</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31">3.1 用户内核双页表</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32">3.2 用户内核双页表的切换</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#33">3.3 内核对用户空间的访问</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#34">3.4 内核栈</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#35">3.5 用户页表和内核页表合并的一个重要前提：地址不重合</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab5：基于FUSE的青春版EXT2文件系统</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-1/index.html">环境搭建与上手</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-2/index.html">任务一：熟悉DDRIVER驱动</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-3/index.html">任务二：基于FUSE实现青春版EXT2文件系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-4/index.html">选做任务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part5/index.html">实验提示</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">操作系统2022秋 | 哈工大（深圳）</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Lab4：页表 &raquo;</li><li>实验原理</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">实验原理<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="1">1. 虚拟内存管理<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>虚拟内存管理已经在理论课上进行了学习，不熟悉的同学请及时回顾理论知识，本部分仅供回顾。</p>
+<h3 id="11">1.1 地址空间<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p>每个进程有独立的虚拟地址空间，进程访问的虚拟地址并不是真正的物理地址，但进程可通过自身页表中虚拟地址与物理地址建立的映射获得真正的物理地址。xv6使用页表分隔不同进程的地址空间，并把它们多路复用到单一的物理内存。</p>
+<h3 id="12">1.2 数据结构<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<p>系统通过页机制来实现虚拟地址到物理地址的映射，用页表储存映射关系。</p>
+<ul>
+<li>
+<p><strong>页：</strong> 系统将虚拟内存分成4K大小的块。每块就是一页，作为内存管理的最小单位。每个页都会有一个编号，从小到大。</p>
+</li>
+<li>
+<p><strong>页框（块）：</strong> 系统将物理内存也和虚拟内存一样分成4K大小的块，每块就是一个页框，与页一一对应。</p>
+</li>
+<li>
+<p><strong>地址结构：</strong> 分页存储管理的逻辑地址结构如图前一部分为页号P，后一部分为页内偏移量W。32位机器图示如下（xv6是64位操作系统）。</p>
+</li>
+</ul>
+<p><img alt="img" src="../part2.assets/1313421-20180729102826537-1711528749.png" />  </p>
+<ul>
+<li><strong>页表：</strong> 为了便于在内存中找到进程的每个页面所对应的物理块，系统为每个进程建立一张页表，记录页在内存中对应的页框号，页表一般存放在内存中。在配置了页表后，进程执行时，通过查找该表，即可找到每页在内存中的物理块号。可见，页表的作用是实现从页号到页框号的地址映射。</li>
+</ul>
+<h3 id="13">1.3 使用方法<a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
+<p>在RISC-V指令集中，当我们需要开启页表服务时，我们需要将我们预先配置好的页表首地址放入 <code>satp</code> 寄存器中。从此之后， <strong>计算机硬件</strong> 将把访存的地址 <strong>均视为虚拟地址</strong> ，都需要通过硬件查询页表，将其 <strong>翻译成为物理地址</strong> ，然后将其作为地址发送给内存进行访存。</p>
+<h2 id="2">2. 页表<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">提示</p>
+<p>本部分，你应该要知道：</p>
+<ul>
+<li>
+<p>什么是页表？</p>
+</li>
+<li>
+<p>页表的数据结构是什么？</p>
+</li>
+<li>
+<p>页表是怎么工作的？</p>
+</li>
+</ul>
+</div>
+<h3 id="21">2.1 页表是什么<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>页表就是存放虚实地址映射的表格，里面装满了虚实地址的映射。</p>
+<p>页表的数据结构和翻译的模式图示大致如下：</p>
+<p><img alt="image-20211009204518009" src="../part2.assets/image-20211009204518009.png" /></p>
+<p>xv6采用的指令集标准为RISC-V标准，其中页表的标准为SV39标准，也就是虚拟地址最多为39位。下面，我们来介绍这套标准，之后你会知道为什么叫39。</p>
+<h3 id="22">2.2 页表的数据结构（重要）<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<h4 id="221">2.2.1 虚实地址<a class="headerlink" href="#221" title="Permanent link">&para;</a></h4>
+<p><img alt="image-20211009210828719" src="../part2.assets/image-20211009210828719.png" /></p>
+<p>蓝色部分：代表用户所持有的虚拟地址。比如我们在用户程序所持有的指针，64位的，就长这样。其中低39位可用（39的由来），其他的为拓展。这三十九位被划分成了四部分： <code>L2 L1 L0 Offset</code>。</p>
+<ul>
+<li>L2是 <strong>根页表</strong> 的索引（index），可以得到次页表的基地址。</li>
+<li>L1是 <strong>次页表</strong> 的索引，可以得到叶子页表的基地址。</li>
+<li>L0是 <strong>页表项</strong> 的索引，可以得到64位的页表项。</li>
+</ul>
+<p>注：事实上，L2和L1对应于理论课中的页目录号，L0对应理论课中的页号。</p>
+<p>红色部分：页表项中有物理页帧号PPN，加上虚拟地址本身含有的 <code>Offset</code> 组成了物理地址，64位剩下的位数为保留位。注意， <strong>虚实地址的Offset（低十二位）完全相同</strong> ，不用翻译。</p>
+<h4 id="222">2.2.2 页表<a class="headerlink" href="#222" title="Permanent link">&para;</a></h4>
+<p><img alt="image-20211009211825370" src="../part2.assets/image-20211009211825370.png" /></p>
+<p>SV39页表标准下，构造了三级页表，我们将其分为称为：根页表、次页表、叶子页表。顺序和图中页表从左向右依次对应。</p>
+<p>每个页表的大小都是4K，也就是一个页。页表有512个页目录项，每个目录项8 bytes，也就是64位。512个目录项需要9位的索引，因此 <a href="#221">2.2.1 虚实地址</a> 蓝色虚拟地址中的 L2, L1, L0 索引都是9位的。</p>
+<p>现在来看页目录项自身，可以大概分成两个部分：<code>页帧号（PPN）</code>和对应的<code>标志位（Flags）</code>（含有访问权限、访问记录等）。前者表示物理地址的页帧号，也就是 <a href="#221">2.2.1 虚实地址</a>  红色物理地址的PPN。但是每一级页表的目录项的意义都不同，具体如下：</p>
+<ul>
+<li><strong>根页表</strong> 的目录项，包含对应 <strong>次页表</strong> （下一级页表）的基地址页帧号以及标志位。</li>
+<li><strong>次页表</strong> 的目录项，包含对应 <strong>叶子页表</strong> （下一级页表）的基地址页帧号以及标志位。</li>
+<li><strong>叶子页表</strong> 的目录项，包含对应 <strong>虚拟地址</strong> 的物理地址页帧号以及标志位。</li>
+</ul>
+<h4 id="223">2.2.3 页表项<a class="headerlink" href="#223" title="Permanent link">&para;</a></h4>
+<p><img alt="image-20211010100329520" src="../part2.assets/image-20211010100329520.png" /></p>
+<p>刚刚，我们把目录项分成了两个部分：物理地址页帧号和标志位。具体的结构如上图。</p>
+<ul>
+<li>保留位：第<code>54-63</code>位，共<code>10</code>位。</li>
+<li><code>PPN</code>: 物理页帧号，第<code>10-53</code>位，共<code>44</code>位。</li>
+<li><code>Flags</code>：标志位，第<code>0-9</code>位，共<code>10</code>位。其中第<code>8-9</code>位为保留位，暂不使用。<ul>
+<li>第<code>0</code>位 <code>Valid</code>：该页表项有效。对于叶子页表来说，这个位置为1说明虚拟地址有映射到物理地址，否则说明没有该映射。对于次页表来说，为1说明有对应的叶子页表，对于根页表说明有对应次页表。</li>
+<li>第<code>1-3</code>位 <code>Readable/ Writable/ Executable</code>： 该页表项是可读/写/执行（作为代码运行）的。通常我们只需要关心叶子页表项的这三个位，因为这代表对应的物理页帧的标志，而不是页表的标志。对于根页表和次页表的目录项，这三个位往往置为<code>0</code>。</li>
+<li>第<code>4</code>位 <code>User</code>： 该页表项指向的物理页能在用户态访问。内核页表中的代码和数据我们不会将其给用户使用，所以会置<code>0</code>，但是用户页表的代码和数据应该要置<code>1</code>。同样，对于内核页表中的页表项，如果该位置<code>1</code>，则计算机的硬件不会允许内核访问对应地址，但可以通过其他的手段访问，后文会介绍。</li>
+<li>其他的位，感兴趣的可以通过英文名看出其意义，或者查阅<a href="https://gitee.com/hitsz-cslab/os-labs/tree/master/references/riscv-privileged.pdf">riscv-privileged.pdf</a> 4.3~4.4小节。</li>
+</ul>
+</li>
+</ul>
+<p>注：理论课上我们将页表项和页目录项加以区分，但是在本实验中，他们是完全相同的结构！</p>
+<h3 id="23">2.3 虚实地址翻译流程<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
+<p>现在我们来将其串联起来，看看对应的虚拟地址是怎样翻译成物理地址的：</p>
+<ol>
+<li>获得一个虚拟地址。根页表基地址已经被装填至寄存器 <code>satp</code> 中。</li>
+<li>通过 <code>satp</code> 找到根页表的物理页帧号，转成物理地址（<code>Offset</code>为0），通过虚拟地址的<code>L2</code>索引，找到对应的页表项。</li>
+<li>通过页表项可以找到找到 <strong>次页表</strong> 的物理页帧号，转成物理地址（<code>Offset</code>为0），通过虚拟地址的<code>L1</code>索引，找到对应的页表项。</li>
+<li>通过页表项可以找到找到 <strong>叶子页表</strong> 的物理页帧号，转成物理地址（<code>Offset</code>为0），通过虚拟地址的<code>L0</code>索引，找到对应的页表项。</li>
+<li>通过页表项可以找到找到 <strong>物理地址</strong> 的物理页帧号，通过虚拟地址的<code>Offset</code>，转成物理地址（<code>Offset</code>和虚拟地址<code>Offset</code>相同）。</li>
+</ol>
+<h2 id="3-xv6">3. xv6中的虚拟内存管理<a class="headerlink" href="#3-xv6" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">提示</p>
+<p>本部分，我们将简单的说明xv6中与之前两个部分相关的具体实现和部分原理。这部分将 <strong>直接叙述与实验本身有关</strong> 的原理，希望大家能够理解这个实验的目的和要求并形成自己的解决方案。</p>
+</div>
+<h3 id="31">3.1 用户内核双页表<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<p>在xv6中，用户程序运行和内核运行的时候，使用的是不同的页表。</p>
+<ul>
+<li><strong>用户程序页表</strong> ：仅包含自身的代码和数据的虚实地址映射，内核代码和数据不包含在内。</li>
+</ul>
+<p><img alt="image-20221024160039840" src="../part2.assets/image-20221024160039840.png" /></p>
+<p>上图是xv6的用户程序虚拟地址空间分布。其代码实现在kernel/exec.c中，<code>exec</code>使用<code>proc_pagetable</code>分配了TRAMPOLINE和TRAPFRAME的页表映射，然后用<code>uvmalloc</code>来为每个ELF段分配内存及页表映射，并用<code>loadseg</code>把每个ELF段载入内存。</p>
+<p>当进程申请更多内存的时候，xv6首先用<code>kalloc</code>分配一个物理页。然后调用mappages函数把这个物理页的PTE加到进程的页表里。xv6会设置该PTE对应的标志位(W,X,R,U,V)。</p>
+<div class="admonition info">
+<p class="admonition-title">拓展阅读：用户程序虚拟地址空间分布</p>
+<ul>
+<li><strong>trampoline</strong>：用户态-内核态跳板。</li>
+<li><strong>trapframe</strong>：用来存放每个进程的用户寄存器的内存空间。如果你想查看xv6在trapframe page中存放了什么，详见proc.h的trapframe结构体。</li>
+<li><strong>heap</strong>：堆。程序初始化时堆没有分配任何空间。用户程序可以通过sbrk系统调用调整堆分配的空间，这会把新内存映射到页表中，也可以从页表中移除映射，释放内存。</li>
+<li><strong>stack</strong>：用户栈。xv6的用户栈只分配了一个页（PAGESIZE），放置在比堆更低的位置。通常操作系统会把用户栈放置在比堆更高的位置，这也是xv6和常见的操作系统做法不一样的地方。</li>
+<li><strong>guard page</strong>：守护页，用来保护Stack。如果stack耗尽了，它会溢出到Guard page，但是因为Guard page的PTE中Valid标志位未设置，会导致立即触发page fault，这样的结果好过内存越界之后造成的数据混乱。</li>
+<li><strong>data</strong>：用户程序的数据段。</li>
+<li><strong>text</strong>：用户程序的代码段。</li>
+</ul>
+</div>
+<ul>
+<li><strong>内核页表</strong> ：仅包含内核的代码和数据的虚实地址映射，用户程序的代码和数据不包含在内。</li>
+</ul>
+<p><img alt="image-20221024170624973" src="../part2.assets/image-20221024170624973.png" /></p>
+<p>其代码实现在kernel/vm.c的kvminit()函数。在kvminit()函数内，完成了UART0、VIRTIO0、CLINT、PLIC、kernel text、kernel data和TRAMPOLINE的虚拟地址和物理地址的映射。</p>
+<div class="highlight"><pre><span></span><code><span class="cm">/*</span>
+<span class="cm"> * create a direct-map page table for the kernel.</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="kt">void</span><span class="w"></span>
+<span class="nf">kvminit</span><span class="p">()</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">kernel_pagetable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">pagetable_t</span><span class="p">)</span><span class="w"> </span><span class="n">kalloc</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">memset</span><span class="p">(</span><span class="n">kernel_pagetable</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">PGSIZE</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// uart registers</span>
+<span class="w">  </span><span class="n">kvmmap</span><span class="p">(</span><span class="n">UART0</span><span class="p">,</span><span class="w"> </span><span class="n">UART0</span><span class="p">,</span><span class="w"> </span><span class="n">PGSIZE</span><span class="p">,</span><span class="w"> </span><span class="n">PTE_R</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">PTE_W</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// virtio mmio disk interface</span>
+<span class="w">  </span><span class="n">kvmmap</span><span class="p">(</span><span class="n">VIRTIO0</span><span class="p">,</span><span class="w"> </span><span class="n">VIRTIO0</span><span class="p">,</span><span class="w"> </span><span class="n">PGSIZE</span><span class="p">,</span><span class="w"> </span><span class="n">PTE_R</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">PTE_W</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// CLINT</span>
+<span class="w">  </span><span class="n">kvmmap</span><span class="p">(</span><span class="n">CLINT</span><span class="p">,</span><span class="w"> </span><span class="n">CLINT</span><span class="p">,</span><span class="w"> </span><span class="mh">0x10000</span><span class="p">,</span><span class="w"> </span><span class="n">PTE_R</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">PTE_W</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// PLIC</span>
+<span class="w">  </span><span class="n">kvmmap</span><span class="p">(</span><span class="n">PLIC</span><span class="p">,</span><span class="w"> </span><span class="n">PLIC</span><span class="p">,</span><span class="w"> </span><span class="mh">0x400000</span><span class="p">,</span><span class="w"> </span><span class="n">PTE_R</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">PTE_W</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// map kernel text executable and read-only.</span>
+<span class="w">  </span><span class="n">kvmmap</span><span class="p">(</span><span class="n">KERNBASE</span><span class="p">,</span><span class="w"> </span><span class="n">KERNBASE</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">uint64</span><span class="p">)</span><span class="n">etext</span><span class="o">-</span><span class="n">KERNBASE</span><span class="p">,</span><span class="w"> </span><span class="n">PTE_R</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">PTE_X</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// map kernel data and the physical RAM we&#39;ll make use of.</span>
+<span class="w">  </span><span class="n">kvmmap</span><span class="p">((</span><span class="n">uint64</span><span class="p">)</span><span class="n">etext</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">uint64</span><span class="p">)</span><span class="n">etext</span><span class="p">,</span><span class="w"> </span><span class="n">PHYSTOP</span><span class="o">-</span><span class="p">(</span><span class="n">uint64</span><span class="p">)</span><span class="n">etext</span><span class="p">,</span><span class="w"> </span><span class="n">PTE_R</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">PTE_W</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// map the trampoline for trap entry/exit to</span>
+<span class="w">  </span><span class="c1">// the highest virtual address in the kernel.</span>
+<span class="w">  </span><span class="n">kvmmap</span><span class="p">(</span><span class="n">TRAMPOLINE</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">uint64</span><span class="p">)</span><span class="n">trampoline</span><span class="p">,</span><span class="w"> </span><span class="n">PGSIZE</span><span class="p">,</span><span class="w"> </span><span class="n">PTE_R</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">PTE_X</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">拓展阅读：内核虚拟地址空间-物理地址空间分布</p>
+<p>又见到图Figure3.3了:-) 我们在<a href="../../lab3/part2/index.html#11">Lab3的实验原理</a>部分已经介绍过了。</p>
+<p>kernel/memlayout.h描述了内核内存的布局。</p>
+<p>QEMU模拟了一个包含I/O设备的计算机。设备的控制寄存器被映射到物理内存0x0~0x80000000之间，内核通过读写这些内存地址于设备进行交互。</p>
+<p>xv6内核的大部分虚实地址映射是恒等映射，虚拟地址和物理地址是一模一样的。对于既要读写虚拟页又要通过PTE管理物理页的xv6内核来说，这样的直接映射降低了复杂性。</p>
+<p>从Figure3.3中，我们可以看到，有两处虚拟地址不是直接映射的： </p>
+<ul>
+<li>trampoline页：它是用户态-内核态跳板，既被映射到内核虚拟空间的顶端，页被映射到用户空间的同样位置。</li>
+<li>内核栈：每个进程都有自己的内核栈，它被映射到高位，这样在它下面可以保留一个未映射的守护页。</li>
+</ul>
+</div>
+<p>对此Figure3.3和Figure3.4，可以发现，用户虚拟地址空间与内核虚拟地址空间的范围一样，都是从0到MAXVA（MAXVA的定义见kernel/riscv.h，共计256G的内存（2<sup>38</sup>））。这样，内核页表因不包含用户页表的映射，用户地址在内核中无访问，同理用户无法访问内核的数据。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// one beyond the highest possible virtual address.</span>
+<span class="c1">// MAXVA is actually one bit less than the max allowed by</span>
+<span class="c1">// Sv39, to avoid having to sign-extend virtual addresses</span>
+<span class="c1">// that have the high bit set.</span>
+<span class="cp">#define MAXVA (1L &lt;&lt; (9 + 9 + 9 + 12 - 1))</span>
+</code></pre></div>
+<h3 id="32">3.2 用户内核双页表的切换<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<p>当用户程序需要进入内核的时候，需要切换相应的页表，转换为内核页表。内核切换到用户程序的时候，也同样需要切换为用户页表。</p>
+<p>但是，xv6使用了共享的内核页表，所有进程使用一个页表，这就意味着内核进行 <strong>进程间调度</strong> 的时候，不需要切换页表。但是如果内核页表变成独立页表，那么在进程调度，切换进程的时候，就需要 <strong>在适当的时候切换内核页表</strong> 。</p>
+<p>上文已经提及，使用某个页表时，页表所在的物理地址应存放在<code>satp</code>寄存器中。页表未使用时，页表所在地址也需要一个位置保存，对于用户进程而言，它被保存在<code>struct proc</code>中的<code>pagetable_t pagetable</code>；对于内核而言，xv6使用一个全局变量保存（<code>kernel/vm.c</code>的<code>kernel_pagetable</code>）。为进程引入内核页表后，也需要存储其所在的物理地址。</p>
+<h3 id="33">3.3 内核对用户空间的访问<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
+<p>通常，进行地址翻译的时候，计算机硬件（即内存管理单元MMU）都会自动的查找对应的映射进行翻译。</p>
+<div class="admonition info">
+<p class="admonition-title">拓展阅读：TLB页表缓存</p>
+<p>回想一下上述page table的结构，当处理器从内存加载或存储数据时，需要做3次内存查找，第一次在最高级的根页表，第二次在中间级的次页表，最后一次在最低级的叶子页表。对于一个虚拟内存地址的寻址，需要读三次内存，代价确实有点高。因此，在实际的处理器中，基本会使用TLB页表缓存来缓存最近使用过的虚拟地址的翻译结果。</p>
+<p>TLB是由硬件实现的，操作系统不需要知道TLB是如何工作的。但是，如果切换了page table，TLB中的缓存将不再有用，操作系统需要告诉处理器当前正在切换page table，处理器会去清空TLB。在RISC-V中，清空TLB的指令是sfence_vma。</p>
+</div>
+<p>然而，在xv6内核需要翻译用户的虚拟地址时，因为内核页表不含对应的映射，计算机硬件不能自动帮助完成这件事。因此，我们需要先找到用户程序的页表，仿照硬件翻译的流程，一步一步的找到对应的物理地址，再对其进行访问。</p>
+<div class="admonition tip">
+<p class="admonition-title">举个栗子：Lab2用到的copyout()函数</p>
+<p>如<a href="#31">3.1 用户内核双页表</a>中所述，内核有自己的页表，用户程序也有自己的页表。在Lab2的任务二中，用户程序指向sys_info结构体的指针存在于用户空间的页表中，内核需要将这个指针翻译成一个自己可以读写的物理地址，才能去访问sys_info结构体。如果你感兴趣，可以查看copyout()函数是如何进行软件模拟翻译的。</p>
+</div>
+<p>当我们在内核页表中拥有了用户进程的映射后，内核就可以直接访问用户进程的虚拟地址。比如可以直接解引用用户地址空间中的指针，就能获取到对应地址的数据。很多系统调用，或者内核的一些操作，都需要进行虚实地址翻译，因此我们在拥有了用户进程的地址映射后，原有麻烦的软件模拟翻译就可以被去除，很多操作都可以被简化，性能也可以得到提升。</p>
+<p><strong>但需要注意的是</strong> ，如果直接把用户页表的内容复制到内核页表，即其中页表项的User位置1，那么内核依旧无法直接访问对应的虚拟地址（硬件会拒绝地址翻译，但软件模拟翻译依旧可行）。可供参考的解决方案有两种：</p>
+<ul>
+<li>（1）把内核页表中页表项的User位均置为0；</li>
+<li>（2）借助RISC-V的<code>sstatus</code>寄存器，如果该寄存器的SUM位（第18位）置为1，那么内核也可以直接访问上述的虚拟地址。大多情况下，该位需要置0。（访问寄存器的函数定义于riscv.h）关于<code>sstatus</code>寄存器，可以查阅<a href="https://gitee.com/hitsz-cslab/os-labs/tree/master/references/riscv-privileged.pdf">riscv-privileged.pdf</a> 4.1小节。</li>
+</ul>
+<p><img alt="image-20211023210540509" src="../part2.assets/image-20211023210540509-16353884146574.png" /></p>
+<h3 id="34">3.4 内核栈<a class="headerlink" href="#34" title="Permanent link">&para;</a></h3>
+<p>进程进入内核后，需要一个专属的栈以维持运行，这个栈就被称为内核栈。因为不同进程在内核中运行的情况不一样，所以每个进程都应当拥有一个内核栈。</p>
+<p>如<a href="#31">3.1小节 内核页表</a>所示，在kvminit()函数中，除了内核栈之外，其他部件都映射完成。内核栈的页表映射是在<code>kernel/proc.c</code>的 <code>procinit()</code>中实现：</p>
+<div class="highlight"><pre><span></span><code><span class="cm">/*in kernel/proc.c procinit()*/</span><span class="w"></span>
+<span class="k">for</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">proc</span><span class="p">;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">proc</span><span class="p">[</span><span class="n">NPROC</span><span class="p">];</span><span class="w"> </span><span class="n">p</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kalloc</span><span class="p">();</span><span class="w">  </span><span class="c1">// 分配一个物理页，返回其首地址</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">pa</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">           </span>
+<span class="w">        </span><span class="n">panic</span><span class="p">(</span><span class="s">&quot;kalloc&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">uint64</span><span class="w"> </span><span class="n">va</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KSTACK</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">proc</span><span class="p">));</span><span class="w">  </span><span class="c1">// 计算内核栈所在的虚拟地址</span>
+<span class="w">    </span><span class="n">kvmmap</span><span class="p">(</span><span class="n">va</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">uint64</span><span class="p">)</span><span class="n">pa</span><span class="p">,</span><span class="w"> </span><span class="n">PGSIZE</span><span class="p">,</span><span class="w"> </span><span class="n">PTE_R</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">PTE_W</span><span class="p">);</span><span class="w">     </span><span class="c1">// 在内核页表建立内核栈的映射</span>
+<span class="w">    </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">kstack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">va</span><span class="p">;</span><span class="w">       </span><span class="c1">// 将内核栈的虚拟地址存储于进程控制块</span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p><code>procinit()</code>在系统的启动阶段执行，因此其为每个进程（总共支持NPROC个进程）都分配了一个内核栈。在xv6的设计中，每个进程的内核栈的虚拟地址是固定的，因此可以直接计算。</p>
+<h3 id="35">3.5 用户页表和内核页表合并的一个重要前提：地址不重合<a class="headerlink" href="#35" title="Permanent link">&para;</a></h3>
+<p>其实，要想在独立内核页表中，同时包含内核页表和用户页表是有讲究的。其中一个重要的前提要求是：用户的虚拟地址和内核的虚拟地址不能重叠。</p>
+<p>还好，用户程序从0开始，内核则从一个很高的虚拟地址（0xC000000）开始排布。但是他们还是有可能发生重叠。所以，你一定要限制用户程序虚拟地址与内核地址重叠。</p>
+<p>内核地址0xC000000，为PLIC寄存器地址，你可以在 <code>kernel/memlayout.h + kernel/vm.c</code> 中 <code>kvminit()</code> 进行查阅。仔细阅读 <code>kvminit()</code> ，你会发现其对如下地址范围进行了映射：</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="c1">// CLINT</span>
+<span class="w">  </span><span class="n">kvmmap</span><span class="p">(</span><span class="n">CLINT</span><span class="p">,</span><span class="w"> </span><span class="n">CLINT</span><span class="p">,</span><span class="w"> </span><span class="mh">0x10000</span><span class="p">,</span><span class="w"> </span><span class="n">PTE_R</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">PTE_W</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// PLIC</span>
+<span class="w">  </span><span class="n">kvmmap</span><span class="p">(</span><span class="n">PLIC</span><span class="p">,</span><span class="w"> </span><span class="n">PLIC</span><span class="p">,</span><span class="w"> </span><span class="mh">0x400000</span><span class="p">,</span><span class="w"> </span><span class="n">PTE_R</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">PTE_W</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<p>那么为何说0xC000000是内核地址的开始？内核页表不是从0开始，而是在某些特定地址上有特定的映射（见上述Figure3.3）。在 <code>memlayout.h</code> 可看到CLINT的值为0x2000000L，这个值比0xC000000小，0xC000000是PLIC（Platform-Level Interrput Controller，中断控制器）的地址，实际上，CLINT（Core Local Interruptor）定义了本地中断控制器的地址，我们只会在内核初始化的时候用到这段地址。所以，为用户进程生成内核页表的时候，可以不必映射这段地址。用户页表是从虚拟地址0开始，用多少就建多少，但最高地址不能超过内核的起始地址，这样用户程序可用的虚拟地址空间就为<code>0x0 - 0xC000000</code>。</p>
+<p><img alt="页表合并" src="../part2.assets/%e9%a1%b5%e8%a1%a8%e5%90%88%e5%b9%b6.png" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../part1/index.html" class="btn btn-neutral float-left" title="实验概述"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../part3/index.html" class="btn btn-neutral float-right" title="实验实现">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2023 哈尔滨工业大学（深圳）</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../part1/index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../part3/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../index.html';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/baidu-tongji.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab4/part2/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:48:54 GMT -->
+</html>

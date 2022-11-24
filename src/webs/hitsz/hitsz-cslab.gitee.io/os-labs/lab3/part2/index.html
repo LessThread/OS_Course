@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab3/part2/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:48:10 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>实验原理 - 操作系统2022秋 | 哈工大（深圳）</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u5b9e\u9a8c\u539f\u7406";
+        var mkdocs_page_input_path = "lab3\\part2.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../index.html" class="icon icon-home"> 操作系统2022秋 | 哈工大（深圳）
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://hitsz-cslab.gitee.io/os-labs/search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">实验概述</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../index.html">实验须知</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../env/index.html">实验平台以及环境配置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">实验实用工具</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Linux/index.html">Linux开发环境基础知识</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env/index.html">远程实验平台使用指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env_gdb/index.html">远程实验平台环境图形化调试指南</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OS竞赛招新</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../oscomp/oscomp/index.html">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">常见问题</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/faq-env/index.html">实验环境问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab1/index.html">Lab1问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab3/index.html">Lab3问题</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab1：XV6与Unix实用程序</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part3/index.html">实验步骤</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab2：系统调用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part5/index.html">GDB调试系统调用（补充材料）</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab3：锁机制的应用</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="index.html">实验原理</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-memory-allocator">1. 内存分配器（Memory Allocator）</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11">1.1 简介</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12">1.2 功能与操作</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#13">1.3 锁机制</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#14">1.4 优化方法（重要）</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-buffer-cache">2. 磁盘缓存（Buffer Cache）</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21">2.1 简介</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22">2.2 基本结构</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#23">2.3 功能与操作</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#24">2.4 优化方法（重要）</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part4/index.html">xv-6中Lock的实现（选读）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part5/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab4：页表</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab5：基于FUSE的青春版EXT2文件系统</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-1/index.html">环境搭建与上手</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-2/index.html">任务一：熟悉DDRIVER驱动</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-3/index.html">任务二：基于FUSE实现青春版EXT2文件系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-4/index.html">选做任务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part5/index.html">实验提示</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">操作系统2022秋 | 哈工大（深圳）</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Lab3：锁机制的应用 &raquo;</li><li>实验原理</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">实验原理<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">关于锁的一些解释</p>
+<p>锁用来保证数据一致性的手段十分简单粗暴：当有人操作的时候，不允许其他人操作。</p>
+<p>在多核情况下，这就会导致当很多CPU核心要操作一个数据结构（如kalloc中的freelist）时，需要排队，一个个来。一个核心在干活，其他的核心只能被阻塞住，这就导致了并行性的下降。</p>
+<p>那我们把锁删了，不阻塞，并行性不就上去了吗？确实，但这样功能就不能保证正确了。功能正确的重要性往往比性能高的重要性大得多。因此在成熟的操作系统中，一般都会采取锁的机制，同时通过减少锁争用的方法优化性能。这是本实验的 <strong>根本目的</strong> ，之后的章节主要讨论使用锁的一些部件，我们在这些场景下来进行锁的优化。</p>
+</div>
+<h2 id="1-memory-allocator">1. 内存分配器（Memory Allocator）<a class="headerlink" href="#1-memory-allocator" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>本部分，你应该要知道：</p>
+<ul>
+<li>什么是内存分配器？</li>
+<li>内存分配器的数据结构是什么？</li>
+<li>内存分配器的所有操作及其对数据结构的改变？</li>
+<li>我们应该如何修改内存分配器以达到实验目标？</li>
+</ul>
+</div>
+<h3 id="11">1.1 简介<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p>在xv6中，设置了总量为128MB的物理内存空间，见Makefile中的编译运行选项：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">QEMUOPTS</span> <span class="o">=</span> -machine virt -bios none -kernel <span class="nv">$K</span>/kernel -m 128M -smp <span class="k">$(</span>CPUS<span class="k">)</span> -nographic
+</code></pre></div>
+<p>在内核代码中，也给出了内存地址定义，在kernel/memlayout.h。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// the kernel expects there to be RAM</span>
+<span class="c1">// for use by the kernel and user pages</span>
+<span class="c1">// from physical address 0x80000000 to PHYSTOP.</span>
+<span class="cp">#define KERNBASE 0x80000000L</span>
+<span class="cp">#define PHYSTOP (KERNBASE + 128*1024*1024)</span>
+</code></pre></div>
+<p>在xv6 book 3.2小节，给出了物理地址和虚拟地址的分布及映射关系（见下图）。下图左边是内核的虚拟地址，右边上半部分是物理内存（DRAM），右边下半部分是I/O设备。本次实验主要关注图中的右边上半部分（我们会在下一个实验中再次介绍左边部分的虚拟地址：-)。当操作系统启动时，会从地址0x80000000开始运行，这个地址其实是由硬件设计者决定的。在xv6内核刚启动时，从kernel结束地址（end）一直到PHYSTOP的空间都是空闲的。实际上，内核代码段（kernel text）和数据段（kernel data）会占用一部分空间，导致剩余的空闲空间比128MB要小。</p>
+<p><img alt="image-20221012175648080" src="../part2.assets/image-20221012175648080.png" /></p>
+<div class="admonition info">
+<p class="admonition-title">拓展阅读</p>
+<ul>
+<li><strong>trampoline</strong>：用户态-内核态跳板</li>
+<li><strong>kstack</strong> ：每个进程的内核栈空间</li>
+<li><strong>Guard page</strong>：同时在内核空间和用户空间用来保护Stack。如果kernel stack耗尽了，它会溢出到Guard page，但是因为Guard page的PTE中Valid标志位未设置，会导致立即触发page fault，这样的结果好过内存越界之后造成的数据混乱。</li>
+<li><strong>free memory</strong>：页分配器管理的地址空间</li>
+<li><strong>kernel data/text</strong>：数据段/代码段</li>
+<li><strong>KERNBASE</strong>：内核态基址</li>
+<li><strong>VIRTIO disk</strong>：磁盘IO操作地址</li>
+<li><strong>UART0</strong>：串口IO操作地址</li>
+<li><strong>PLIC</strong>：平台级中断控制器地址</li>
+<li><strong>CLINT</strong>：core-local中断控制器地址</li>
+<li><strong>boot ROM</strong>：用于启动操作系统。当主板上电后，运行的是存储在boot ROM中的代码，当boot完成之后，会跳转到地址0x80000000。</li>
+</ul>
+</div>
+<p>xv6内存分配器对上层提供kalloc()和kfree()接口来管理这段剩余的空闲物理内存。在需要使用新内存空间的时候调用kalloc()，在需要释放内存空间的时候调用kfree()。
+物理内存分配器（allocator）定义在kernel/kalloc.c。</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">run</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">run</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">spinlock</span><span class="w"> </span><span class="n">lock</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">run</span><span class="w"> </span><span class="o">*</span><span class="n">freelist</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="n">kmem</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+<p>分配器的核心数据结构是由空闲物理页组成的链表<code>freelist</code>，这个空闲页链表将物理内存划分成4KB大小的页帧来管理，并使用 <strong>自旋锁</strong> （spinlock）进行保护。每个空闲页在链表里都是<code>struct run next</code>指向下一个空闲物理页。</p>
+<p>这可能比较难理解，我们不妨从这个链表的构建开始了解。在系统启动时，<code>main()</code>函数（见kernel/main.c）调用<code>kinit()</code>来初始化分配器，它通过保存所有空闲页来初始化链表。kinit()调用<code>freerange()</code>来把空闲内存页加到链表里，freerange()则是通过调用<code>kfree()</code>把每个空闲页（地址范围从pa_start至pa_end）逐一加到链表里来实现此功能的。kfree() 函数用于释放指定的物理内存页，将其添加至<code>freelist</code>中，参数<code>pa</code>为需要释放的物理页页号，即物理页的首地址，它被看作一个没有类型的指针。在kfree()中，pa被 <strong>强制转换</strong> 为run类型的指针，进而可以放入freelist中。因为空闲页里什么都没有，所以结构体<code>run</code>的成员可以直接 <strong>保存在空闲页自身里</strong> 。</p>
+<p><img alt="kalloc执行流" src="../part2.assets/kalloc%e6%89%a7%e8%a1%8c%e6%b5%81.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">freerange</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pa_start</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pa_end</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">PGROUNDUP</span><span class="p">((</span><span class="n">uint64</span><span class="p">)</span><span class="n">pa_start</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="p">(;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">PGSIZE</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">pa_end</span><span class="p">;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">PGSIZE</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">kfree</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">kfree</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pa</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="p">...</span><span class="w"></span>
+<span class="w">  </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">run</span><span class="o">*</span><span class="p">)</span><span class="n">pa</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">acquire</span><span class="p">(</span><span class="o">&amp;</span><span class="n">kmem</span><span class="p">.</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kmem</span><span class="p">.</span><span class="n">freelist</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">kmem</span><span class="p">.</span><span class="n">freelist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">release</span><span class="p">(</span><span class="o">&amp;</span><span class="n">kmem</span><span class="p">.</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="12">1.2 功能与操作<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<p>关于链表的操作主要有两个：</p>
+<p>1、释放内存</p>
+<p>释放内存的函数是<code>kfree(void *pa)</code>，首先将 <code>void *pa</code> 开始的物理页的内容全部置为1，这是为了让之前使用它的代码不能再读取到有效的内容，使得这些代码能尽早崩溃以暴露问题。然后将这空闲页物理内存加到链表头。</p>
+<p><img alt="image-20201121160342435" src="../part2.assets/image-20201121160342435.png" /></p>
+<p>2、申请内存</p>
+<p><code>void* kalloc(void *)</code>用来分配内存物理页，功能很简单，就是移除并返回空闲链表头的第一个元素，即给调用者分配1页物理内存。</p>
+<p><img alt="image-20201121160419011" src="../part2.assets/image-20201121160419011.png" /></p>
+<p>由于物理内存是在多进程之间共享的，所以不管是分配还是释放页面，每次操作kmem.freelist时都需要先申请kmem.lock，此后再进行内存页面的操作。</p>
+<p><img alt="freelist" src="../part2.assets/freelist.png" /></p>
+<h3 id="13">1.3 锁机制<a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title"><code>kalloc</code>在什么情况下使用了锁？</p>
+<p>查阅<code>kalloc.c</code>代码可知，<code>kalloc</code>只在<code>kalloc()</code>和<code>kfree()</code>中使用了锁，那这两个用锁的情况有什么共同之处呢？没错，他们都是把 <strong>对<code>freelist</code>的操作</strong> 锁了起来。<code>kfree()</code>在往<code>freelist</code>里加入空闲页前锁了一下，操作完之后解锁了。<code>kalloc()</code>在移除<code>freelist</code>第一个元素时也同样加了锁，操作完成再释放锁。所以对于内存分配器中需要锁保护的只有对<code>freelist</code>的操作。</p>
+</div>
+<h3 id="14">1.4 优化方法（重要）<a class="headerlink" href="#14" title="Permanent link">&para;</a></h3>
+<p>修改空闲内存链表就是<code>freelist</code>，现在我们要减少锁的争抢， <strong>使每个<code>CPU</code>核使用独立的链表</strong> ，而不是现在的共享链表。这样等分，就不会让所有的<code>CPU</code>争抢一个空闲区域。<strong>注意</strong>：每个空闲物理页只能存在于一个freelist中。 </p>
+<p><img alt="kalloc" src="../part2.assets/kalloc.png" /></p>
+<h2 id="2-buffer-cache">2. 磁盘缓存（Buffer Cache）<a class="headerlink" href="#2-buffer-cache" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>本部分，你应该要知道：</p>
+<ul>
+<li>什么是磁盘缓存？</li>
+<li>磁盘缓存的数据结构是什么（bcache和buf）？</li>
+<li>磁盘缓存的所有操作及其对数据结构的改变？</li>
+<li>我们应该如何修改磁盘缓存以达到实验目标？  </li>
+</ul>
+</div>
+<h3 id="21">2.1 简介<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>xv6的文件系统是以磁盘数据块为单位从磁盘读写数据的。由于对磁盘的读取非常慢，而内存的速度要快得多，因此将最近经常访问的磁盘块缓存在内存里可以大大提升性能（此时内存起到cache的作用）。Buffer Cache（也称为bcache）就担任了磁盘缓存一职，它是磁盘与文件系统交互的中间层。
+xv6的磁盘缓存模块主要提供了以下功能：</p>
+<ol>
+<li>同步访问磁盘块以确保内存里每个块只有一份复制，且每次只有一个内核进程可以使用那份复制。  </li>
+<li>缓存常用块，使得不必每次都从硬盘上读取它们。  </li>
+<li>修改缓存块的内容后，确保磁盘中对应内容的更新。  </li>
+</ol>
+<p><img alt="bcache3" src="../part2.assets/bcache3.png" /></p>
+<h3 id="22">2.2 基本结构<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<p>数据结构bcache（见kernel/bio.c）维护了一个由静态数组<code>struct buf buf[NBUF]</code>组成的双向链表，它以块为单位，每次读入或写出一个磁盘块，放到一个内存缓存块中（bcache.buf），同时自旋锁<code>bcache.lock</code>用于用户互斥访问。所有对缓存块的访问都是通过<code>bcache.head</code>引用链表来实现的，而不是buf数组。</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">spinlock</span><span class="w"> </span><span class="n">lock</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">buf</span><span class="w"> </span><span class="n">buf</span><span class="p">[</span><span class="n">NBUF</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Linked list of all buffers, through prev/next.</span>
+<span class="w">  </span><span class="c1">// head.next is most recently used.</span>
+<span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">buf</span><span class="w"> </span><span class="n">head</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="n">bcache</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">buf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">valid</span><span class="p">;</span><span class="w">   </span><span class="c1">// has data been read from disk?</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">disk</span><span class="p">;</span><span class="w">    </span><span class="c1">// does disk &quot;own&quot; buf?</span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">dev</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">blockno</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">sleeplock</span><span class="w"> </span><span class="n">lock</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">refcnt</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">buf</span><span class="w"> </span><span class="o">*</span><span class="n">prev</span><span class="p">;</span><span class="w"> </span><span class="c1">// LRU cache list</span>
+<span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">buf</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">uchar</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">BSIZE</span><span class="p">];</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</code></pre></div>
+<p>每个缓存块（见struct buf）都由三个部分组成：</p>
+<ul>
+<li><code>data</code>字段标示了它的内容;</li>
+<li><code>指针字段（\*prev，\*next）</code>用于组成链表;</li>
+<li>
+<p><code>数值字段</code>用于标示它的属性，如</p>
+<ul>
+<li>字段<code>valid</code>是缓存区包含了一个块的复制（即该buffer包含对应磁盘块的数据）;</li>
+<li>字段<code>disk</code>是缓存区的内容是否已经被提交到了磁盘;</li>
+<li>字段<code>dev</code>是设备号;</li>
+<li>字段<code>blockno</code>是缓存的磁盘块号;</li>
+<li>字段<code>refcnt</code>是该块被引用次数（即被多少个进程拥有）;</li>
+<li><code>lock</code>是睡眠锁。</li>
+</ul>
+</li>
+</ul>
+<p><img alt="buffercache" src="../part2.assets/buffercache.png" /></p>
+<p>上图是bcache结构示意图。bcache.lock是自旋锁，用于表示 bcache 链表是否被锁住。b-&gt;lock是睡眠锁，用于表示缓存数据块buf是否被锁住。</p>
+<div class="admonition note">
+<p class="admonition-title">关于bcache</p>
+<p>看到这里，大家还是否记得我们在《计算机组成原理》实验课程上做过的Cache实验，其结构是：有效位（Valid）、标记（Tag）和数据（Data）。主要差异在于，组成原理实验是硬件Cache，本次实验是用C语言写的内存Cache。</p>
+</div>
+<h3 id="23">2.3 功能与操作<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
+<p>对bcache的操作如下：</p>
+<ul>
+<li>在系统启动时，<code>main()</code>函数（见kernel/main.c）调用<code>binit()</code>来初始化缓存，随即调用initlock()初始化bcache.lock，然后循环遍历buf数组，采用头插法逐个链接到bcache.head后面。</li>
+<li>上层文件系统读磁盘时，调用<code>bread()</code>，随即调用<code>bget()</code>检查请求的磁盘块是否在缓存中，如果命中，返回缓存命令结果。如果未命中，转到底层的<code>virtio_disk_rw()</code>函数先将此磁盘块从磁盘加载进缓存中，再返回此磁盘块。</li>
+<li>上层文件写磁盘时，调用<code>bwrite()</code>，随即调用<code>virtio_disk_rw()</code>函数直接将缓存中的数据写入磁盘。</li>
+<li>上层文件系统可通过调用<code>brelse()</code>释放一块不再使用的缓存块。</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">提示</p>
+<p>磁盘层在virtio_disk.c，实际上就是硬盘驱动。</p>
+<p>缓冲区缓存层用到的接口是virtio_disc_rw(struct buf *b, int write)</p>
+<ul>
+<li>作用：对磁盘进行读或写</li>
+<li>*b : 缓冲区的指针   </li>
+<li>write : 当为1时是把缓冲区的内容写入到磁盘，为0时是把磁盘的内容读取到缓冲区   </li>
+</ul>
+</div>
+<h3 id="24">2.4 优化方法（重要）<a class="headerlink" href="#24" title="Permanent link">&para;</a></h3>
+<p>在kernel/bio.c中，可以看到，所有的buffer都被组织到 <strong>一条链表</strong> 中，因此如果有多个进程要使用buffer，它们并发的请求只能被顺序地处理。</p>
+<p><img alt="bcache2" src="../part2.assets/bcache2.png" /></p>
+<p>MIT官方指导书推荐使用以下两种方案（可以两个方案一起使用，也可以单独分开用，
+需要自行测试看看能否通过测评程序） ：</p>
+<ol>
+<li>
+<p>使用 <strong>哈希表</strong> ，将各块块号blockno的某种散列值作为key对块进行分组，并为每个哈希桶分配一个专用的锁。通过哈希桶来代替链表，当要获取和释放缓存块时，只需要对某个哈希桶进行加锁，桶之间的操作就可以并行进行，提供并行性能。  </p>
+<ol>
+<li>
+<p>在<code>bget()</code>中查找指定块时，锁上对应的锁（获取空闲块号须另作处理）。  </p>
+</li>
+<li>
+<p>当bget()查找数据块未命中时，bget()可从其他哈希桶选择一个未被使用的缓存块，移入到当前的哈希桶链表中使用。</p>
+</li>
+<li>
+<p>选择合适的散列函数以分组，分组的数量不必动态调整，可以取定值，推荐使用质数组（如13组）以减少哈希争用。  </p>
+</li>
+<li>
+<p>哈希表的搜索和空闲缓存块的查找需要保证原子性。 </p>
+<p><img alt="hash" src="../part2.assets/hash.png" /></p>
+</li>
+</ol>
+</li>
+<li>
+<p>移除空闲缓存块列表(<code>bcache.head</code>)。使用 <strong>时间戳</strong> 作为判断缓存块最一次被访问的顺序的依据。  </p>
+<ol>
+<li>
+<p>此项改动可使<code>brelse</code>不再需要锁上<code>bcache lock</code>。  </p>
+</li>
+<li>
+<p>bget在找空闲块时也可通过时间戳得知最后一次被访问时间最早的空闲缓存块。  </p>
+</li>
+<li>
+<p>时间戳可通过kernel/trap.c中的ticks函数获得（ticks已在kernel/def.h中声明，bio.c中可直接使用）。  </p>
+<p><img alt="timestamp" src="../part2.assets/timestamp.png" /></p>
+</li>
+</ol>
+</li>
+</ol>
+<p>以下情况中，锁争用是允许的：</p>
+<p>a)   当两个进程同时访问同一个缓存数据块号blockno时；</p>
+<p>b)   当两个进程同时没有命中cache，需要找一个未使用的block来替代时；</p>
+<p>c)   当两个进程同时使用块时，无论使用何种模式划分数据块和锁，都会产生争用的情况，如，如果两个进程使用的两个数据块，通过哈希表映射到同一个哈希组部分（这取决于具体的设计，请尝试调整具体的模式来避免争用，比如可以调整哈希表的大小）。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../part1/index.html" class="btn btn-neutral float-left" title="实验概述"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../part3/index.html" class="btn btn-neutral float-right" title="实验实现">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2023 哈尔滨工业大学（深圳）</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../part1/index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../part3/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../index.html';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/baidu-tongji.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab3/part2/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:48:34 GMT -->
+</html>

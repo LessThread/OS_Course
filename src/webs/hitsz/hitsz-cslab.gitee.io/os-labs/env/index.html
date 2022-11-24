@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/env/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:39:06 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>实验平台以及环境配置 - 操作系统2022秋 | 哈工大（深圳）</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u5b9e\u9a8c\u5e73\u53f0\u4ee5\u53ca\u73af\u5883\u914d\u7f6e";
+        var mkdocs_page_input_path = "env.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../index.html" class="icon icon-home"> 操作系统2022秋 | 哈工大（深圳）
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://hitsz-cslab.gitee.io/os-labs/search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">实验概述</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../index.html">实验须知</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="index.html">实验平台以及环境配置</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. 远程实验平台</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2.  自行部署的实验环境</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21">2.1  本地虚拟机</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22">2.2  自行部署实验环境</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#221">2.2.1 创建虚拟机</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#222">2.2.2 对虚拟机的部分配置进行调整</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#223-openeuler">2.2.3 安装openEuler操作系统</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#224-xv6">2.2.4 XV6环境配置</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tools/index.html">实验实用工具</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux/index.html">Linux开发环境基础知识</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../remote_env/index.html">远程实验平台使用指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../remote_env_gdb/index.html">远程实验平台环境图形化调试指南</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OS竞赛招新</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../oscomp/oscomp/index.html">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">常见问题</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/faq-env/index.html">实验环境问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/lab1/index.html">Lab1问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/lab3/index.html">Lab3问题</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab1：XV6与Unix实用程序</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab1/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab1/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab1/part3/index.html">实验步骤</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab1/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab2：系统调用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab2/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab2/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab2/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab2/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab2/part5/index.html">GDB调试系统调用（补充材料）</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab3：锁机制的应用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab3/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab3/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab3/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab3/part4/index.html">xv-6中Lock的实现（选读）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab3/part5/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab4：页表</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab4/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab4/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab4/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab4/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab5：基于FUSE的青春版EXT2文件系统</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part3-1/index.html">环境搭建与上手</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part3-2/index.html">任务一：熟悉DDRIVER驱动</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part3-3/index.html">任务二：基于FUSE实现青春版EXT2文件系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part3-4/index.html">选做任务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part5/index.html">实验提示</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">操作系统2022秋 | 哈工大（深圳）</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>实验概述 &raquo;</li><li>实验平台以及环境配置</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">实验平台搭建以及环境配置<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>本课程实验提供了 <strong>远程实验平台</strong> 供同学们做实验。当然，同学们也可以尝试自己部署实验环境，体验一下自己动手的乐趣:-)</p>
+<h2 id="1">1. 远程实验平台<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>远程实验平台已经将XV6实验环境部署在实验中心的服务器上，我们把所有依赖的配置都已经事先搭建完毕。无论你的电脑性能如何，无论你是在宿舍、实验室还是自习室，只要你还能连上校园网，你就能完成你的实验。具体详见<a href="../remote_env/index.html">远程实验环境使用指南</a>。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>虽然我们已经做了一些方案保证远程环境的可靠性，但在某些特殊情况下，也不能确保不出故障，为安全起见，建议同学们将代码及时上传到git仓库或者下载到本地保存。</p>
+</div>
+<h2 id="2">2.  自行部署的实验环境<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">用于部署实验平台的实验工具</p>
+<p>对于本课程的实验平台搭建，我们需要用到几个工具：</p>
+<ul>
+<li>VirtualBox虚拟机</li>
+</ul>
+<p>如果你的电脑装的是Windows系统，那么必须要装一个能运行Linux系统的虚拟机。VirtualBox是一款开源虚拟机软件，相对VMWare等其他虚拟机来说，速度稍慢，灵活性较差，但免费！</p>
+<ul>
+<li>Linux发行版</li>
+</ul>
+<p>Linux发行版是由Linux内核、GNU工具、附加软件和软件包管理器组成的操作系统。所谓“发行”，是由某些机构“发行”了Linux内核以及所有必要的软件及实用程序，使其可以作为一个操作系统使用。主流的Linux发行版有Ubuntu、Debian、Fedora、Centos等，国产Linux发行版有openEuler、Deepin等，为支持国产Linux发行版，我们建议同学们使用华为公司发行的 openEuler 作为实验平台，以此揭开openEuler的神秘面纱:-)</p>
+<ul>
+<li>RISC-V工具链</li>
+</ul>
+<p>包括一系列交叉编译的工具，用于把源码编译成机器码，如gcc、binutils、glibc等。</p>
+<ul>
+<li>QEMU模拟器</li>
+</ul>
+<p>qemu模拟器用于在电脑（X86）上模拟RISC-V架构的CPU。在实验中，我们将通过qemu模拟器来观察xv6的运行过程。QEMU本质上是通过C语言来模拟仿真RISC-V处理器，对于每一个CPU核，QEMU都会运行这么一个循环：
+(1)取指：读取4/8字节的RISC-V指令；
+(2)译码：解析RISC-V指令，并找出对应的OP code；
+(3)执行：在软件中执行相应的指令。
+QEMU主循环里也需要有寄存器文件，用于维护寄存器的状态。回想我们在《计算机设计与实践》的CPU实验，是不是有似曾相识的感觉:-)</p>
+</div>
+<p>对于想在自己的电脑上安装实验环境的同学，本实验提供了两种安装方法：</p>
+<ul>
+<li>本地虚拟机</li>
+<li>自行部署实验环境</li>
+</ul>
+<h3 id="21">2.1  本地虚拟机<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>本实验提供VirtualBox + openEuler的镜像，我们也帮你把所有依赖的配置都已经事先搭建完毕，你只需要下载、导入虚拟机即可使用。步骤如下：</p>
+<p><strong>Step1</strong> . Virtualbox和openEuler镜像下载： <a href="http://10.249.14.14:8000/index.php/s/7vlEVZPKaMTIpi0">http://10.249.14.14:8000/index.php/s/7vlEVZPKaMTIpi0</a></p>
+<p>Virtualbox安装文件： VirtualBox-6.1.10-138449-Win.exe</p>
+<p>openEuler镜像：openEuler.zip</p>
+<p><strong>Step2</strong> . VirtualBox安装以及镜像导入。</p>
+<p>安装好VirtualBox后，解压openEuler.zip，直接双击openEuler(.vbox)文件，即可打开openEuler系统虚拟机，</p>
+<p>镜像系统提供有两个用户，大家最好使用cs用户登录。</p>
+<p>用户名 ：root，密码：openeuler@123</p>
+<p>用户名 ：cs，密码：openeuler@123</p>
+<p><strong>Step3</strong> . 下载运行xv6代码</p>
+<p>详见<a href="#2244-xv6">2.2.4.4 运行XV6</a></p>
+<h3 id="22">2.2  自行部署实验环境<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p>无论是远程实验平台，还是本地虚拟机，都是我们已经部署好的实验环境，你只需要按照实验要求编写相应的代码就行。但实际上，你无法知道项目里的所有细节，难以掌握整个项目的架构。因此，我们希望同学们能够自己动手搭建实验环境，这样你得到的收获才是最大的:-)</p>
+</div>
+<p>你需自行下载并安装所有工具链（有的工具需要你自己编译），下列步骤主要以openEuler为例：</p>
+<div class="admonition warning">
+<p class="admonition-title">注意事项</p>
+<p>如果你已经装有ubuntu、Centos或Debian等其他Linux系统，你可以跳过本小节，直接安装XV6的运行环境，具体安装步骤请参考:<a href="https://pdos.csail.mit.edu/6.S081/2020/tools.html">https://pdos.csail.mit.edu/6.S081/2020/tools.html</a></p>
+</div>
+<h4 id="221">2.2.1 创建虚拟机<a class="headerlink" href="#221" title="Permanent link">&para;</a></h4>
+<p>本节假定你已经安装好Oracle VM VirtualBox 软件，打开该软件，选择“新建”按钮，进行创建虚拟机。</p>
+<p><img alt="image-20210901175444768" src="../openeuler.assets/image-20210901175444768.png" /></p>
+<p>创建虚拟机时，请选择Linux类型和64-bit版本，也可以不安装在C盘：</p>
+<p><img alt="image-20210901175532025" src="../openeuler.assets/image-20210901175532025.png" /></p>
+<p>为了在运行系统时有较快的速度，内存设置为8GB（或以上）：</p>
+<p><img alt="img" src="../openeuler.assets/clip_image002.jpg" /></p>
+<p>现在就创建硬盘：</p>
+<p><img alt="img" src="../openeuler.assets/clip_image003.png" /></p>
+<p>这里硬盘类型为VHD：</p>
+<p><img alt="img" src="../openeuler.assets/clip_image004.png" /></p>
+<p>磁盘容量“动态分配”：</p>
+<p><img alt="img" src="../openeuler.assets/clip_image005.png" /></p>
+<p>为保证足够的空间，为宿主机配置20GB大小的容量：</p>
+<p><img alt="img" src="../openeuler.assets/clip_image006.png" /></p>
+<h4 id="222">2.2.2 对虚拟机的部分配置进行调整<a class="headerlink" href="#222" title="Permanent link">&para;</a></h4>
+<p><strong>系统信息概览：</strong></p>
+<p>仅保留从光驱和硬盘启动：</p>
+<p><img alt="img" src="../openeuler.assets/clip_image008.jpg" /></p>
+<p>注意将CPU至少设置成4核以提高系统的运行速度：</p>
+<p><img alt="img" src="../openeuler.assets/clip_image010.jpg" /></p>
+<p>设置两张网卡，一张时默认的NAT模式（以便从虚拟机中访问外网）：</p>
+<p><img alt="img" src="../openeuler.assets/clip_image012.jpg" /></p>
+<p>一张是Host-only模式（以便从该虚拟机的宿主机访问它）：</p>
+<p><img alt="img" src="../openeuler.assets/clip_image014.jpg" /></p>
+<p>这是此时的整个虚拟机概况：</p>
+<p><img alt="img" src="../openeuler.assets/clip_image016.jpg" /></p>
+<h4 id="223-openeuler">2.2.3 安装openEuler操作系统<a class="headerlink" href="#223-openeuler" title="Permanent link">&para;</a></h4>
+<h5 id="2231-openeuler2009_x86-64">2.2.3.1 将openEuler20.09_x86-64镜像装载到光驱<a class="headerlink" href="#2231-openeuler2009_x86-64" title="Permanent link">&para;</a></h5>
+<p>需要下载好操作系统镜像到自己的本地电脑：</p>
+<p>• openEuler 20.09安装镜像：</p>
+<p><a href="https://repo.openeuler.org/openEuler-20.09/ISO/x86_64/openEuler-20.09-x86_64-dvd.iso">https://repo.openeuler.org/openEuler-20.09/ISO/x86_64/openEuler-20.09-x86_64-dvd.iso</a> </p>
+<p>下载完成后，打开VirtualBox虚拟机。</p>
+<p><img alt="img" src="../openeuler.assets/clip_image016.jpg" /></p>
+<p>点击如上图所示“openEuler.vhd”（光驱）文字按钮。</p>
+<p><img alt="img" src="../openeuler.assets/clip_image019.jpg" /></p>
+<p>点击“选择虚拟盘”然后选择先前自己下载到本地磁盘的openEuler安装镜像。</p>
+<p><img alt="img" src="../openeuler.assets/clip_image021.jpg" /></p>
+<p>操作完毕后光驱中会显示该镜像的名称。</p>
+<h5 id="2232">2.2.3.2 安装操作系统<a class="headerlink" href="#2232" title="Permanent link">&para;</a></h5>
+<p>启动虚拟机，移动键盘的上下键选择“Install openEuler 20.09”菜单项并按下回车键进入安装界面：</p>
+<p><img alt="img" src="../openeuler.assets/clip_image023.png" /></p>
+<p>选择英文版安装：</p>
+<p><img alt="img" src="../openeuler.assets/clip_image025.png" /></p>
+<p>进入如下界面</p>
+<p><img alt="img" src="../openeuler.assets/clip_image027.jpg" /></p>
+<p>保持安装磁盘的默认设置：</p>
+<p><img alt="img" src="../openeuler.assets/clip_image029.jpg" /></p>
+<p>其他选项保持默认设置：</p>
+<p><strong>设置Root Password</strong></p>
+<p>注意：只需要设置root账户密码即可，root账户密码必须设置。</p>
+<p>推荐密码：<strong>openeuler@123</strong></p>
+<p><img alt="img" src="../openeuler.assets/clip_image031.png" /></p>
+<p>点击“开始安装”按钮开始安装：</p>
+<p><img alt="img" src="../openeuler.assets/clip_image033.png" /></p>
+<p>安装完成后点击“重启系统”按钮：</p>
+<p><img alt="img" src="../openeuler.assets/clip_image035.png" /></p>
+<p>再次进入菜单选择界面时，移动键盘的上下键以将系统停留在该界面：</p>
+<p><img alt="img" src="../openeuler.assets/clip_image037.png" /></p>
+<p>这时需要关机虚拟机：</p>
+<p><img alt="img" src="../openeuler.assets/clip_image039.jpg" /></p>
+<p>移出光驱中的镜像：</p>
+<p><img alt="img" src="../openeuler.assets/clip_image041.jpg" /></p>
+<p>若提示是否强行移出则选择强行移出：</p>
+<p>重启虚拟机，系统进入openEuler启动界面，用上下键选择第一个菜单项并按回车键启动（默认也是以第一个菜单项启动）：</p>
+<p><img alt="img" src="../openeuler.assets/clip_image043.png" /></p>
+<p>先在VirtualBox中以root用户登录openEuler操作系统：</p>
+<p><img alt="img" src="../openeuler.assets/clip_image045.jpg" /></p>
+<p>至此，已完成虚拟机openEuler安装。</p>
+<h4 id="224-xv6">2.2.4 XV6环境配置<a class="headerlink" href="#224-xv6" title="Permanent link">&para;</a></h4>
+<h5 id="2241">2.2.4.1 安装依赖包<a class="headerlink" href="#2241" title="Permanent link">&para;</a></h5>
+<p>安装openEuler提供的Development Tools</p>
+<div class="admonition warning">
+<p class="admonition-title">注意事项</p>
+<p>第一个字符“#”或"$"不需要输入，只需要输入“#”或"$"后的字符串。</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="gp"># </span>yum group install -y <span class="s2">&quot;Development Tools&quot;</span>
+</code></pre></div>
+<p>安装XV6需要用到的依赖包</p>
+<div class="highlight"><pre><span></span><code><span class="gp"># </span>yum install autoconf automake curl gawk bison flex texinfo gperf libtool patchutils bc expat-devel pixman-devel
+</code></pre></div>
+<h5 id="2242-risc-v-gnu-compiler-toolchain">2.2.4.2 安装RISC-V GNU Compiler Toolchain<a class="headerlink" href="#2242-risc-v-gnu-compiler-toolchain" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>git clone --recursive https://github.com/riscv/riscv-gnu-toolchain
+</code></pre></div>
+<p>如果下载太慢，可以直接用已经下载好的包。</p>
+<p>下载地址： <a href="http://10.249.14.14:8000/index.php/s/7vlEVZPKaMTIpi0">http://10.249.14.14:8000/index.php/s/7vlEVZPKaMTIpi0</a>， 选择riscv-gnu-toolchain.tar.gz。下载完成后，需要将riscv-gnu-toolchain.tar.gz上传至Linux系统中，上传方法详见MobaXterm(SSH工具)这一节中的<a href="../tools/index.html#12-sftp">文件传输SFTP服务</a>。</p>
+<p>解压命令</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>tar zxvf riscv-gnu-toolchain.tar.gz
+</code></pre></div>
+<p>解压后安装</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">cd</span> riscv-gnu-toolchain
+<span class="gp">$ </span>./configure --prefix<span class="o">=</span>/usr/local
+<span class="gp">$ </span>make
+<span class="gp">$ </span><span class="nb">cd</span> ..
+
+<span class="gp">$ </span>rm riscv-gnu-toolchain.tar.gz
+<span class="go">rm: remove regular file &#39;riscv-gnu-toolchain.tar.gz&#39;? y</span>
+</code></pre></div>
+<h5 id="2243-qemu">2.2.4.3 安装QEMU<a class="headerlink" href="#2243-qemu" title="Permanent link">&para;</a></h5>
+<p>下载QEMU</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>wget https://download.qemu.org/qemu-5.1.0.tar.xz
+<span class="gp">$ </span>tar xf qemu-5.1.0.tar.xz
+</code></pre></div>
+<p>安装</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">cd</span> qemu-5.1.0
+<span class="gp">$ </span>./configure --disable-kvm --disable-werror --prefix<span class="o">=</span>/usr/local --target-list<span class="o">=</span><span class="s2">&quot;riscv64-softmmu&quot;</span>
+<span class="gp">$ </span>make
+<span class="gp">$ </span>make install
+<span class="gp">$ </span><span class="nb">cd</span> ..
+
+<span class="gp">$ </span>rm qemu-5.1.0.tar.xz
+<span class="go">rm: remove regular file &#39;qemu-5.1.0.tar.xz&#39;? y</span>
+</code></pre></div>
+<p>检查安装是否成功</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>riscv64-unknown-elf-gcc --version
+<span class="go">riscv64-unknown-elf-gcc (GCC) 10.2.0</span>
+<span class="go">...</span>
+
+<span class="gp">$ </span>qemu-system-riscv64 --version
+<span class="go">QEMU emulator version 5.1.0</span>
+</code></pre></div>
+<h5 id="2244-xv6">2.2.4.4 运行XV6<a class="headerlink" href="#2244-xv6" title="Permanent link">&para;</a></h5>
+<p><div class="highlight"><pre><span></span><code><span class="gp">$ </span>git clone https://gitee.com/hitsz-lab/xv6-labs-2020.git
+<span class="go">Cloning into &#39;xv6-labs-2020&#39;...</span>
+<span class="go">...</span>
+<span class="gp"># </span>如果是初次运行git，设置你自己的gitee用户信息
+<span class="gp">$ </span>git config --global user.email <span class="s2">&quot;you@example.com&quot;</span>
+<span class="gp">$ </span>git config --global user.name <span class="s2">&quot;Your Name&quot;</span>
+<span class="go">...</span>
+<span class="gp">$ </span><span class="nb">cd</span> xv6-labs-2020
+<span class="gp">$ </span>git checkout util
+<span class="gp">$ </span>make qemu
+<span class="gp"># </span>... lots of output ...
+<span class="go">init: starting sh</span>
+<span class="gp">$</span>
+</code></pre></div>
+当可以看到“init: starting sh”的字样表示xv6已经正常启动，此时在“$”提示符后可输入xv6支持的shell命令。</p>
+<div class="admonition tip">
+<p class="admonition-title">QEMU退出方法</p>
+<p>先按“Ctrl+a”组合键，接着全部松开，再按下“x”键</p>
+</div>
+<p>至此，XV6已经能够正常运行了:-)</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../index.html" class="btn btn-neutral float-left" title="实验须知"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../tools/index.html" class="btn btn-neutral float-right" title="实验实用工具">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2023 哈尔滨工业大学（深圳）</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../tools/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../index.html';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../js/baidu-tongji.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/env/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:39:51 GMT -->
+</html>

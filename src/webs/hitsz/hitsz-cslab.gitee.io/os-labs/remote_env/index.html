@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/remote_env/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:41:04 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>远程实验平台使用指南 - 操作系统2022秋 | 哈工大（深圳）</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u8fdc\u7a0b\u5b9e\u9a8c\u5e73\u53f0\u4f7f\u7528\u6307\u5357";
+        var mkdocs_page_input_path = "remote_env.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../index.html" class="icon icon-home"> 操作系统2022秋 | 哈工大（深圳）
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://hitsz-cslab.gitee.io/os-labs/search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">实验概述</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../index.html">实验须知</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../env/index.html">实验平台以及环境配置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tools/index.html">实验实用工具</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux/index.html">Linux开发环境基础知识</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="index.html">远程实验平台使用指南</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#0">0 速查信息</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1">1 快速入门</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11">1.1 环境准备</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#111-visual-studio-code">1.1.1 如何安装Visual Studio Code？</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12">1.2 连接到实验平台</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#121-visual-studio-code">1.2.1 将Visual Studio Code连接到实验平台</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">附录</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">一些进阶指引</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#ssh">使用ssh密钥快捷认证</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#visual-studio-code">Visual Studio Code：进阶使用</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#qa">Q&amp;A</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_4">为何要使用远程实验平台？</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#windows-10">我不是Windows 10系统，这会带来什么问题吗？</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#_5">我输入的所有命令看起来都是对的，但是为什么运行失败了？</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#xv6">如何退出XV6？</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#vscodebad-owner-or-permission">VSCode连接远程实验平台时出现bad owner or permission报错？</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../remote_env_gdb/index.html">远程实验平台环境图形化调试指南</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OS竞赛招新</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../oscomp/oscomp/index.html">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">常见问题</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/faq-env/index.html">实验环境问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/lab1/index.html">Lab1问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/lab3/index.html">Lab3问题</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab1：XV6与Unix实用程序</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab1/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab1/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab1/part3/index.html">实验步骤</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab1/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab2：系统调用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab2/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab2/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab2/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab2/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab2/part5/index.html">GDB调试系统调用（补充材料）</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab3：锁机制的应用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab3/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab3/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab3/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab3/part4/index.html">xv-6中Lock的实现（选读）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab3/part5/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab4：页表</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab4/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab4/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab4/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab4/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab5：基于FUSE的青春版EXT2文件系统</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part3-1/index.html">环境搭建与上手</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part3-2/index.html">任务一：熟悉DDRIVER驱动</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part3-3/index.html">任务二：基于FUSE实现青春版EXT2文件系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part3-4/index.html">选做任务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part5/index.html">实验提示</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">操作系统2022秋 | 哈工大（深圳）</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>实验概述 &raquo;</li><li>远程实验平台使用指南</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">远程实验环境使用指南<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">通知</p>
+<p>严禁使用远程实验环境做与教学无关事宜，杜绝使用公共资源挖矿等，一经发现将严肃处理，感谢配合！</p>
+</div>
+<h2 id="0">0 速查信息<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
+<p>远程实验平台IP地址： <code>10.249.12.98</code> ，端口号： <code>6666</code></p>
+<div class="admonition info">
+<p>没错:-)本课程与《计算机设计与实践》共用同一个远程实验平台。我们已经在远程实验平台上部署了XV6的运行环境，你只需要登录后下载实验代码就可以做实验。</p>
+<p>用户名和初始密码都是<code>你的学号</code>，出于安全考虑，建议你初次登录后修改初始密码。如果遇到问题，请寻求助教或老师的帮助。</p>
+</div>
+<p>远程实验平台共有8个计算节点，每一个计算节点都提供相同的服务，可能你每次登录的计算节点会不一样，但无须担心，你看到的文件都是一样的。</p>
+<p><img alt="image-20210910105707775" src="../remote_env.assets/image-20210910105707775.png" /></p>
+<h2 id="1">1 快速入门<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h3 id="11">1.1 环境准备<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p>需要配合远程实验平台使用的软件：</p>
+<ul>
+<li>Visual Studio Code（必须）</li>
+<li>MobaXterm（推荐）</li>
+</ul>
+<h4 id="111-visual-studio-code">1.1.1 如何安装Visual Studio Code？<a class="headerlink" href="#111-visual-studio-code" title="Permanent link">&para;</a></h4>
+<p>打开Visual Studio Code的<a href="https://code.visualstudio.com/">官方网站</a>，点击中间的“Download for Windows”下载它的安装包。双击运行安装包，并完成安装即可。你可以从开始菜单找到新安装上的Visual Studio Code。</p>
+<h3 id="12">1.2 连接到实验平台<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<h4 id="121-visual-studio-code">1.2.1 将Visual Studio Code连接到实验平台<a class="headerlink" href="#121-visual-studio-code" title="Permanent link">&para;</a></h4>
+<p>Visual Studio Code安装完成后，从开始菜单打开它。我们需要安装Remote - SSH插件。点击VS Code左侧扩展(extension)按钮，在搜索框中键入“remote ssh”，点击Remote - SSH插件，并安装。</p>
+<p><img alt="安装插件" src="../remote_env.assets/vscode_extension.png" /></p>
+<p>左侧边栏应该会多出一个这样的图标：<img alt="图标:" src="../remote_env.assets/icon.png" />
+点击这个图标，选择SSH TARGETS右侧的<code>+</code>号：</p>
+<p><img alt="增加host" src="../remote_env.assets/ssh_add_host.png" /></p>
+<p>这会在屏幕上方中央弹出输入框，要求输入ssh指令。在这里输入<code>ssh 你的学号@远程实验平台IP</code>，例如<code>ssh 200110101@10.249.12.98 -p 6666</code>就是学号为200110101的同学希望连接到远程实验平台。</p>
+<p><img alt="增加host2" src="../remote_env.assets/ssh_add_host2.png" /></p>
+<p>输入完成后，按下回车。如果弹出下图所示的界面，则再次按下回车：</p>
+<p><img alt="增加host3" src="../remote_env.assets/ssh_add_host3.png" /></p>
+<p>现在，SSH Target添加成功，左侧SSH Target中应该增加了一栏。将鼠标移上去，点击这一栏右侧的小图标：</p>
+<p><img alt="connect1-16618272820231" src="../remote_env.assets/connect1-16618272820231.png" /></p>
+<p>这会打开一个新的VS Code窗口。新打开的窗口会要求你选择目标机器的平台，选择Linux，按下回车：</p>
+<p><img alt="connect2" src="../remote_env.assets/connect2.png" /></p>
+<p>如果如下图所示要求你确认是否连接，则再次按下回车：</p>
+<p><img alt="连接3" src="../remote_env.assets/connect3.png" /></p>
+<p>接下来，它会要求你输入密码。<strong>初始密码即学号</strong>。</p>
+<p><img alt="连接4" src="../remote_env.assets/connect4.png" /></p>
+<p>最后一次按下回车。如果没有更多提示，左下角显示<code>SSH: 实验平台的IP地址</code>，说明连接成功。</p>
+<p><img alt="连接成功" src="../remote_env.assets/success.png" /></p>
+<p>现在，点击下方的“终端”按钮，打开终端：</p>
+<p><img alt="打开终端" src="../remote_env.assets/clone0.png" /></p>
+<p>出于安全考虑，我们首先修改默认密码。
+点击终端，在其中键入以下内容，并回车：</p>
+<div class="highlight"><pre><span></span><code>passwd
+</code></pre></div>
+<p>此时，它会要求你输入旧密码。旧密码（即默认密码）为你的学号。完成后回车。
+随后，它会要求你输入新密码，并进行确认。</p>
+<p><img alt="change password" src="../remote_env.assets/passwd.png" /></p>
+<p>接下来，我们将存放xv6-labs-2020复制到自己的工作空间。
+在终端中键入以下内容，并回车：</p>
+<div class="highlight"><pre><span></span><code>git clone https://gitee.com/hitsz-lab/xv6-labs-2020.git
+</code></pre></div>
+<p>你应该会看到这样的输出：</p>
+<div class="highlight"><pre><span></span><code>Cloning into &#39;xv6-labs-2020&#39;...
+done.
+</code></pre></div>
+<p>这代表你已经将xv6的副本下载到自己的工作空间了。接下来，你可以点击左侧边栏最上面的按钮，并打开文件夹：</p>
+<p><img alt="打开文件夹" src="../remote_env.assets/open_folder.png" /></p>
+<p>在弹出的菜单中，选择<code>xv6-labs-2020</code>，并按下“确认”：</p>
+<p><img alt="打开文件夹2" src="../remote_env.assets/open_folder2.png" /></p>
+<p>再次输入密码，按下回车确认，并信任作者。</p>
+<p><img alt="打开文件夹3" src="../remote_env.assets/open_folder3.png" /></p>
+<p>你初步完成了对工作区的设置。接下来，我们可以测试xv6能否正常编译、执行。
+如果下方未显示终端，点击上方菜单“查看”-“终端”，或者按下Ctrl-`（<strong>注意：`不是‘（单引号），是键盘左上角的那个按键。</strong>）以打开终端界面。在新弹出的终端中，输入下面的命令，以编译并在QEMU中运行xv6：</p>
+<div class="highlight"><pre><span></span><code>make qemu
+</code></pre></div>
+<p>如果看到许多输出，并最终停留在这个输出上：</p>
+<div class="highlight"><pre><span></span><code>xv6 kernel is booting
+
+hart 2 starting
+hart 1 starting
+init: starting sh
+$
+</code></pre></div>
+<p>那么说明你的环境已经配置完成。<strong>同时按下Ctrl + A，全部松开，再按下x以退出QEMU</strong>。
+如果遇到问题，请询问老师或助教。</p>
+<h2 id="_2">附录<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">一些进阶指引<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h4 id="ssh">使用ssh密钥快捷认证<a class="headerlink" href="#ssh" title="Permanent link">&para;</a></h4>
+<p>有没有感觉每次都要输入密码非常麻烦？ssh密钥可以让认证流程自动化，大大解放双手。在 <strong>本地</strong> windows下，以管理员身份打开CMD，输入</p>
+<div class="highlight"><pre><span></span><code>ssh-keygen
+</code></pre></div>
+<p>跟随指引，一路回车，便可完成ssh密钥的生成。<strong>请务必保存好自己的私钥，不要泄露！</strong></p>
+<p><img alt="keygen" src="../remote_env.assets/ssh_keygen.png" /></p>
+<p>接下来，我们将私钥加入到自己的身份认证中。在终端继续输入：</p>
+<div class="highlight"><pre><span></span><code>ssh-add 你的私钥的完整路径
+# 例如，如上图所示，我应该键入ssh-add C:\Users\willson\.ssh\id_rsa_priv_20210909
+</code></pre></div>
+<p>在你的Windows上将公钥文件打开（用你喜欢的纯文本编辑器，比如记事本或者VS Code），复制其中的内容。</p>
+<p>最后，登录你想要快捷认证的远程实验平台终端，并执行下面的命令：</p>
+<div class="highlight"><pre><span></span><code>mkdir -p ~/.ssh
+vi ~/.ssh/authorized_keys
+</code></pre></div>
+<p>这会打开一个文件编辑界面。按下<code>i</code>按键，进入编辑模式，并粘贴到上面远程实验平台终端中编辑界面的一个新行里。按下<code>Esc</code>，按下<code>:wq</code>可保存并退出。如果不放心，可以<code>cat ~/.ssh/authorized_keys</code>并检查输出和你刚才贴进去的是不是一样的。
+配置完成后，下次你从Windows登陆时，应该就无需密码认证了。</p>
+<h4 id="visual-studio-code">Visual Studio Code：进阶使用<a class="headerlink" href="#visual-studio-code" title="Permanent link">&para;</a></h4>
+<p>有没有怀念Visual Studio、CodeBlock等IDE中便捷的一键运行功能？没关系，完备的插件市场配合自动化脚本可以完成你的一切功能需求！
+<em>下略：感兴趣的话可以了解一下Intelli Sense、MakeFile以及VSCode中的Task。</em></p>
+<h3 id="qa">Q&amp;A<a class="headerlink" href="#qa" title="Permanent link">&para;</a></h3>
+<h4 id="_4">为何要使用远程实验平台？<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>主要是实验搭起来比较麻烦。有几个选项可以选择，1是搭建一台Linux虚拟机，2是在自己电脑上启用WSL（Windows Subsystem for Linux），3是整一台运行Linux的电脑——都可以，但是都挺麻烦。我们帮你把配置的麻烦事先做完了，于是你就可以专心于实验本身。无论你的电脑性能如何，无论你是在宿舍、实验室还是自习室，只要你还能连上校园网，你就能完成你的实验。</p>
+<h3 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h3>
+<h4 id="windows-10">我不是Windows 10系统，这会带来什么问题吗？<a class="headerlink" href="#windows-10" title="Permanent link">&para;</a></h4>
+<h5 id="linuxmacos">我在使用Linux/macOS？<a class="headerlink" href="#linuxmacos" title="Permanent link">&para;</a></h5>
+<p>Visual Studio Code也有Linux版和macOS版，具体操作大同小异，毕竟环境主要在服务器上。</p>
+<h5 id="windowswindows-10">我正在使用旧的Windows版本/我没有更新我的Windows 10系统？<a class="headerlink" href="#windowswindows-10" title="Permanent link">&para;</a></h5>
+<p>请更新你的系统。使用过时的系统有各种各样的风险，其中最大的是与时代脱轨。</p>
+<h5 id="windows-11">我正在使用Windows 11？<a class="headerlink" href="#windows-11" title="Permanent link">&para;</a></h5>
+<p>这篇教程完全兼容Windows 11。笔者正在用的就是Windows 11。</p>
+<h4 id="_5">我输入的所有命令看起来都是对的，但是为什么运行失败了？<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<h5 id="_6">全角标点符号/英文字符？<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h5>
+<p>确保你输入的是正常的半角英文字符与英文标点符号，如图所示：</p>
+<p><img alt="全半角" src="../remote_env.assets/char.png" /></p>
+<p>这可以通过一起按下shift+空格，或者切换到英文输入法解决。<strong>永远不要在中文输入法下输入命令！</strong></p>
+<h4 id="xv6">如何退出XV6？<a class="headerlink" href="#xv6" title="Permanent link">&para;</a></h4>
+<p>同时按下<code>Ctrl + A</code>，接着全部松开，再按下<code>x</code>以退出QEMU。</p>
+<h4 id="vscodebad-owner-or-permission">VSCode连接远程实验平台时出现bad owner or permission报错？<a class="headerlink" href="#vscodebad-owner-or-permission" title="Permanent link">&para;</a></h4>
+<p>解决方法：进入路径C:\Users\用户名.ssh，右击config文件进入属性中高级安全管理，选择禁止继承，并且删除所有此对象中继承的权限。</p>
+<p>具体可以查看：<a href="https://www.cnblogs.com/Akkuman/p/11187776.html">https://www.cnblogs.com/Akkuman/p/11187776.html</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Linux/index.html" class="btn btn-neutral float-left" title="Linux开发环境基础知识"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../remote_env_gdb/index.html" class="btn btn-neutral float-right" title="远程实验平台环境图形化调试指南">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2023 哈尔滨工业大学（深圳）</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Linux/index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../remote_env_gdb/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../index.html';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../js/baidu-tongji.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/remote_env/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:41:40 GMT -->
+</html>

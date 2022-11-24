@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab3/part1/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:47:56 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>实验概述 - 操作系统2022秋 | 哈工大（深圳）</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u5b9e\u9a8c\u6982\u8ff0";
+        var mkdocs_page_input_path = "lab3\\part1.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../index.html" class="icon icon-home"> 操作系统2022秋 | 哈工大（深圳）
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://hitsz-cslab.gitee.io/os-labs/search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">实验概述</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../index.html">实验须知</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../env/index.html">实验平台以及环境配置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">实验实用工具</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Linux/index.html">Linux开发环境基础知识</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env/index.html">远程实验平台使用指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env_gdb/index.html">远程实验平台环境图形化调试指南</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OS竞赛招新</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../oscomp/oscomp/index.html">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">常见问题</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/faq-env/index.html">实验环境问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab1/index.html">Lab1问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab3/index.html">Lab3问题</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab1：XV6与Unix实用程序</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part3/index.html">实验步骤</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab2：系统调用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part5/index.html">GDB调试系统调用（补充材料）</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab3：锁机制的应用</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="index.html">实验概述</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">1.  实验目的</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2.  实验学时</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">3.  实验内容及要求</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31-memory-allocator">3.1 任务一：内存分配器（Memory allocator）</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#311-kalloctest">3.1.1 关于测评程序kalloctest</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#312">3.1.2 具体要求</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32-buffer-cache">3.2 任务二：磁盘缓存（Buffer cache）</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#321-bcachetest">3.2.1 关于测评程序bcachetest</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#322">3.2.2 具体要求</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#33">3.3 测试</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part4/index.html">xv-6中Lock的实现（选读）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part5/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab4：页表</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab5：基于FUSE的青春版EXT2文件系统</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-1/index.html">环境搭建与上手</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-2/index.html">任务一：熟悉DDRIVER驱动</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-3/index.html">任务二：基于FUSE实现青春版EXT2文件系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-4/index.html">选做任务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part5/index.html">实验提示</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">操作系统2022秋 | 哈工大（深圳）</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Lab3：锁机制的应用 &raquo;</li><li>实验概述</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">实验概述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">温（守）馨（住）提（红）示（线）</p>
+<p>本课程实验已引入代码自动查重系统，请同学们保持<a href="https://integrity.mit.edu/">学术诚信</a>！</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">关于第二次实验课考核</p>
+<p>我们将在第四次实验课进行第二次实验现场验收：  </p>
+<ul>
+<li>
+<p><strong>验收内容</strong> ：前三次实验</p>
+<ul>
+<li>Lab1：XV6与Unix实用程序</li>
+<li>Lab2：系统调用</li>
+<li>Lab3：锁机制的应用  </li>
+</ul>
+</li>
+<li>
+<p><strong>验收目的</strong> ：考察同学们是否是自己完成的实验代码，而不是“复制拷贝”。  </p>
+</li>
+<li>
+<p><strong>验收形式</strong> ：助教与同学们进行一对一问答  </p>
+</li>
+</ul>
+<p>请同学们认真对待！</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">课程复习和预习要求</p>
+<p>本节实验与理论课的 <strong>“多线程”</strong> 、  <strong>“信号量”</strong>   和 <strong>“死锁”</strong> 这三章课程内容相关，请同学们复习这三章课程内容。</p>
+<p>在做实验之前，请同学们阅读<a href="https://pdos.csail.mit.edu/6.828/2020/xv6/book-riscv-rev1.pdf">xv6手册</a>的以下章节及相关源代码：</p>
+<ul>
+<li>[1] xv6 book, Chapter 6 Locking (锁)</li>
+<li>[2] xv6 book, 3.5 Code: Physical memory allocator（物理内存分配器）</li>
+<li>[3] xv6 book, Chapter 8 File system：8.1 Overview ~ 8.3 Code: Buffer cache（磁盘缓存）</li>
+</ul>
+</div>
+<div class="admonition info">
+<p class="admonition-title">实验背景</p>
+<p>锁起到了保护作用，让一些关键的数据结构在并行环境下仍能保持一致性。</p>
+<p>在这个实验中，我们需要为xv6内存分配器和磁盘缓存（buffer cache）重新设计代码以提高并行性。这两个实验分别用到了两种 <strong>不同</strong> 的设计方法，来适用自身的结构，大大减少锁争用（在保证功能正确的前提下）。</p>
+</div>
+<h2 id="1">1.  实验目的<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<ol>
+<li>了解Lock的实现原理，理解CPU为Lock的实现提供的支持。  </li>
+<li>理解xv6的内存分配器kalloc以及磁盘缓存buffer cache的工作原理，掌握Lock在xv6中内存分配器/磁盘缓存中的作用。  </li>
+<li>掌握锁竞争对程序并行性的影响。  </li>
+<li>学习减少锁竞争的方法。</li>
+</ol>
+<h2 id="2">2.  实验学时<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>本实验为4学时。</p>
+<h2 id="3">3.  实验内容及要求<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">请先同步上游远程仓库，并注意切换到lock分支进行试验</p>
+<p>本次实验基于 <strong>lock</strong> 分支，请同学们注意切换。</p>
+<p><strong>Step 1.</strong> 首先，保存实验二的代码，请参考实验实用工具的<a href="../../tools/index.html#331">3.3.1 使用命令行完成操作</a>或者<a href="../../tools/index.html#332-vs-code">3.3.2 使用VS Code内建的图形化界面完成操作</a>这两小节，完成commit操作。或者， <strong>如果你希望直接放弃掉上一次commit后的所有更改</strong> ，那么你也可以使用-f选项强制切换分支，例如<code>git checkout -f lock</code>。</p>
+<p><strong>Step 2.</strong> 切换的方法可以参考实验 -&gt; 实验实用工具 -&gt; <a href="../../tools/index.html#31">3.1同步上游仓库 ~ 3.3.3 合并冲突更改</a>。</p>
+</div>
+<h3 id="31-memory-allocator">3.1 任务一：内存分配器（Memory allocator）<a class="headerlink" href="#31-memory-allocator" title="Permanent link">&para;</a></h3>
+<p><strong>修改内存分配器（主要修改kernel/kalloc.c）</strong> ，使每个CPU核使用独立的内存链表，而不是现在的共享链表。</p>
+<p>XV6的内存分配器只有一个内存链表供多个CPU核使用。在使用<code>kalloc()</code>获取内存时，由于添加了内存锁<code>kmem.lock</code>，其他CPU如果要切换进行内存申请必须等待当前进程释放内存锁。要消除锁争用的情况，需要重新设计内存链表管理机制以避免单个锁和单个链表。实验基本任务是让每个CPU拥有自己的内存链表，每个链表都有自己的锁，同时，当一个CPU内存链表不足时，还可以从其他链表 <strong>窃取</strong> 内存块，这样，就不会让所有的CPU争抢一个空闲区域（窃取可能会引发锁争用，但这也是不可避免的情况）。</p>
+<div class="admonition note">
+<p class="admonition-title">怎么查看XV6开启了多少个CPU核？</p>
+<p>在输入make qemu时，默认会启动3个CPU核，具体可以查看Makefile文件：</p>
+<div class="highlight"><pre><span></span><code><span class="err">264</span><span class="w"> </span><span class="err">ifndef</span><span class="w"> </span><span class="err">CPUS</span><span class="w"></span>
+<span class="nf">265 CPUS </span><span class="o">:</span>= 3
+<span class="err">266</span><span class="w"> </span><span class="err">endif</span><span class="w"></span>
+</code></pre></div>
+<p>如果要开启单个CPU，使用命令 make CPUS=1 qemu 重新编译即可。在C代码中，可以使用kernel/param.h中的NCPU宏来查看CPU的数目（maximum number of CPUs）。</p>
+</div>
+<h4 id="311-kalloctest">3.1.1 关于测评程序kalloctest<a class="headerlink" href="#311-kalloctest" title="Permanent link">&para;</a></h4>
+<p>测评程序<code>kalloctest</code>（见user/kalloctest.c）有两个test，分别是test1和test2。</p>
+<p>1) 在test1中fork出多个进程，它们并发运行于不同CPU核心，用 <code>sbrk()</code> 进行频繁获取空闲内存（调用<code>kalloc()</code>实现），然后又释放（调用<code>kfree()</code>实现）。在获取内存的时候不同CPU核心可能会争抢锁。</p>
+<div class="admonition note">
+<p class="admonition-title"><code>sbrk()</code>函数功能说明</p>
+<p>sbrk()是xv6提供的系统调用接口，其内核文件位置在kernel/sysproc.c。作用：为进程分配或回收内存。它有一个参数，代表要分配的字节数。它返回的是新分配内存的地址。</p>
+<p>这个系统调用是通过<code>growproc</code>来实现的。如果给的参数是正数，<code>growproc</code>使用<code>uvmalloc</code>来分配内存；如果给的参数是负数，使用<code>uvmdealloc</code>来释放内存。</p>
+<p><code>uvmalloc</code>首先使用<code>kalloc</code>来分配物理内存，然后再用<code>mappages</code>把PTE加到用户的页表里。<code>uvmdealloc</code>调用<code>uvmunmap</code>实现其功能，<code>uvmunmap</code>首先用<code>walk</code>来找到对应的PTE，然后使用<code>kfree</code>来释放相应的物理内存。</p>
+</div>
+<p>2) 在test2中测试所有空闲内存的获取和释放，由于test2未使用fork，只在单进程中测试。</p>
+<p>测评程序kalloctest最终会打印出<code>fetch-and-add</code>的数目，也就是 <strong>没有成功获取</strong> 到kmem锁的次数，这种粗略测量锁争用的方式（实验前，即未修改前）如下：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>kalloctest
+<span class="go">start test1</span>
+<span class="go">test1 results:</span>
+<span class="go">--- lock kmem/bcache stats</span>
+<span class="go">lock: kmem: #fetch-and-add 46375 #acquire() 433016</span>
+<span class="go">lock: bcache: #fetch-and-add 0 #acquire() 1242</span>
+<span class="go">--- top 5 contended locks:</span>
+<span class="go">lock: kmem: #fetch-and-add 46375 #acquire() 433016</span>
+<span class="go">lock: proc: #fetch-and-add 21429 #acquire() 170067</span>
+<span class="go">lock: virtio_disk: #fetch-and-add 13306 #acquire() 114</span>
+<span class="go">lock: proc: #fetch-and-add 6023 #acquire() 170143</span>
+<span class="go">lock: proc: #fetch-and-add 3661 #acquire() 170147</span>
+<span class="go">tot= 46375</span>
+<span class="go">test1 FAIL</span>
+<span class="go">start test2</span>
+<span class="go">total free number of pages: 32499 (out of 32768)</span>
+<span class="go">.....</span>
+<span class="go">test2 OK</span>
+</code></pre></div>
+<p>其中，"kmem"、"bcache"、"proc" 等指示了锁的类型，acquire()记录了每种锁 <strong>被请求</strong> 的次数，fetch-and-add就是 <strong>进程没有成功获取到此锁</strong> 的次数。例如， <em>lock: kmem: #fetch-and-add 46375 #acquire() 433016</em> 这句话的意思是，kmem.lock请求了433016次，仅成功了433016 - 46375 = 386641次，这就是发生了锁争用了（lock contention）。这些计数来自于在kalloctest调用的ntas()，它通过执行statistics()函数，打开"statistics"设备文件，获取内核打印的那些针对kmem和bcache锁(<em>本验的重点</em>)及5个竞争最激烈的锁的计数（见kernel/spinlock.c中的<code>statslock()</code>）。</p>
+<p>如果存在锁争用，fetch-and-add的数量将会很高，因为在acquire()获得锁之前要进行许多循环迭代，"statistics"设备文件会返回kmem和bcache锁的#test-and-set的总和（也就是<code>tot</code>）。</p>
+<h4 id="312">3.1.2 具体要求<a class="headerlink" href="#312" title="Permanent link">&para;</a></h4>
+<p>1)   本实验必须使用 <strong>专用空载多核</strong> 的环境，否则数据将没有意义。你可以使用远程实验平台或你的笔记本电脑。<br />
+2)   请使用<code>initlock()</code>初始化锁，并要求锁名字以<code>kmem</code>开头；<br />
+3)   运行<code>kalloctest</code>查看实现的代码是否减少了锁争用（<code>tot</code>没有获取到此锁的次数小于10则为通过）；<br />
+4)   运行 <code>usertests sbrkmuch</code> 以测试修改代码后系统是否仍可以分配所有的内存；<br />
+5)   运行<code>usertests</code>，确保其能能够全部通过；<br />
+6)   kalloctest和usertests的输出如下图（锁争用的次数大大减少），具体的数据会有所差别：</p>
+<p><img alt="kalloc_proc" src="../part1.assets/kalloc_proc.jpg" /></p>
+<h3 id="32-buffer-cache">3.2 任务二：磁盘缓存（Buffer cache）<a class="headerlink" href="#32-buffer-cache" title="Permanent link">&para;</a></h3>
+<p>在访问文件数据的时候，操作系统会将文件的数据放置在磁盘缓存中。磁盘缓存是不同进程之间的共享资源，因此需要通过锁确保使用的正确性。如果有多进程密集地使用文件系统，他们可能会竞争磁盘缓存的<code>bcache.lock</code>锁。
+目前，xv6采用单个锁管理磁盘缓存，我们需要 <strong>修改磁盘缓存块列表的管理机制（主要修改kernel/bio.c）</strong> ，使得可用多个锁管理缓存块，从而减少缓存块管理的锁争用。</p>
+<div class="admonition tip">
+<p class="admonition-title">提示</p>
+<p>在任务一中我们可以为每个CPU分配属于自己的内存链表，但在任务二中不能为每个CPU分配属于自己的磁盘缓存区。主要原因是多个进程间（或者说多个CPU间）访问磁盘同一块区域时会访问同一块缓存数据块（也就是缓存数据块是共享的），此外，一个磁盘缓存本身比较大，为每个CPU核都分配一个磁盘缓存显然会造成空间浪费。</p>
+</div>
+<h4 id="321-bcachetest">3.2.1 关于测评程序bcachetest<a class="headerlink" href="#321-bcachetest" title="Permanent link">&para;</a></h4>
+<p>测评程序bcachetest（见user/bcachetest.c）通过创建多个进程重复去读取不同的文件，从而造成bcache.lock锁争用。</p>
+<p>测试方式如下：</p>
+<p>实验前（即未修改前），测评程序bcachetest的输出如下：</p>
+<p><img alt="image-20211019205157241" src="../part1.assets/image-20211019205157241.png" /></p>
+<p>可以看到，bcache的<code>fetch-and-add</code>值非常大，说明磁盘缓存锁的争用非常严重。</p>
+<p>修改buffer cache的设计后，所有锁的fetch-and-add的数目应当接近于0。</p>
+<h4 id="322">3.2.2 具体要求<a class="headerlink" href="#322" title="Permanent link">&para;</a></h4>
+<p>1)   理想状态下，<code>bcachetest</code>中数据块缓存相关的所有锁<code>fetch-and-add</code>的总和应该为0，但本实验中总和<code>tot</code>不超过500即可；<br />
+2)   请修改<code>bget()</code>和<code>brelse()</code>，使得缓存区并发的查询和释放不容易发生锁争用，比如，不是所有流程都得等bcache.lock；<br />
+3)   同样要求<code>usertests</code>中的用例全部通过，最后的输出如下（具体数据有所出入）：  </p>
+<p><img alt="image-20211019205449169" src="../part1.assets/image-20211019205449169.png" /></p>
+<h3 id="33">3.3 测试<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
+<p>当完成上述的两个实验后，在命令行输入 <code>make grade</code> 进行最终测试。</p>
+<p><img alt="grade" src="../part1.assets/grade-16349752282893.png" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../lab2/part5/index.html" class="btn btn-neutral float-left" title="GDB调试系统调用（补充材料）"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../part2/index.html" class="btn btn-neutral float-right" title="实验原理">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2023 哈尔滨工业大学（深圳）</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../lab2/part5/index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../part2/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../index.html';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/baidu-tongji.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab3/part1/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:48:10 GMT -->
+</html>

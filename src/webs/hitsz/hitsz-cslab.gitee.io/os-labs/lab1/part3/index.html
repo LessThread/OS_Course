@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab1/part3/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:46:42 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>实验步骤 - 操作系统2022秋 | 哈工大（深圳）</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u5b9e\u9a8c\u6b65\u9aa4";
+        var mkdocs_page_input_path = "lab1\\part3.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../index.html" class="icon icon-home"> 操作系统2022秋 | 哈工大（深圳）
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://hitsz-cslab.gitee.io/os-labs/search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">实验概述</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../index.html">实验须知</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../env/index.html">实验平台以及环境配置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">实验实用工具</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Linux/index.html">Linux开发环境基础知识</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env/index.html">远程实验平台使用指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env_gdb/index.html">远程实验平台环境图形化调试指南</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OS竞赛招新</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../oscomp/oscomp/index.html">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">常见问题</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/faq-env/index.html">实验环境问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab1/index.html">Lab1问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab3/index.html">Lab3问题</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab1：XV6与Unix实用程序</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="index.html">实验步骤</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. 部署实验环境</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11-xv6">1.1  xv6运行环境</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12-xv6">1.2  xv6源码</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#13-xv6">1.3  编译并运行xv6</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2.  准备工作</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">3.  编写用户程序</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31">3.1  代码示例</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32">3.2  实验提示</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#33">3.3 回答问题</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab2：系统调用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part5/index.html">GDB调试系统调用（补充材料）</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab3：锁机制的应用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part4/index.html">xv-6中Lock的实现（选读）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part5/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab4：页表</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab5：基于FUSE的青春版EXT2文件系统</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-1/index.html">环境搭建与上手</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-2/index.html">任务一：熟悉DDRIVER驱动</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-3/index.html">任务二：基于FUSE实现青春版EXT2文件系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-4/index.html">选做任务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part5/index.html">实验提示</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">操作系统2022秋 | 哈工大（深圳）</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Lab1：XV6与Unix实用程序 &raquo;</li><li>实验步骤</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">实验步骤<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>下面，我们就正式进入到各实验的细节中，并给出实验实现的一些提示。大家需要依照实验指导书的<a href="../part1/index.html">实验概述</a>中提到的要求进行实现。同时，还需要回答指导书给出的<a href="index.html#33">问题</a>。</p>
+<h3 id="1">1. 部署实验环境<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>实验环境主要分为三部分：xv6运行环境、xv6源码、xv6的编译与运行。</p>
+<h4 id="11-xv6">1.1  xv6运行环境<a class="headerlink" href="#11-xv6" title="Permanent link">&para;</a></h4>
+<p>xv6运行环境详见<a href="../../env/index.html">实验平台及环境配置</a>。</p>
+<h4 id="12-xv6">1.2  xv6源码<a class="headerlink" href="#12-xv6" title="Permanent link">&para;</a></h4>
+<p>请clone最新代码到本地进行实验：   </p>
+<div class="highlight"><pre><span></span><code>$ git clone https://gitee.com/hitsz-lab/xv6-labs-2020
+</code></pre></div>
+<p>每个实验项目都在不同的分支上完成，请 <strong>注意切换分支</strong> ，例如，实验一需切换到util分支后进行开发。</p>
+<div class="highlight"><pre><span></span><code>$ git branch -a
+$ git checkout util
+</code></pre></div>
+<p><img alt="image-20210913105916234" src="../part3.assets/image-20210913105916234.png" /></p>
+<p>xv6的代码结构：</p>
+<p><img alt="image-20201017231446472" src="../part3.assets/image-20201017231446472.png" /></p>
+<h4 id="13-xv6">1.3  编译并运行xv6<a class="headerlink" href="#13-xv6" title="Permanent link">&para;</a></h4>
+<p>Step1 在代码总目录xv6-labs-2020下输入“make qemu”， 编译并运行xv6;</p>
+<p>Step2 当可以看到“init: starting sh”的字样表示xv6已经正常启动，此时在“$”提示符后可输入xv6支持的shell命令。</p>
+<p><img alt="image-20210913110108193" src="../part3.assets/image-20210913110108193.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">qemu退出方法</p>
+<p>先按<code>ctrl+a</code>组合键，接着完全松开, 再按<code>x</code></p>
+</div>
+<h3 id="2">2.  准备工作<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<p>本次实验需要编写<a href="../part1/index.html#3">实验内容</a>中介绍的5个Unix实用程序。初次接触操作系统实验的你可能会感到不知所措，因此不妨先体验一下这些程序的运行效果。实际上，Linux中具备本次实验要实现的一些程序，例如sleep、find、xargs。你可以先尝试在Linux中使用这些命令，充分体会功能后再开始编程。当然，Linux中命令的功能较为复杂，我们仅要求实现简化版。</p>
+<p>实验开始之前，我们 <strong>强烈建议</strong> 你先完成以下工作：</p>
+<div class="admonition tip">
+<ol>
+<li>熟悉常见命令的使用，如 <code>echo</code>、<code>xargs</code>、<code>find</code>。</li>
+<li>了解目录的使用。了解 <code>.</code>、<code>..</code>、<code>/</code>分别表示什么，熟悉常见的目录操作命令，如<code>mkdir</code>、<code>cd</code>。</li>
+<li>了解重定向的使用，重定向即命令中的<code>&lt;</code>和<code>&gt;</code>，用于修改右侧命令的标准输入/输出。例如<code>echo Hello world &gt; file_a</code>会将字符串<code>Hello world</code>输出至文件<code>file_a</code>，而不是打印在终端。</li>
+<li>了解管道的使用。管道即命令中的<code>|</code>，用于将左侧命令的标准输出传递给右侧命令的标准输入。</li>
+<li>了解常见系统调用的使用。如 <code>fork</code>、<code>exit</code>、<code>wait</code>、<code>open</code>、<code>close</code>、<code>read</code>/<code>write</code>、<code>pipe</code>、<code>dup</code>。</li>
+</ol>
+</div>
+<h3 id="3">3.  编写用户程序<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<h4 id="31">3.1  代码示例<a class="headerlink" href="#31" title="Permanent link">&para;</a></h4>
+<p>sleep程序已经实现，你需要理解其代码并成功将其运行：</p>
+<p>Step1. 阅读user/sleep.c文件，理解代码和注释；</p>
+<p><img alt="image-20210913110416368" src="../part3.assets/image-20210913110416368.png" /></p>
+<p>Step2. 由于sleep.c为新增的用户程序文件，请在Makefile文件中找到UPROGS，在UPROGS上增加一行<code>$U/_sleep</code>：</p>
+<p><img alt="image-20220926104856325" src="../part3.assets/image-20220926104856325.png" /></p>
+<p>Step3. 编译xv6并运行sleep。</p>
+<p><img alt="image-20201018125249828" src="../part3.assets/image-20201018125249828.png" /></p>
+<p>Step4.回答3.3中的<a href="#33">相关问题</a>。</p>
+<h4 id="32">3.2  实验提示<a class="headerlink" href="#32" title="Permanent link">&para;</a></h4>
+<p><strong>1)</strong>   <strong>pingpong</strong></p>
+<p>a)   使用<code>pipe()</code>创建管道，详见<a href="../part2/index.html">实验原理</a>；</p>
+<p>b)   使用<code>fork()</code>创建子进程，注意根据返回值，判断父子进程；</p>
+<p>c)    利用<code>read()</code>, <code>write()</code>函数对管道进行读写。</p>
+<p>d)   请在<code>user/pingpong.c</code>中实现。</p>
+<p>e)   修改<code>Makefile</code>，将程序添加到<code>UPROGS</code>。</p>
+<p><strong>2)</strong>   <strong>primes</strong></p>
+<p>a)    根据需求利用<code>fork()</code>创建子进程;</p>
+<p>b)    利用多个<code>pipe()</code>创建的管道在父子进程间进行数据的传输；</p>
+<p>c)    可以使用<code>dup()</code>复制文件句柄（管道的写入、读出端），用来节省资源：</p>
+<p>例如，将”hello world”写入到标准输入。</p>
+<div class="highlight"><pre><span></span><code><span class="n">fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dup</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="err">“</span><span class="n">hello</span><span class="err">”</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span><span class="w"></span>
+<span class="n">write</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="err">“</span><span class="n">world</span><span class="err">\</span><span class="n">en</span><span class="err">”</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span><span class="w"> </span><span class="c1">//此时fd!=1，但字符串仍然会写入标准输出</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">提示</p>
+<p>由于xv6的文件描述符和进程数量有限（详见<code>kernel/param.h</code>），请注意关闭进程不需要的文件描述符，否则，你的程序在xv6上运行会在第一个进程到达35之前耗完资源。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// kernel/param.h</span>
+<span class="cp">#define NPROC        64  </span><span class="c1">// maximum number of processes</span>
+<span class="cp">#define NOFILE       16  </span><span class="c1">// open files per process</span>
+<span class="cp">#define NFILE       100  </span><span class="c1">// open files per system</span>
+</code></pre></div>
+</div>
+<p>d)    管道<code>read</code>是一直阻塞，直到管道有数据写入；如果绑定在这个管道的写端口关闭了，<code>read</code>返回0。注意及时关闭管道的写端，否则读出端无法判断传输的结束。</p>
+<p>e)  要确保子进程先退出，父进程再退出。要不然容易出现如下错误，即<code>$</code>符号先打印出来，但是子进程还在运行状态中。如下图所示。</p>
+<p><img alt="image-20201027155243519" src="../part3.assets/image-20201027155243519.png" /></p>
+<p><img alt="image-20201027155303167" src="../part3.assets/image-20201027155303167.png" /></p>
+<p>f)  建议直接将32位（4字节）int写入管道，而不是使用格式化的ASCII I/O。即往管道中写32位的整数，无需转换位字符串。</p>
+<p><strong>3)</strong>   <strong>find</strong></p>
+<p>a)    可查看<code>user/ls.c</code>以了解如何读取目录；</p>
+<p>b)    可参照<code>user/ls.c</code>的逻辑实现；</p>
+<p>c)    使用递归允许<code>find</code>进入到子目录；</p>
+<p>d)    不要递归进入<code>.</code>和<code>..</code>；</p>
+<p>e)    测试时需要创建新的文件和文件夹，可使用<code>make clean</code>清理文件系统，并使用<code>make qemu</code>再编译运行。</p>
+<p><strong>4)</strong>   <strong>xargs</strong></p>
+<p>a)    xv6中的<code>xargs</code>基本功能演示：</p>
+<p>示例1：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>xargs <span class="nb">echo</span> good   <span class="c1"># 指定要执行的命令：echo，同时输入参数&#39;good&#39;</span>
+<span class="go">bye                 # 换行后继续输入echo的参数&#39;bye&#39;</span>
+<span class="go">good bye            # 执行&quot;echo good bye&quot;，输出&quot;good bye&quot;</span>
+<span class="go">hello too           # 换行后输入参数&#39;hello too&#39;</span>
+<span class="go">good hello too      # 执行&quot;echo good hello too&quot;，输出&quot;good hello too&quot;</span>
+<span class="gp"># </span>通过ctrl+D结束输入
+<span class="gp">$</span>
+</code></pre></div>
+<p><code>echo</code>命令用于将接收到的参数作为字符串输出。示例中，每输入一行字符串<code>string</code>，程序就会执行一次<code>echo good string</code>。用户输入<code>ctrl+D</code>的时候，<code>gets</code>等函数返回为空。</p>
+<p>需要注意的是，Linux中<code>xargs</code>具备<code>"-n"</code>选项，用于选择每次执行命令需要接收的参数数量，例如：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>xargs -n2 <span class="nb">echo</span> good   <span class="c1"># 设置选项-n为2，表示接收两个参数（两行输入）；指定要执行的命令：echo，并输入参数&#39;good&#39;</span>
+<span class="go">bye                     # 换行后输入参数&#39;bye&#39;</span>
+<span class="go">hello too               # 换行后继续输入参数&#39;hello too&#39;，至此接收两个参数</span>
+<span class="go">good bye hello          # 执行&quot;echo good bye hello too&quot;，输出&quot;good bye hello&quot;</span>
+<span class="go">good too               # 通过ctrl+D结束输入，输出&quot;good too&quot;</span>
+<span class="gp"># </span>通过ctrl+D结束输入
+<span class="gp">$</span>
+</code></pre></div>
+<p>为了简化实现，我们不要求实现选项<code>"-n"</code>，实现时请 <strong>每接收一行就执行一次指定的命令</strong> 。</p>
+<p>示例2：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>make qemu
+<span class="go">...</span>
+<span class="gp">$ </span><span class="nb">echo</span> <span class="m">3</span> <span class="m">4</span><span class="p">|</span>xargs <span class="nb">echo</span> <span class="m">1</span> <span class="m">2</span>
+<span class="go">1 2 3 4</span>
+<span class="gp">$</span>
+</code></pre></div>
+<p>本示例中，管道左侧<code>echo</code>的输出为<code>"3 4"</code>，通过管道和<code>xargs</code>，它被传递给右侧的echo，即右侧echo实际得到的参数为"1"、"2"、"3"、"4"。最终结果等价于执行命令<code>"echo 1 2 3 4"</code>。实验中你不必考虑管道的实现与使用，你的程序可以直接从标准输入中读取管道传递给你的字符串。</p>
+<p>b)    使用<code>fork()</code>和<code>exec()</code>系统对每一行输入调用命令；exec接收的二维参数数组argv，<code>argv[0]</code>必须是该命令本身，最后一个参数<code>argv[size-1]</code>必须为0，否则将执行失败。</p>
+<p><img alt="image-20201027155755713" src="../part3.assets/image-20201027155755713.png" /></p>
+<p>c)    使用<code>wait()</code>等待子进程运行完命令；</p>
+<p>d)    可以使用<code>kernel/param.h</code>中定义的<code>MAXARG</code>来声明<code>argv</code>的长度；</p>
+<p>e)    可使用<code>make clean</code>和<code>make qemu</code>清理文件系统并重新运行。</p>
+<p><strong>提示：</strong></p>
+<p>1)   关于以上5个Unix实用程序的实现亦可参考MIT官方的实验指导完成实验<a href="https://pdos.csail.mit.edu/6.828/2020/labs/util.html">Lab: Xv6 and Unix utilities</a></p>
+<p>2)   系统调用接口的示例可查阅《xv6 book》chapter 1的内容， <strong>尤其是1.2、1.3节的内容</strong> 。</p>
+<h4 id="33">3.3 回答问题<a class="headerlink" href="#33" title="Permanent link">&para;</a></h4>
+<p>一、阅读sleep.c，回答下列问题</p>
+<p>1) 当用户在xv6的shell中，输入了命令<code>sleep hello world\n</code>，请问argc的值是多少，argv数组大小是多少。  </p>
+<p>2) 请描述main函数参数argv中的指针指向了哪些字符串，他们的含义是什么。</p>
+<p>3) 哪些代码调用了系统调用为程序sleep提供了服务？</p>
+<p>二、了解管道模型，回答下列问题</p>
+<p>1) 简要说明你是怎么创建管道的，又是怎么使用管道传输数据的。  </p>
+<p>2) fork之后，我们怎么用管道在父子进程传输数据？ </p>
+<p>3) 试解释，为什么要提前关闭管道中不使用的一端？（提示：结合管道的阻塞机制）</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../part2/index.html" class="btn btn-neutral float-left" title="实验原理"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../part4/index.html" class="btn btn-neutral float-right" title="提交文档">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2023 哈尔滨工业大学（深圳）</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../part2/index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../part4/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../index.html';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/baidu-tongji.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab1/part3/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:46:50 GMT -->
+</html>

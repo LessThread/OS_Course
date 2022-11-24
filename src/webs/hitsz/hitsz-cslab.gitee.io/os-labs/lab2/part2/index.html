@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab2/part2/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:47:01 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>实验原理 - 操作系统2022秋 | 哈工大（深圳）</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u5b9e\u9a8c\u539f\u7406";
+        var mkdocs_page_input_path = "lab2\\part2.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../index.html" class="icon icon-home"> 操作系统2022秋 | 哈工大（深圳）
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://hitsz-cslab.gitee.io/os-labs/search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">实验概述</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../index.html">实验须知</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../env/index.html">实验平台以及环境配置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">实验实用工具</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Linux/index.html">Linux开发环境基础知识</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env/index.html">远程实验平台使用指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env_gdb/index.html">远程实验平台环境图形化调试指南</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OS竞赛招新</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../oscomp/oscomp/index.html">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">常见问题</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/faq-env/index.html">实验环境问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab1/index.html">Lab1问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab3/index.html">Lab3问题</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab1：XV6与Unix实用程序</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part3/index.html">实验步骤</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab2：系统调用</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="index.html">实验原理</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. 系统调用</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11">1.1 系统调用的使用：用户的权力</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12">1.2 系统调用的接口：操作系统内核和用户程序的中间体</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#13">1.3 系统调用的参数：寄存器传参</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#14">1.4 系统调用的分发和实现：解耦合</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2. 举例：系统调用的实现</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21">2.1 用户程序调用</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22-usyss">2.2 usys.S汇编</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#23-uservec">2.3 uservec汇编</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#24-usertrap">2.4 usertrap</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#25-syscall">2.5 syscall</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#26-sys_sleep">2.6 sys_sleep</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#27">2.7 执行完后返回用户空间</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">3. 内核空间和用户空间交换数据</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4">4. 参考资料</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part5/index.html">GDB调试系统调用（补充材料）</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab3：锁机制的应用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part4/index.html">xv-6中Lock的实现（选读）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part5/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab4：页表</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab5：基于FUSE的青春版EXT2文件系统</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-1/index.html">环境搭建与上手</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-2/index.html">任务一：熟悉DDRIVER驱动</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-3/index.html">任务二：基于FUSE实现青春版EXT2文件系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-4/index.html">选做任务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part5/index.html">实验提示</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">操作系统2022秋 | 哈工大（深圳）</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Lab2：系统调用 &raquo;</li><li>实验原理</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">实验原理<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">提示</p>
+<p>这一章讲述本次实验的实验原理，以下知识会大大帮助你理解xv6是如何工作的。但是你需要加以思考，并且将其一个一个串接起来，以形成一个整体的思维。</p>
+</div>
+<h2 id="1">1. 系统调用<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>系统调用就是调用操作系统提供的一系列内核函数。由于用户程序运行在CPU的用户态（又称非特权模式，用户模式），无法直接访问系统硬件和操作系统中的系统数据，用户程序只能发出请求，然后由内核调用相应的内核函数来帮着处理，最后将结果返回给应用程序。</p>
+<h3 id="11">1.1 系统调用的使用：用户的权力<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p>在第一个实验中，我们将系统调用和C语言的函数放在一起做了一定的说明。</p>
+<p>“系统调用被 <strong>封装</strong> 为函数以向用户提供接口，用户程序可以通过函数调用的方式请求操作系统的服务”。从这里我们需要注意，虽然两者看起来一样，但是这是因为封装的结果。接下来我们简要介绍xv6是怎样封装的。</p>
+<p>首先看<code>user/user.h</code>文件，我们可以看到对应有许多的函数接口，其中标识了系统调用和用户库（<code>ulib</code>）。但是我们只看到了封装的接口，那么实际上系统调用的实现是什么样的呢？</p>
+<h3 id="12">1.2 系统调用的接口：操作系统内核和用户程序的中间体<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<p>现在我们看到<code>user/usys.pl</code>文件，该脚本文件会在编译期间被执行，生成一个汇编文件<code>usys.S</code>。其对每一个系统调用抽象接口都生成了一个具体的实现，叫做<code>entry</code>。</p>
+<div class="highlight"><pre><span></span><code> <span class="mi">1</span>  <span class="c1">#!/usr/bin/perl -w</span>
+ <span class="mi">2</span>
+ <span class="mi">3</span>  <span class="c1"># Generate usys.S, the stubs for syscalls.</span>
+ <span class="mi">4</span>
+ <span class="mi">5</span>  <span class="k">print</span> <span class="s">&quot;# generated by usys.pl - do not edit\n&quot;</span><span class="p">;</span>
+ <span class="mi">6</span>
+ <span class="mi">7</span>  <span class="k">print</span> <span class="s">&quot;#include \&quot;kernel/syscall.h\&quot;\n&quot;</span><span class="p">;</span>
+ <span class="mi">8</span>
+ <span class="mi">9</span>  <span class="k">sub</span> <span class="nf">entry</span> <span class="p">{</span>
+<span class="mi">10</span>      <span class="k">my</span> <span class="nv">$name</span> <span class="o">=</span> <span class="nb">shift</span><span class="p">;</span>
+<span class="mi">11</span>      <span class="k">print</span> <span class="s">&quot;.global $name\n&quot;</span><span class="p">;</span>
+<span class="mi">12</span>      <span class="k">print</span> <span class="s">&quot;${name}:\n&quot;</span><span class="p">;</span>
+<span class="mi">13</span>      <span class="k">print</span> <span class="s">&quot; li a7, SYS_${name}\n&quot;</span><span class="p">;</span>
+<span class="mi">14</span>      <span class="k">print</span> <span class="s">&quot; ecall\n&quot;</span><span class="p">;</span>
+<span class="mi">15</span>      <span class="k">print</span> <span class="s">&quot; ret\n&quot;</span><span class="p">;</span>
+<span class="mi">16</span>  <span class="p">}</span>
+<span class="mi">17</span>
+<span class="mi">18</span>  <span class="n">entry</span><span class="p">(</span><span class="s">&quot;fork&quot;</span><span class="p">);</span>
+<span class="mi">19</span>  <span class="n">entry</span><span class="p">(</span><span class="s">&quot;exit&quot;</span><span class="p">);</span>
+<span class="err">……</span>
+</code></pre></div>
+<p>这段脚本中的print的内容实际就是RISC-V指令集的汇编语言。<code>$name</code>就是系统调用的名字，如fork，exit等，当脚本执行时，18行之后entry的内字符串会被填入<code>$name</code>。  </p>
+<p>系统调用步骤包括以下几步：</p>
+<ul>
+<li><code>li a7, SYS_${name}\n</code>：将系统调用号 <code>SYS_${name}</code>（来自<code>kernel/syscall.h</code>）传给RISC-V CPU上的<code>a7</code>寄存器，这样内核就可以通过<code>a7</code>寄存器知道现在要处理的是什么系统调用。 </li>
+<li><code>ecall</code>：特殊指令，用来转入操作系统内核（ <strong>关键</strong> 指令）。  </li>
+<li><code>ret</code>：操作系统内核执行完后会返回到这里，执行ret就结束了用户看到的系统调用，返回至用户程序。 <br />
+  你可以在编译后阅读<code>user/usys.S</code>，将其与上述脚本对应以便更好地理解。</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">拓展</p>
+<p>在RISC-V指令集架构中，处理器通常分为M (<code>Machine</code>)、S (<code>Supervisor</code>)、U (<code>User</code>) 三种工作模式，这被称为 <strong>特权级</strong> 。一般情况下，用户程序运行在U模式，而操作系统内核运行在S模式。上文中的<code>ecall (Environment Call)</code>命令就是不同特权级之间的桥梁，例如用户程序执行<code>ecall</code>后，CPU会切换至S模式，同时将PC的值置为一个由内核预设的地址，进而切换至内核的执行流。<code>ecall</code>实际上是陷入(<code>trap</code>)的一种，想要了解更多细节可以自行阅读RISC-V手册（请到校内网 <strong>实验工具</strong> 下载）</p>
+</div>
+<h3 id="13">1.3 系统调用的参数：寄存器传参<a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
+<p>这里我们还忽略了一点，那就是系统调用还需要传递参数。实际上，从汇编的角度来看，当我们调用一个函数的时候，传入的参数一般会按照位置依次放在<code>a0</code>, <code>a1</code>, <code>a2</code>等以此类推的寄存器中。想要了解更多关于函数参数的细节可以自行阅读<a href="https://gitee.com/hitsz-cslab/os-labs/tree/master/references/RISC-Væå.pdf">RISC-V手册</a>。</p>
+<p><img alt="image-20220920161553412" src="../part2.assets/image-20220920161553412.png" /></p>
+<p>也就是说，调用<code>user/user.h</code>中的函数接口后，参数已经存储于寄存器了，这个时候我们就原封不动地继续调用<code>ecall</code>，操作系统就可以通过a0, a1, a2等寄存器来获取参数了。此外，函数的返回值一般存储于a0寄存器。</p>
+<div class="admonition note">
+<p class="admonition-title">提示</p>
+<p>根据RISC-V标准规定，函数调用通过寄存器传递参数。在内核中可以通过argint、argaddr等函数获取系统调用的参数，分别对应整数和指针，它们都调用argraw来读取已保存的寄存器。比如，<code>kernel/sycall.c</code>中 line 34-54中<code>argraw</code>函数所描述的就是取出参数的过程。其中 <strong>trapframe就是用户进程的寄存器状态</strong> （上下文）。</p>
+</div>
+<h3 id="14">1.4 系统调用的分发和实现：解耦合<a class="headerlink" href="#14" title="Permanent link">&para;</a></h3>
+<p>按照之前所述，定义一个系统调用实际上很简单：将系统调用号的宏定义<code>SYS_${name}</code>添加在<code>kernel/syscall.h</code>，每次系统调用时根据<code>a7</code>寄存器传入的值判定具体的系统调用类型即可。
+那么接下来我们面临的第一个问题是：内核怎么通过系统调用号（存在<code>a7</code>）来执行不同的系统调用函数。</p>
+<div class="admonition info">
+<p class="admonition-title">提示</p>
+<p>我们需要关注<code>kernel/syscall.c</code>中的代码，<code>line 86-130</code> 定义了一大段看起来就和系统调用有关的部分。这里可以分为两个部分，一个是 <code>extern</code> 进行标识的函数接口，另一个是以<code>syscall</code>为名的数组。</p>
+<ul>
+<li>
+<p>前者实际上声明了这些函数，这些函数的实现不必在这个文件中，而是分布在各个相关的代码文件中（一般放在<code>sys</code>开头的文件中，包括<code>sysproc.c</code>与<code>sysfile.c</code>），我们在这些代码文件中实现好对应的函数，最后就可以编译出对应名字的汇编代码函数， <code>extern</code> 就会找到对应的函数实现了。</p>
+</li>
+<li>
+<p>后者则是将这些函数的指针都放在统一的数组里，并且数组下标就是系统调用号，这样我们在分辨不同系统调用的时候就可以很方便地用数组来进行操作了。<code>kernel/syscall.c</code>中的 <code>syscall()</code> 函数就根据这一方法实现了系统调用的分发（通过不同系统调用号调用不同系统调用函数），请仔细阅读并尝试理解。</p>
+</li>
+<li>
+<p>将两者合起来使用，可以使得系统调用的 <strong>实现</strong> 和系统调用的 <strong>分发</strong> 彼此 <strong>分离</strong> ，这对函数编写者非常友好，但是会让初学者有些迷惑，这是需要注意的。</p>
+</li>
+</ul>
+</div>
+<h2 id="2">2. 举例：系统调用的实现<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>现在我们以一个具体的例子，来看看xv6是怎么实现系统调用的。我们准备挑选看起来朴实无华的系统调用<code>sleep</code>，因为它实际上暗藏凶险。</p>
+<p>先来看张总图把握一下整体流程：</p>
+<p><img alt="syscall" src="../part2.assets/syscall.png" /></p>
+<p>以下只对系统调用过程某几个关键点进行分析，其他相关代码/流程需要大家自行查阅代码：</p>
+<h3 id="21">2.1 用户程序调用<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>xv6关于sleep系统调用接口的声明在user/user.h。</p>
+<div class="highlight"><pre><span></span><code><span class="cm">/* user/user.h */</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">sleep</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+<h3 id="22-usyss">2.2 usys.S汇编<a class="headerlink" href="#22-usyss" title="Permanent link">&para;</a></h3>
+<p>然而，user/user.h只是对函数原型进行了声明。具体做了什么事呢？这个定义是在usys.S中，详见1.2小节。</p>
+<p>需要注意的是，usys.S汇编是由usys.pl（perl脚本）自动生成的。也就是，当你要增加新的系统调用时，不要修改usys.S，而是参考其他系统调用接口来修改usys.pl。</p>
+<h3 id="23-uservec">2.3 uservec汇编<a class="headerlink" href="#23-uservec" title="Permanent link">&para;</a></h3>
+<p>当执行ecall指令后，内核会切换到supervisor mode。接着，内核执行的第一个指令是来自trampoline.S文件的uservec汇编函数。</p>
+<h3 id="24-usertrap">2.4 usertrap<a class="headerlink" href="#24-usertrap" title="Permanent link">&para;</a></h3>
+<p>之后，代码跳转到了由C语言实现的usertrap函数中（trap.c），判断如果是来自用户的系统调用则执行syscall函数。</p>
+<div class="admonition info">
+<p class="admonition-title">提示</p>
+<p>一般进入usertrap函数有三种情况：<br />
+1. syscall系统调用，是由用户进程主动调用ecall指令来实现的。<br />
+2. exception异常，是用户进程或内核程序的illegal instruction导致的，比如：除0错误，或引用无效的虚拟地址。<br />
+3. device interrupt设备中断，比如：磁盘设备完成了读写请求操作。</p>
+</div>
+<h3 id="25-syscall">2.5 syscall<a class="headerlink" href="#25-syscall" title="Permanent link">&para;</a></h3>
+<p>syscall函数里有一个表单，根据传入的代表系统调用的数字进行查找，并执行具体实现系统调用功能的函数。对于这个例子来说，这个函数就是sys_sleep。</p>
+<h3 id="26-sys_sleep">2.6 sys_sleep<a class="headerlink" href="#26-sys_sleep" title="Permanent link">&para;</a></h3>
+<p>其代码可见 <code>kernel/sysproc.c</code> line55-74：</p>
+<div class="highlight"><pre><span></span><code><span class="mi">55</span><span class="w">  </span><span class="n">uint64</span><span class="w"></span>
+<span class="mi">56</span><span class="w">  </span><span class="n">sys_sleep</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"></span>
+<span class="mi">57</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="mi">58</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
+<span class="mi">59</span><span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">ticks0</span><span class="p">;</span><span class="w"></span>
+<span class="mi">60</span><span class="w"></span>
+<span class="mi">61</span><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">argint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="mi">62</span><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+<span class="mi">63</span><span class="w">    </span><span class="n">acquire</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tickslock</span><span class="p">);</span><span class="w"></span>
+<span class="mi">64</span><span class="w">    </span><span class="n">ticks0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ticks</span><span class="p">;</span><span class="w"></span>
+<span class="mi">65</span><span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">ticks</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ticks0</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">){</span><span class="w"></span>
+<span class="mi">66</span><span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="n">myproc</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">killed</span><span class="p">){</span><span class="w"></span>
+<span class="mi">67</span><span class="w">        </span><span class="n">release</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tickslock</span><span class="p">);</span><span class="w"></span>
+<span class="mi">68</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+<span class="mi">69</span><span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="mi">70</span><span class="w">      </span><span class="n">sleep</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ticks</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">tickslock</span><span class="p">);</span><span class="w"></span>
+<span class="mi">71</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="mi">72</span><span class="w">    </span><span class="n">release</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tickslock</span><span class="p">);</span><span class="w"></span>
+<span class="mi">73</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="mi">74</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li>
+<p>参数：系统调用<code>sleep</code>有一个参数，用来告知操作系统<code>sleep</code>的持续时间。但是这里怎么是<code>void</code>？</p>
+<ul>
+<li>这是因为xv6又进行了一次解耦合，通过一个额外的函数获取参数，他们以<code>arg</code>开头，具体见<code>kernel/syscall.c</code>。</li>
+</ul>
+</li>
+<li>
+<p>获得进程的状态：执行系统调用的时候，参数不会告诉xv6自己到底是什么程序。因此，xv6需要额外的调用来弄清楚，现在到底是什么程序正在运行？</p>
+<ul>
+<li>关键的函数是 <code>myproc()</code> ，这个函数将返回指向当前进程的PCB（也就是进程控制块）的指针（<code>struct proc *</code>），里面有程序的各种信息。</li>
+</ul>
+</li>
+<li>
+<p><code>sleep</code>的实现逻辑：这里，主要就是根据各个不同的系统调用，实现自身应的逻辑即可。现在简要介绍<code>sleep</code>逻辑。</p>
+<ul>
+<li>line 61：获取参数</li>
+<li>line 63：给时钟加锁，获取当前的时间</li>
+<li>line 65：比较是否到了<code>sleep</code>结束的时间</li>
+<li>line 66-69：进程结束了就退出，什么也不做</li>
+<li>line 70：否则继续睡眠</li>
+<li>line 72-73：到时间了则释放时间的锁，返回程序，<code>sleep</code>结束。</li>
+</ul>
+</li>
+</ul>
+<h3 id="27">2.7 执行完后返回用户空间<a class="headerlink" href="#27" title="Permanent link">&para;</a></h3>
+<p>当sleep完成之后，返回至syscall函数。在syscall函数中调用usertrapret，用于完成部分方便在C代码实现的返回用户空间的工作。还有一些工作只能在汇编语言完成，即trampoline.s中的userret函数。最后，这个函数执行sret指令，切回用户空间，执行用户空间ecall的下一条指令ret。当ret执行完后，返回调用函数的位置，执行用户程序的下一条语句。</p>
+<p>以上，即是系统调用过程中大致的代码执行流程。</p>
+<h2 id="3">3. 内核空间和用户空间交换数据<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<p>一些系统调用传递的参数是指针，内核需要使用这些指针来读写用户空间。但由于内核页表的映射和用户页表的映射不一样，内核不能使用普通的指令访问用户空间，这样就涉及到内核空间和用户空间的地址转换问题。在xv6中，我们可以使用<code>copyout</code>/<code>copyin</code>这两个函数分别完成内核空间到用户空间、用户空间到内核空间的数据拷贝。具体可以查看copyout/copyin的实现细节（kernel/vm.c）。</p>
+<p>例如，当shell执行ls命令时，调用<code>fstat</code>系统调用（user/ls.c）获取当前目录下的信息。</p>
+<p><img alt="image-20220920181414750" src="../part2.assets/image-20220920181414750.png" /></p>
+<p>fstat系统调用陷入内核调用<code>sys_fstat</code>，最终执行<code>filestat</code>函数，其中<code>st</code>是从用户空间传进来的入参（指针）。</p>
+<p><img alt="image-20220920181501174" src="../part2.assets/image-20220920181501174.png" /></p>
+<p>在filestat函数中，通过<code>stati</code>函数获取到inode节点信息，再调用<code>copyout</code>将获取到的信息拷贝给起始地址为filestat函数的入参addr，大小为sizeof(st)的用户空间。</p>
+<p><img alt="image-20220920181634893" src="../part2.assets/image-20220920181634893.png" /></p>
+<p>之后，返回<code>sys_fstat</code>，即可将内核空间的数据传递至用户空间。</p>
+<h2 id="4">4. 参考资料<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p>[1] xv6 book, Sections 4.3 and 4.4 of Chapter 4<br />
+[2] Related source files:  </p>
+<ul>
+<li>The user-space code for systems calls is in <code>user/user.h</code> and <code>user/usys.pl</code>.  </li>
+<li>The kernel-space code is <code>kernel/syscall.h</code>, <code>kernel/syscall.c</code>.  </li>
+<li>The process-related code is <code>kernel/proc.h</code> and <code>kernel/proc.c</code>.  </li>
+</ul>
+<p>​    </p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../part1/index.html" class="btn btn-neutral float-left" title="实验概述"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../part3/index.html" class="btn btn-neutral float-right" title="实验实现">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2023 哈尔滨工业大学（深圳）</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../part1/index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../part3/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../index.html';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/baidu-tongji.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab2/part2/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:47:16 GMT -->
+</html>

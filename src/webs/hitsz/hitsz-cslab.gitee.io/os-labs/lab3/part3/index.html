@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab3/part3/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:48:34 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>实验实现 - 操作系统2022秋 | 哈工大（深圳）</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u5b9e\u9a8c\u5b9e\u73b0";
+        var mkdocs_page_input_path = "lab3\\part3.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../index.html" class="icon icon-home"> 操作系统2022秋 | 哈工大（深圳）
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://hitsz-cslab.gitee.io/os-labs/search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">实验概述</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../index.html">实验须知</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../env/index.html">实验平台以及环境配置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">实验实用工具</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Linux/index.html">Linux开发环境基础知识</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env/index.html">远程实验平台使用指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env_gdb/index.html">远程实验平台环境图形化调试指南</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OS竞赛招新</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../oscomp/oscomp/index.html">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">常见问题</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/faq-env/index.html">实验环境问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab1/index.html">Lab1问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab3/index.html">Lab3问题</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab1：XV6与Unix实用程序</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part3/index.html">实验步骤</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab2：系统调用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part5/index.html">GDB调试系统调用（补充材料）</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab3：锁机制的应用</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="index.html">实验实现</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#0">0. 任务零：回答问题</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. 任务一 内存分配器</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11">1.1 流程</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12">1.2 实现提示</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2. 任务二 磁盘缓存</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21">2.1 流程</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22">2.2 实现提示</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part4/index.html">xv-6中Lock的实现（选读）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part5/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab4：页表</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab5：基于FUSE的青春版EXT2文件系统</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-1/index.html">环境搭建与上手</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-2/index.html">任务一：熟悉DDRIVER驱动</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-3/index.html">任务二：基于FUSE实现青春版EXT2文件系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-4/index.html">选做任务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part5/index.html">实验提示</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">操作系统2022秋 | 哈工大（深圳）</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Lab3：锁机制的应用 &raquo;</li><li>实验实现</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">实验实现<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>这里，我们将对一些实现的细节做一定的提醒。但是完整的流程需要自己把握，我们 <strong>不会给出每一步实现步骤</strong> 。因此，最重要的还是阅读 <a href="../part2/index.html#_1">实验原理</a> 内容，得出自己的解决方案，然后参考<a href="index.html#_1">实验实现</a>这部分的内容。</p>
+<p>值得注意的是，xv6的代码是可以参考的，可以看看相关实验原理是怎么实现的。同时，还可以插桩，使用printf/GDB等方法看看具体的内容。同时，还可以阅读 xv6 指导书，看看背后的设计机理。</p>
+<h2 id="0">0. 任务零：回答问题<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">回答问题</p>
+<p>任务开始之前，我们应该先要首先回答一些原理性的问题，这部分应该被包含在实验报告中：</p>
+<ol>
+<li>内存分配器<ol>
+<li>什么是内存分配器？它的作用是？</li>
+<li>内存分配器的数据结构是什么？它有哪些操作（函数），分别完成了什么功能？</li>
+<li>为什么指导书提及的优化方法可以提升性能？</li>
+</ol>
+</li>
+<li>磁盘缓存<ol>
+<li>什么是磁盘缓存？它的作用是？</li>
+<li>buf结构体为什么有prev和next两个成员，而不是只保留其中一个？请从这样做的优点分析（提示：结合通过这两种指针遍历链表的具体场景进行思考）。</li>
+<li>为什么哈希表可以提升磁盘缓存的性能？可以使用内存分配器的优化方法优化磁盘缓存吗？请说明原因。</li>
+</ol>
+</li>
+</ol>
+</div>
+<p>以上题目的答案几乎都能在指导书中找到，所以请仔细阅读指导书。</p>
+<p>本实验的代码量较小，但这反而意味着难度较大。因此，建议大家以 <strong>图</strong> 的形式
+画出数据结构以及数据结构之间的关系以及在操作时他们发生了什么变化，同时主张以 <strong>简短而精炼</strong> 的文字回答所有问题。</p>
+<h2 id="1">1. 任务一 内存分配器<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h3 id="11">1.1 流程<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p>具体步骤如下：</p>
+<p><strong>Step 1</strong> ：参考<a href="../../tools/index.html#31">这个指南</a>，切换到lock分支并同步上游仓库；</p>
+<p><strong>Step 2</strong> ：理解kalloc内存分配的方式和其中锁的原理；</p>
+<p><strong>Step 3</strong> ：修改内存分配器数据结构，例如，将kalloc的共享freelist改为每个CPU独立的freelist；</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">run</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">run</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">kmem</span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">spinlock</span><span class="w"> </span><span class="n">lock</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">run</span><span class="w"> </span><span class="o">*</span><span class="n">freelist</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">kmem</span><span class="w"> </span><span class="n">kmems</span><span class="p">[</span><span class="n">NCPU</span><span class="p">];</span><span class="w"></span>
+</code></pre></div>
+<p>freerange为所有运行freerange的CPU分配空闲的内存。</p>
+<p><strong>Step 4</strong> ：修改和内存管理器有关的所有操作，尽可能减少锁争用；</p>
+<p><strong>Step 5</strong> ：启动测试程序进行测试。</p>
+<h3 id="12">1.2 实现提示<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><em>分配内存块</em>： <strong>优先</strong> 分配 <strong>当前</strong> CPU的freelist中的内存块；当前CPU没有空闲内存块，则从其他CPU的freelist中 <strong>窃取</strong> 内存块；所有CPU都没有空闲块时，返回0。  </p>
+</li>
+<li>
+<p><em>释放内存块</em>：将内存块放入当前CPU的freelist中。  </p>
+</li>
+<li>
+<p><em>锁的机制</em>：锁的使用和原来会有些不同，你需要注意你的设计应该要满足一致性。简单地说，也就是保证多个cpu访问同一个数据的时候，会出错的话就要加锁。  </p>
+<ul>
+<li>可以使用kernel/param.h中的宏NCPU，其表示CPU的数目。  </li>
+<li>使用cpuid()函数会返回当前CPU的id号（范围0~NCPU-1）。在调用cpuid()并使用其返回值的过程中需要关闭中断。使用push_off()可以关闭中断，使用pop_off()可以打开中断。  </li>
+<li>请使用initlock()初始化锁，并 <strong>要求锁名字以kmem开头</strong> 。  </li>
+<li>使用freerange为所有运行freerange的CPU分配空闲的内存。  </li>
+</ul>
+</li>
+</ul>
+<h2 id="2">2. 任务二 磁盘缓存<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p><strong>具体要求：修改磁盘缓存块列表的管理机制</strong> ，使得可用多个锁管理缓存块，从而减少缓存块管理的锁争用。</p>
+<p>xv6 book中8.2 - 8.3 节有关于块缓存的描述。</p>
+<h3 id="21">2.1 流程<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>具体步骤如下：</p>
+<p><strong>Step 1</strong> ： 理解bio.c中代码的行为以及原理；</p>
+<p><strong>Step 2</strong> ： 理解bio.c中锁的作用以及原理；</p>
+<p><strong>Step 3</strong> ：构建磁盘缓存数据结构，例如，可以构建13个哈希组；</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#define NBUCKETS 13</span>
+<span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">spinlock</span><span class="w"> </span><span class="n">lock</span><span class="p">[</span><span class="n">NBUCKETS</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">buf</span><span class="w"> </span><span class="n">buf</span><span class="p">[</span><span class="n">NBUF</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Linked list of all buffers, through prev/next.</span>
+<span class="w">  </span><span class="c1">// head.next is most recently used.</span>
+<span class="w">  </span><span class="c1">//struct buf head;</span>
+<span class="w">  </span><span class="k">struct</span><span class="w"> </span><span class="nc">buf</span><span class="w"> </span><span class="n">hashbucket</span><span class="p">[</span><span class="n">NBUCKETS</span><span class="p">];</span><span class="w"> </span><span class="c1">//每个哈希队列一个linked list及一个lock</span>
+<span class="p">}</span><span class="w"> </span><span class="n">bcache</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+<p><strong>Step 4</strong> ：修改和磁盘缓存有关的所有操作，尽可能减少锁争用；</p>
+<p><strong>Step 5</strong> ：启动测试程序进行测试。</p>
+<h3 id="22">2.2 实现提示<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>每个数据块最多只能维护一份缓存。  </p>
+</li>
+<li>
+<p>请将本实验涉及的锁以<code>bcache</code>开头来命名，可以调用initlock()来初始化bcache锁。  </p>
+</li>
+<li>
+<p>哈希桶的数量可以使用固定的数目，不需要动态地扩展哈希表的大小。请使用素数（比如13）来定义哈希组的数目来尽可能减少哈希争用；  </p>
+</li>
+<li>
+<p>在哈希表中搜索块缓存且为未命中的缓存分配一个新的条目，这整个操作必须是原子性操作的（似乎要加锁噢）；  </p>
+</li>
+<li>
+<p>允许按顺序查找未被使用的数据缓存块（即引用计数refcnt为0），也就是说当bget()查找数据块未命中时，bget可以选择一个这样的未被使用的缓存块，移入到以blockno为key的哈希组链表中使用。</p>
+</li>
+<li>
+<p>如果你的实现中出现了同时锁上两个以上的锁的情况（比如说，bget()在获取空闲块时，可能需要移动一个内存块从一个哈希组到另一个哈希组），注意避免死锁的出现。  </p>
+</li>
+<li>
+<p>一些调试的提示：限制CPU串行访问可以便于调试锁竞争之外的问题。例如，使用哈希表的方法优化时，可以先保留bget中对全局锁 bcache.lock 的使用，当确保你的设计没问题时，再将其去除。你也可以在调试此类问题时仅开启单个CPU，使用命令 <code>make CPUS=1 qemu</code> 重新编译即可，但请记得在测试前打开。</p>
+</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../part2/index.html" class="btn btn-neutral float-left" title="实验原理"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../part4/index.html" class="btn btn-neutral float-right" title="xv-6中Lock的实现（选读）">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2023 哈尔滨工业大学（深圳）</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../part2/index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../part4/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../index.html';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/baidu-tongji.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab3/part3/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:48:34 GMT -->
+</html>

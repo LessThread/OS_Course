@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab5/part1/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:49:06 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>实验概述 - 操作系统2022秋 | 哈工大（深圳）</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u5b9e\u9a8c\u6982\u8ff0";
+        var mkdocs_page_input_path = "lab5\\part1.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../index.html" class="icon icon-home"> 操作系统2022秋 | 哈工大（深圳）
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://hitsz-cslab.gitee.io/os-labs/search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">实验概述</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../index.html">实验须知</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../env/index.html">实验平台以及环境配置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">实验实用工具</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Linux/index.html">Linux开发环境基础知识</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env/index.html">远程实验平台使用指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env_gdb/index.html">远程实验平台环境图形化调试指南</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OS竞赛招新</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../oscomp/oscomp/index.html">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">常见问题</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/faq-env/index.html">实验环境问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab1/index.html">Lab1问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab3/index.html">Lab3问题</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab1：XV6与Unix实用程序</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part3/index.html">实验步骤</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab2：系统调用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part5/index.html">GDB调试系统调用（补充材料）</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab3：锁机制的应用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part4/index.html">xv-6中Lock的实现（选读）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part5/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab4：页表</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab5：基于FUSE的青春版EXT2文件系统</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="index.html">实验概述</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">1.  实验目的</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2.  实验学时</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">3.  实验内容</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31">3.1 必做部分</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#311-ddriver-ddriver">3.1.1 熟悉DDRIVER驱动 （参考实验原理-DDRIVER虚拟磁盘驱动）</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#312-fuseext2-fuseext2">3.1.2  基于FUSE实现青春版EXT2文件系统（参考实验原理-FUSE介绍与Ext2文件系统原理简介）</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32">3.2 选做部分</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4">4.  运行实例</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part3-1/index.html">环境搭建与上手</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part3-2/index.html">任务一：熟悉DDRIVER驱动</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part3-3/index.html">任务二：基于FUSE实现青春版EXT2文件系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part3-4/index.html">选做任务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part5/index.html">实验提示</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">操作系统2022秋 | 哈工大（深圳）</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Lab5：基于FUSE的青春版EXT2文件系统 &raquo;</li><li>实验概述</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">实验概述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">温（守）馨（住）提（红）示（线）</p>
+<p>本课程实验已引入代码自动查重系统，请同学们保持<a href="https://integrity.mit.edu/">学术诚信</a>！</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">课程复习和预习要求</p>
+<p>本节实验与理论课的 <strong>“文件与文件系统”</strong> 和 <strong>“I/O与存储”</strong> 这两章课程内容相关，请同学们复习这两章课程内容。</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">关于第三次实验课考核</p>
+<p>我们将在第六次实验课进行第三次实验现场验收：  </p>
+<ul>
+<li>
+<p><strong>验收内容</strong> ：Lab4 页表，Lab5 基于FUSE的青春版EXT2文件系统。  </p>
+</li>
+<li>
+<p><strong>验收目的</strong> ：考察同学们是否是自己完成的实验代码，而不是“复制拷贝”。</p>
+</li>
+<li>
+<p><strong>验收形式</strong> ：助教与同学们进行一对一问答（📢 <font color=red> <strong>注：Lab5验收时需要现场改代码</strong> </font>）。</p>
+<ul>
+<li>duck不必担心，只是修改几行代码：）</li>
+<li>如果实验代码是你自己写的，那这将是你的现场秀！</li>
+</ul>
+</li>
+</ul>
+<p>请同学们认真对待！</p>
+</div>
+<h2 id="1">1.  实验目的<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>以Linux系统中的 <strong>EXT2</strong> 文件系统为例，熟悉该文件系统内部数据结构的组织方式和基本处理流程，并基于 <strong>FUSE</strong> 设计并实现一个可以 <strong>真正在Linux上跑</strong> 的文件系统。</p>
+<h2 id="2">2.  实验学时<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>本实验为8学时。</p>
+<h2 id="3">3.  实验内容<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<h3 id="31">3.1 必做部分<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<h4 id="311-ddriver-ddriver">3.1.1 <strong>熟悉DDRIVER驱动</strong> （参考实验原理-DDRIVER虚拟磁盘驱动）<a class="headerlink" href="#311-ddriver-ddriver" title="Permanent link">&para;</a></h4>
+<p>本实验要求通过 ddriver（disk driver） 驱动来访问ddriver设备，从而简化磁盘访问操作。此后，我们便可以利用ddriver驱动来编写自己的文件系统。“ 工欲善其事，必先利其器 ”，在实验过程中， 请务必保证你已经理解tests/test_ddriver.c目录下给出的案例 。</p>
+<h4 id="312-fuseext2-fuseext2">3.1.2  <strong>基于FUSE实现青春版EXT2文件系统</strong>（参考实验原理-FUSE介绍与Ext2文件系统原理简介）<a class="headerlink" href="#312-fuseext2-fuseext2" title="Permanent link">&para;</a></h4>
+<p>系统结构参考EXT2文件系统，要求具有<code>SUPER_BLOCK</code>、<code>DATA_MAP</code>、<code>INODE_MAP</code>等主要结构。本实验基于FUSE架构，要求将自己设计的文件系统接入FUSE，使得我们能够在Linux系统中直接访问我们自己的文件系统，是不是很酷炫呢？言归正传，本次实验仅要求完成如下几个功能：</p>
+<ul>
+<li>挂载文件系统；</li>
+<li>卸载文件系统；</li>
+<li>创建文件/文件夹（数据块可预分配）；</li>
+<li>查看文件夹下的文件（读取文件夹内容）；</li>
+</ul>
+<p>上述功能对应的命令为：</p>
+<ul>
+<li><code>mount</code></li>
+<li><code>umount</code></li>
+<li><code>touch/mkdir</code></li>
+<li><code>ls</code></li>
+</ul>
+<p>以上未提及的功能（如复制、删除、读写文件等） 不要求实现 。 具体要求参见实验要求 。</p>
+<h3 id="32">3.2 选做部分<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<p>本选做部分仅为学有余力的大佬秀操作提供方向。为防止内卷，实现本部分不会带
+来额外加分（但或许会有其他意想不到的惊喜），秀翻车了也不会扣分。</p>
+<ul>
+<li>
+<p><strong>EXPERT：完善文件系统基本操作</strong></p>
+<ul>
+<li><strong>按需分配</strong> 文件数据块</li>
+<li>间接索引和二级间接索引</li>
+<li>删除操作（<code>rm</code>命令，需要支持<code>rm -r</code>）</li>
+<li>文件移动（<code>mv</code>命令）</li>
+<li>读写文件（支持vim、vscode直接修改文件）</li>
+<li>软硬连接（<code>ln</code>命令）</li>
+</ul>
+</li>
+<li>
+<p><strong>SUPERME：丝滑的文件读写体验</strong></p>
+<ul>
+<li>实现缓存结构（参考 <strong>实验原理-磁盘缓存简介</strong> ）</li>
+</ul>
+</li>
+<li>
+<p><strong>EPIC：超强的鲁棒性</strong></p>
+<ul>
+<li>启动时检查系统一致性（孤儿节点、空闲节点与位图是否一致、更多一致性检测）</li>
+<li>坏块识别与处理（动态识别坏块，并避免使用）</li>
+<li>日志（参考 <strong>实验原理-日志文件系统简介</strong> ）</li>
+</ul>
+</li>
+</ul>
+<h3 id="4">4.  运行实例<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<p>本小节给出了sfs（simplefs）文件系统的运行示例。你需要参照这个示例调试运行你自己编写的“newfs”（你自己的项目名称）文件系统，调试运行参考实验步骤的项目编译。当自测完成后，你还需要通过./tests/test.sh脚本的基础功能测试，显示“恭喜你，通过所有测试”，即可完成本次实验。</p>
+<p>bilibili上观看：<a href="https://www.bilibili.com/video/BV1KB4y1z7f2/?spm_id_from=333.999.0.0">https://www.bilibili.com/video/BV1KB4y1z7f2/?spm_id_from=333.999.0.0</a></p>
+<p>为了给同学们演示如何下载、编译、运行simplefs文件系统，我们录制了两个演示视频：“HITSZ FUSE文件系统实验（本地版）”和“HITSZ FUSE文件系统（远程计算节点版）”。</p>
+<p>如果视频不太清晰，建议到bilibili上观看。</p>
+<p>FUSE文件系统实验（本地版）：<a href="https://www.bilibili.com/video/BV1Af4y1K7FX/">https://www.bilibili.com/video/BV1Af4y1K7FX/</a></p>
+<p>HITSZ FUSE文件系统（远程计算节点版）：<a href="https://www.bilibili.com/video/BV1TR4y1b7M3/">https://www.bilibili.com/video/BV1TR4y1b7M3/</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../lab4/part4/index.html" class="btn btn-neutral float-left" title="提交文档"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../part2/index.html" class="btn btn-neutral float-right" title="实验原理">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2023 哈尔滨工业大学（深圳）</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../lab4/part4/index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../part2/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../index.html';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/baidu-tongji.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab5/part1/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:49:06 GMT -->
+</html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/oscomp/oscomp/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:44:50 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！ - 操作系统2022秋 | 哈工大（深圳）</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "2023\u5e74\u201c\u5168\u56fd\u5927\u5b66\u751f\u8ba1\u7b97\u673a\u7cfb\u7edf\u80fd\u529b\u5927\u8d5b\u64cd\u4f5c\u7cfb\u7edf\u8bbe\u8ba1\u8d5b\u201d\u706b\u70ed\u62a5\u540d\u4e2d\uff01";
+        var mkdocs_page_input_path = "oscomp\\oscomp.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../index.html" class="icon icon-home"> 操作系统2022秋 | 哈工大（深圳）
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://hitsz-cslab.gitee.io/os-labs/search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">实验概述</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../index.html">实验须知</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../env/index.html">实验平台以及环境配置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">实验实用工具</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Linux/index.html">Linux开发环境基础知识</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env/index.html">远程实验平台使用指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env_gdb/index.html">远程实验平台环境图形化调试指南</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OS竞赛招新</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="index.html">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</a>
+    <ul class="current">
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">常见问题</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/faq-env/index.html">实验环境问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab1/index.html">Lab1问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab3/index.html">Lab3问题</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab1：XV6与Unix实用程序</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part3/index.html">实验步骤</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab2：系统调用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part5/index.html">GDB调试系统调用（补充材料）</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab3：锁机制的应用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part4/index.html">xv-6中Lock的实现（选读）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part5/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab4：页表</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab5：基于FUSE的青春版EXT2文件系统</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-1/index.html">环境搭建与上手</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-2/index.html">任务一：熟悉DDRIVER驱动</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-3/index.html">任务二：基于FUSE实现青春版EXT2文件系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part3-4/index.html">选做任务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab5/part5/index.html">实验提示</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">操作系统2022秋 | 哈工大（深圳）</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>OS竞赛招新 &raquo;</li><li>2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="2023">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！<a class="headerlink" href="#2023" title="Permanent link">&para;</a></h1>
+<h1 id="1">1. 操作系统设计赛简介<a class="headerlink" href="#1" title="Permanent link">&para;</a></h1>
+<div class="admonition tip">
+<p class="admonition-title">📢 什么是操作系统设计赛?</p>
+<ul>
+<li>
+<p><font color=red> <strong>全称</strong> </font>： <strong>全国大学生计算机系统能力大赛操作系统设计大赛</strong> </p>
+<ul>
+<li>
+<p>由教育部高等学校计算机类专业教学指导委员会和系统能力培养研究专家组共同发起，目前已经举办2届。</p>
+</li>
+<li>
+<p>第一届于2021年举办，<strong>近200支队伍</strong> 参赛。第二届的参赛队伍增加到了 <strong>300余支</strong> 。</p>
+</li>
+<li>
+<p>比赛分为两个赛道：<strong>内核赛道</strong> 和 <strong>功能赛道</strong></p>
+</li>
+<li>大赛官网：<a href="https://os.educg.net/">https://os.educg.net</a></li>
+</ul>
+</li>
+<li>
+<p><font color=red> <strong>内核赛道</strong> </font>：</p>
+<ul>
+<li>制作一个 <strong>完整的内核</strong> ，通过赛方提供的用户测试，有余力的队伍还可以去支持python，rust，redis......</li>
+<li><strong>功能</strong> 与 <strong>性能</strong> 的比拼</li>
+</ul>
+</li>
+<li>
+<p><font color=red> <strong>功能赛道</strong> </font>：</p>
+<ul>
+<li>实现系统中的 <strong>某项</strong> 前沿功能</li>
+<li><strong>多种课题</strong> 任选，涉及调度、通信、存储、安全、应用等不同领域</li>
+</ul>
+</li>
+<li>
+<p><font color=red> <strong>关于比赛组队</strong> </font>：</p>
+<ul>
+<li>不限制学校的参赛队伍数，一支队伍最多三人</li>
+</ul>
+</li>
+<li>
+<p><font color=red> <strong>第二届（2022年）比赛重要时间点</strong>   </font>：</p>
+</li>
+</ul>
+<p><img alt="img" src="../oscomp.assets/2022timeline.jpg" /></p>
+<ul>
+<li>
+<p><font color=red> <strong>比赛奖项设置</strong> </font>： </p>
+<table>
+<thead>
+<tr>
+<th>赛道</th>
+<th>一等奖</th>
+<th>二等奖</th>
+<th>三等奖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内核赛道</td>
+<td>6支队伍</td>
+<td>9支队伍</td>
+<td>11支队伍</td>
+</tr>
+<tr>
+<td>功能赛道</td>
+<td>6支队伍</td>
+<td>9支队伍</td>
+<td>15支队伍</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>注：入围决赛即获得优胜奖，<strong>几乎所有队伍都能拿到</strong> ~   ​​    </p>
+</li>
+</ul>
+<p></font></p>
+</div>
+<h1 id="2">2. 参赛要求<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
+<div class="admonition tip">
+<p class="admonition-title">📢 哪些同学适合参赛?</p>
+<ul>
+<li><del class="critic"><mark><strong>写个操作系统</strong> 而已，有手就行</mark></del>；  </li>
+<li>对操作系统的 <strong>完整体系</strong> 充满兴趣；</li>
+<li>
+<p>对内核 <strong>优化</strong> 充满想法</p>
+<ul>
+<li><font color=red> <strong>内核赛道欢迎你！</strong> </font></li>
+</ul>
+<p><img alt="xv6bgrc" src="../oscomp.assets/xv6bgrc.jpg" /></p>
+</li>
+<li>
+<p>希望尝试 <strong>科研</strong> or 提前接触 <strong>工业界</strong> </p>
+</li>
+<li>
+<p>希望对 <strong>前沿、未知</strong> 的技术进行探索</p>
+<ul>
+<li><font color=red> <strong>功能赛道欢迎你！</strong> </font></li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 id="3">3. 参赛收获<a class="headerlink" href="#3" title="Permanent link">&para;</a></h1>
+<h2 id="31">3.1 校内收获<a class="headerlink" href="#31" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">📢 在学校内，你能收获什么?</p>
+<ul>
+<li>
+<p>接触并亲自尝试 <strong>前沿</strong> 的技术</p>
+</li>
+<li>
+<p><strong>结识</strong> 很多行业大佬、同龄大佬</p>
+</li>
+</ul>
+<p><img alt="code" src="../oscomp.assets/code.png" /></p>
+<ul>
+<li>获得对操作系统整个体系或某个领域的深刻 <strong>理解</strong></li>
+<li>快速提升动手能力和创新能力，丰富自己的软硬件 <strong>技术栈</strong></li>
+<li>难得的机会：把大胆的 <strong>想法变为现实</strong></li>
+<li>获得 <strong>综测加分</strong> 机会，奖学金++</li>
+<li>对未来的 <strong>升学</strong> 有非常大的帮助</li>
+<li>( 一笔非常可观的奖金：参加比赛，顺便挣个W，妈妈再也不用担心我生活过得不好了</li>
+</ul>
+</div>
+<h2 id="32">3.2 校外收获<a class="headerlink" href="#32" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">📢 在学校外，你又能收获什么?</p>
+<ul>
+<li>实习Offer率++：暑期华为实习Offer率直升 <strong>十几个</strong> 百分点（华为急缺系统性人才）</li>
+<li>顶级Offer率++：某几个队长一不小心就收割了华为的<mark class="critic"><strong>研究生才能拿到的顶级Offer</strong></mark></li>
+</ul>
+</div>
+<h1 id="4">4. 比赛准备<a class="headerlink" href="#4" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">📢 这个比赛难吗?</p>
+<p><strong>难</strong> ，难得很</p>
+<ul>
+<li>想要取得好成绩，面对的一切都是 <strong>新</strong> 的<ul>
+<li>新的知识，新的语言，新的测评，新的工具，新的要求 ...</li>
+</ul>
+</li>
+<li>
+<p>系统的 <strong>调试</strong> 常常涉及硬件架构，难度大大提升</p>
+</li>
+<li>
+<p><strong>赛程很长</strong> ，最重要的是 <strong>兴趣和坚持</strong> ，很多队伍到后面会放弃，肝到胜利</p>
+<ul>
+<li>事实上，大部分队伍从 <strong>年初</strong> 就开始备赛， <strong>一些队伍甚至前一年就有所准备，还有参加了两届的队员</strong></li>
+</ul>
+</li>
+</ul>
+<p><img alt="panic2" src="../oscomp.assets/panic2.png" /></p>
+<p>最关键的是，<strong>系统的设计没有上限</strong> ，想要做好就必须有所付出</p>
+</div>
+<h1 id="5">5. 往届战绩<a class="headerlink" href="#5" title="Permanent link">&para;</a></h1>
+<div class="admonition danger">
+<p class="admonition-title">📢 我们的战绩</p>
+<p>第一届：</p>
+<ul>
+<li>“ UltraOS ”队获得<font color=red> <strong>内核实现赛道一等奖（赛道排名第一）</strong> </font>;</li>
+<li>“ HoitFS ”队获得<font color=red> <strong>功能设计赛道一等奖（赛道排名第一）</strong> </font>;</li>
+<li>“ 压缩鸭 ”队获得<font color=red> <strong>功能设计赛道二等奖</strong> </font>;</li>
+<li>“ 啊普鲁派哒哒哒;DROP DATABASE teams;”队获得<font color=red> <strong>内核实现赛道三等奖</strong> </font>。</li>
+</ul>
+<p>第二届：</p>
+<ul>
+<li>“ FTL OS ”队获得<font color=red> <strong>内核实现赛道一等奖</strong> </font>;</li>
+<li>“ OopS ”队获得<font color=red> <strong>内核实现赛道一等奖</strong> </font>;</li>
+<li>“ LMY ”队获得<font color=red> <strong>功能设计赛道一等奖</strong> </font>;</li>
+<li>“ 健康向上好青年 ”队获得<font color=red> <strong>内核实现赛道二等奖</strong> </font>;</li>
+<li>“ 编译通过求求了 ”队获得<font color=red> <strong>功能设计赛道二等奖</strong> </font>;</li>
+<li>“ F-Tutorials ”队获得<font color=red> <strong>功能设计赛道二等奖</strong> </font>；</li>
+<li>“ 随便取名不队 ”获得<font color=red> <strong>内核实现赛道优胜奖</strong> </font>;</li>
+<li>“ 追光者队”获得<font color=red> <strong>功能设计赛道初赛优胜奖</strong> </font>。</li>
+</ul>
+<p>大赛获奖团队将获得丰厚奖金，其中一等奖团队获得30000元奖金，二等奖团队获10000元奖金，三等奖团队获得3000元奖金。</p>
+<p>第二届获奖新闻详见哈工大（深圳）计算机科学与技术学院-重要新闻：<a href="http://cs.hitsz.edu.cn/info/1114/6261.htm">获奖数量全国居首！哈工大（深圳）学子在全国大学生操作系统设计总赛中表现优异</a>。</p>
+<ul>
+<li>内核实现赛道决赛作品开源：<a href="https://os.educg.net/#/index?name=2022%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E8%83%BD%E5%8A%9B%E5%A4%A7%E8%B5%9B%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E8%B5%9B-%E5%86%85%E6%A0%B8%E5%AE%9E%E7%8E%B0%E8%B5%9B&amp;index=1&amp;img=2">点这里</a></li>
+<li>功能设计赛道决赛作品开源：<a href="https://os.educg.net/#/index?name=2022%E5%85%A8%E5%9B%BD%E5%A4%A7%E5%AD%A6%E7%94%9F%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E8%83%BD%E5%8A%9B%E5%A4%A7%E8%B5%9B%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E8%B5%9B-%E5%8A%9F%E8%83%BD%E6%8C%91%E6%88%98%E8%B5%9B&amp;index=1&amp;img=0">点这里</a></li>
+</ul>
+<p>第一届获奖新闻详见<a href="https://www.hitsz.edu.cn/article/view/id-123535.html">获奖总数全国第一！哈工大（深圳）学子在全国大学生计算机系统能力大赛中收获四项大奖</a>
+</font></p>
+</div>
+<h2 id="51-ultraos">5.1 获奖队伍介绍：UltraOS<a class="headerlink" href="#51-ultraos" title="Permanent link">&para;</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">📢 第一届内核赛道一等奖：UltraOS</p>
+<p>团队成员：李程浩，18级本科；宫浩辰，18级本科；任翔宇，18级本科</p>
+<p>“项目历时216天，在此期间编写代码149天，UltraOS团队最终产出了约一万行Rust语言代码（不包括迭代代码）。UltraOS成长是迅速的，从支持13条非标准系统调用到59条系统调用，从只支持一个简易的文件系统到FAT32-VFS和可拓展设备接口等具有可拓展的抽象，从单核到多核，从缓慢迈向高性能。每一件事都是挑战，但每一件事都是成长。”</p>
+<p>作品开源：<a href="https://gitlab.eduxiji.net/ultrateam/ultraos">点这里</a></p>
+<p><img alt="img" src="../oscomp.assets/30E64877881B93916ECF7357393_059C77BA_1CBB0.jpg" />
+</font></p>
+</div>
+<h2 id="52-hoitfs">5.2 获奖队伍介绍: HoitFS<a class="headerlink" href="#52-hoitfs" title="Permanent link">&para;</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">📢 第一届功能赛道一等奖：HoitFS</p>
+<p>团队成员：潘延麒，18级本科；胡智胜，18级本科；张楠，18级本科</p>
+<p>“我们的项目以JFFS2文件系统为原型，对其SylixOS上进行二次开发，并针对JFFS2存在的一些问题进行针对性优化(优化策略比较简单)，形成了HoitFS，最后通过与SPIFFS文件系统做对比，发现我们HoitFS的性能相对SPIFFS来说有明显的优势。本项目历时近一年，期间一度感到力不从心，但在老师的指导下，团队成员的互相鼓励下，最后都咬牙坚持到了决赛。”</p>
+<p>作品开源：<a href="https://gitlab.eduxiji.net/Deadpool/project325618-47064">点这里</a></p>
+<p><img alt="img" src="../oscomp.assets/D052DE40F53E4A5E2BB62E9208D_56BCF9D8_177A7.jpg" />
+</font></p>
+</div>
+<h2 id="53-ftl-os">5.3 获奖队伍介绍: FTL OS<a class="headerlink" href="#53-ftl-os" title="Permanent link">&para;</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">📢 第二届内核赛道一等奖：FTL OS</p>
+<p>团队成员：叶自立，19级本科；樊博，20级本科；李羿廷，19级本科</p>
+<p>“非常荣幸能够获得大赛一等奖，这次比赛中我们一路披荆斩棘，通过了全部的功能测试，并在决赛第二阶段全程保持性能分第一。</p>
+<p>我们充满梦想，FTL意为Faster Than Light，它蕴含了操作系统对性能的渴望。为了实现这一目标，我们用了与众不同的开发方式：我们从零开始，先编写文档，从起步就进行大量优化。我们乐观地认为只要应用了一切可能的优化，FTLOS就能达到极致的、后无来者的性能。从结果来看，此方案大体成功，我们全程性能分第一，但因为调研不足的原因，文件系统的错误设计影响了重构，FTLOS无法在全部的测试点上获得第一，也让我们没有太多时间去移植真实应用程序。</p>
+<p>这是我们第一次参加系统能力大赛，它让我们接触到了大量无法从课本上学到的知识，使我们了解了现代操作系统的运行方式，对操作系统有了更深层次的理解，还显著提升了工程实践能力。感谢全部队员、伙伴队伍的努力，感谢夏文、仇洁婷老师的倾力帮助，也感谢所有在比赛中实时开源代码、展示文档的参赛队伍。愿比赛在未来更加完善，越来越好。”</p>
+<p>作品开源：<a href="https://gitlab.eduxiji.net/DarkAngelEX/oskernel2022-ftlos">点这里</a></p>
+<p><img alt="img" src="../oscomp.assets/FTL.png" />
+</font></p>
+</div>
+<h2 id="54-oops">5.4 获奖队伍介绍: OopS<a class="headerlink" href="#54-oops" title="Permanent link">&para;</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">📢 第二届内核赛道一等奖：OopS</p>
+<p>团队成员：张艺枫，19级本科；李诺舟，19级本科；刘嘉琛，19级本科</p>
+<p>“OopS是一个用Rust编写的RISC-V64多核操作系统，项目总历时约7个月。我们团队从今年的寒假期间就开始学习rust及操作系统相关知识，为该比赛做准备。</p>
+<p>在开发前，我们考虑到从0开始设计一个内核会带来大量的bug和时间开销，所以我们决定参考rCore-Tutorial快速开发出一个基本的内核。之后，我们比较顺利地通过了初赛的测试，这给了我们信心，于是我们对原本的基础架构做了大量修改。通过不断地踩坑和重构，并结合其他内核的设计和我们的思考，最终打造出了现在的OopS内核。</p>
+<p>通过这次比赛，加深了我们对操作系统的理解，提升了我们的工程能力。此外，本次比赛让我们更加理解了开源的精神，我们的心态也从相互竞争转变为了相互学习。我们发现，与第一届参赛作品相比，本届参赛作品在功能和性能方面都有了不小的提升。这要感谢组委会和主办方为选手提供了一个平台，让我们有机会吸取往届参赛作品的经验，踩在巨人的肩膀上并更进一步。以后的参赛作品无疑也会比我们这届的作品要更加优秀。</p>
+<p>在这里，还要感谢同校的参赛队伍和指导老师的帮助和指导，特别是第一届参赛选手黎庚祉学长给我们传授了大量的经验和灵感。”</p>
+<p>作品开源：<a href="https://gitlab.eduxiji.net/ZYF_2001/oskernel2022-oops">点这里</a></p>
+<p><img alt="img" src="../oscomp.assets/OopS.png" />
+</font></p>
+</div>
+<h2 id="55-lmy">5.5 获奖队伍介绍: LMY<a class="headerlink" href="#55-lmy" title="Permanent link">&para;</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">📢 第二届功能赛道一等奖：LMY</p>
+<p>团队成员：于伯淳，20级本科；满洋，20级本科；李怡凯，19级本科</p>
+<p>“很荣幸能够在本次操作系统设计赛功能赛道中获得一等奖，在大赛结束之际，回想参赛以来的点点滴滴，我们感概颇多。</p>
+<p>最初决定参赛，是偶然在学校的Linux交流群看到老师对操作系统功能赛的宣传。那时我和满洋没有完整学习过操作系统，但凭着对OS的兴趣，我们决定试着参赛。</p>
+<p>选定赛题时，经验不足的我们本想选取一个较为简单的题目；但两位指导老师鼓励我们选择更为复杂的题目proj120——智能化的操作系统异常检测，同时李怡凯学长的加入也为我们带来更多信心，我们最终接受了挑战。</p>
+<p>初期，我们凭借老师悉心的指导，与华为专家的沟通，努力寻找赛题的切入点，之后便是按部就班地实现。由于项目经验不足，后期时间安排得很紧张，但也跌跌撞撞进入了决赛。决赛阶段，我们实现了老师建议的创新点，并把20多页的文档完善至近80页。为了准备答辩，PPT也在老师的指导下更新了一版又一版。</p>
+<p>最终的结果出乎我们的意料，但回顾一路以来付出的心血和老师的耳提面授，却又显得理所应当。在大赛中，我们的专业素养得到了锻炼，文档编写和交流合作的能力也得到了提高。虽然辛苦，但也为今后的专业道路倾注了更深厚的力量。”</p>
+<p>作品开源：<a href="https://gitlab.eduxiji.net/CH3CHOHCH3/project788067-124730">点这里</a></p>
+<p><img alt="img" src="../oscomp.assets/LMY.png" />
+</font></p>
+</div>
+<h1 id="6">6. 报名方式<a class="headerlink" href="#6" title="Permanent link">&para;</a></h1>
+<div class="admonition tip">
+<p class="admonition-title">📢 如何报名？</p>
+<p>我校OS比赛将预计在元旦节前后（具体时间待确定）开放报名。现在参加操作系统大赛，将获得退休选手的宝贵参赛经验，机会难得！感兴趣的同学欢迎入群：</p>
+<p><center>
+<img alt="image-20221109163745962" src="../oscomp.assets/image-20221109163745962.png" />
+</center></p>
+<p></font></p>
+</div>
+<hr />
+<p>操作系统是计算机领域的一大核心，<br />
+深入理解操作系统，不管以后参与到哪个方向的工作中，都会从中获益。<br />
+欢迎参加操作系统设计赛，体验系统设计的独特魅力。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../remote_env_gdb/index.html" class="btn btn-neutral float-left" title="远程实验平台环境图形化调试指南"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../faq/faq-env/index.html" class="btn btn-neutral float-right" title="实验环境问题">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2023 哈尔滨工业大学（深圳）</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../remote_env_gdb/index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../faq/faq-env/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../index.html';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/baidu-tongji.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/oscomp/oscomp/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:45:20 GMT -->
+</html>

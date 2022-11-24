@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/tools/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:39:51 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>实验实用工具 - 操作系统2022秋 | 哈工大（深圳）</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u5b9e\u9a8c\u5b9e\u7528\u5de5\u5177";
+        var mkdocs_page_input_path = "tools.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../index.html" class="icon icon-home"> 操作系统2022秋 | 哈工大（深圳）
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://hitsz-cslab.gitee.io/os-labs/search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">实验概述</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../index.html">实验须知</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../env/index.html">实验平台以及环境配置</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="index.html">实验实用工具</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-ssh">1. SSH</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11-mobaxtermssh">1.1 MobaXterm（SSH工具）</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12-sftp">1.2 文件传输SFTP服务</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-vscode">2 VScode</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21-openeulervscode">2.1 配置openEuler以支持VScode访问</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22-vscode">2.2 安装VScode</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#23-vscode">2.3 使用VSCode登录远程环境</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-git">3 git</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31">3.1 同步上游仓库</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#311">3.1.1 检查上游仓库设置</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#312">3.1.2 完成远程仓库设置</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#313">3.1.3 同步上游仓库更改</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32">3.2 将代码发布至自己的远程仓库</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#321-gitee">3.2.1 设立自己的远程仓库（以gitee为例）</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#322">3.2.2 清理本地工作树</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#323">3.2.3 修改远程仓库地址并推送</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#33-git">3.3 常用git操作</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#331">3.3.1 使用命令行完成操作</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#332-vs-code">3.3.2 使用VS Code内建的图形化界面完成操作</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#333">3.3.3 合并冲突更改</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#34-ssh">3.4 ssh密钥设置</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#341-ssh">3.4.1 生成ssh密钥对</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#342-gitee">3.4.2 将密钥部署到Gitee</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#343-github">3.4.3 将密钥部署到Github</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#35">3.5 常见问题</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#351">3.5.1 无法推送怎么办？</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#352">3.5.2 我怎么知道我修改了哪些文件？</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#353-checkout">3.5.3 为什么我不能切换分支（checkout）？</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-gcc">4 gcc</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#41-gcc">4.1 GCC常用编译选项</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#42-gcc">4.2 GCC编译的四个阶段</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5-makefile">5 Makefile</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux/index.html">Linux开发环境基础知识</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../remote_env/index.html">远程实验平台使用指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../remote_env_gdb/index.html">远程实验平台环境图形化调试指南</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OS竞赛招新</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../oscomp/oscomp/index.html">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">常见问题</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/faq-env/index.html">实验环境问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/lab1/index.html">Lab1问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../faq/lab3/index.html">Lab3问题</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab1：XV6与Unix实用程序</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab1/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab1/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab1/part3/index.html">实验步骤</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab1/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab2：系统调用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab2/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab2/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab2/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab2/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab2/part5/index.html">GDB调试系统调用（补充材料）</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab3：锁机制的应用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab3/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab3/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab3/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab3/part4/index.html">xv-6中Lock的实现（选读）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab3/part5/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab4：页表</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab4/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab4/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab4/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab4/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab5：基于FUSE的青春版EXT2文件系统</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part3-1/index.html">环境搭建与上手</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part3-2/index.html">任务一：熟悉DDRIVER驱动</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part3-3/index.html">任务二：基于FUSE实现青春版EXT2文件系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part3-4/index.html">选做任务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab5/part5/index.html">实验提示</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">操作系统2022秋 | 哈工大（深圳）</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>实验概述 &raquo;</li><li>实验实用工具</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">实验实用工具<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>对于初入openEuler/Linux的同学，可能对于Linux的命令行（openEuler20.09暂未支持图形化界面）感觉到一脸茫然。为此，我们给同学们推荐几款实用工具，以便帮助同学们能快速上手Linux开发工作。</p>
+<h2 id="1-ssh">1. SSH<a class="headerlink" href="#1-ssh" title="Permanent link">&para;</a></h2>
+<div class="admonition question">
+<p class="admonition-title">question 1</p>
+<p>如何实现Linux和Windows这两个操作系统的数据通信、文件共享？</p>
+</div>
+<p>在实验中，我们推荐大家使用ssh（Secure Shell）远程登录协议。</p>
+<h3 id="11-mobaxtermssh">1.1 MobaXterm（SSH工具）<a class="headerlink" href="#11-mobaxtermssh" title="Permanent link">&para;</a></h3>
+<p>常用的SSH工具有Putty、XShell、SecureCRT、MobaXterm等。在实验中，我们推荐同学们使用MobaXterm。</p>
+<p>MobaXterm 是一款远程控制工具，支持创建SSH、Telnet、Rsh、Xdmc、RDP、VNC、FTP、 SFTP、串口(Serial COM)、本地Shell、Mosh、Aws、WSL(微软子系统)等超多连接功能。MobaXterm 提供了人性化的操作界面，支持与主流的操作系统连接进行控制和管理操作，功能十分强大。</p>
+<p>MobaXterm 下载链接： <a href="http://10.249.14.14:8000/index.php/s/7vlEVZPKaMTIpi0">http://10.249.14.14:8000/index.php/s/7vlEVZPKaMTIpi0</a></p>
+<p>打开MobaXterm，单击打开工具Session（位于左上角）选择New sessions打开新建窗口，选择SSH，输入远程服务器的IP地址、登陆用户名及端口（默认是22，远程实验平台端口号是6666），点击OK。</p>
+<p><img alt="0-12.png" src="../tools.assets/0-12.png" /></p>
+<p>SSH配置信息根据实验环境来配置：</p>
+<ul>
+<li>远程实验平台。IP地址： <code>10.249.12.98</code> ，端口号： <code>6666</code> ，用户名和初始密码都是 <code>你的学号</code> 。</li>
+</ul>
+<p><img alt="image-20201017220316972.png" src="../tools.assets/image-20201017220316972.png" /></p>
+<ul>
+<li>自行部署的实验环境。如果你用的是你自己的实验环境，可以使用ip addr命令来查询IP地址，详见<a href="../Linux/index.html#72-ip-addr">ip addr 显示或设置网络状态</a>。端口号如果在没有修改的情况下，默认是22。用户名和密码是Linux系统中的用户名和密码。</li>
+</ul>
+<p>点击OK后，输入密码（输入过程是没有显示的，输入完成后敲回车键）</p>
+<p><img alt="mobaxterm-4.png" src="../tools.assets/mobaxterm-4.png" /></p>
+<p>即可进入Linux系统的命令行窗口（shell）。</p>
+<h3 id="12-sftp">1.2 文件传输SFTP服务<a class="headerlink" href="#12-sftp" title="Permanent link">&para;</a></h3>
+<p>SSH远程登录完毕，在左下角没有一个竖着的Sftp，双击它，就出现了远程服务器的文件目录</p>
+<p><img alt="mobaxterm-6" src="../tools.assets/mobaxterm-6.png" /></p>
+<p>接下来在可以点击红色框框的按钮“Upload to current folder”或者“Download selected files”，在windows系统和虚拟机/远程实验平台之间上传或下载文件。</p>
+<h2 id="2-vscode">2 VScode<a class="headerlink" href="#2-vscode" title="Permanent link">&para;</a></h2>
+<div class="admonition question">
+<p class="admonition-title">question 2</p>
+<p>如何查阅、编辑、运行和调试代码？</p>
+</div>
+<p>在实验中，强烈推荐同学们使用VScode代码编辑器，而不是在物理机上编辑代码再拷贝过去手动运行，这将节省大量的时间。</p>
+<p>通过VSCode的强大扩展库，我们可以在Windows系统上使用VScode一站式创建，编辑，构建，运行和调试远程主机上的工程文件，就像使用Code::Blocks操作本地工程一样。</p>
+<h3 id="21-openeulervscode">2.1 配置openEuler以支持VScode访问<a class="headerlink" href="#21-openeulervscode" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p>如果你用的系统不是openEuler（例如远程实验平台或者其他Linux系统），那你可以忽略这一小节。</p>
+</div>
+<p>openEuler系统默认不支持Vscode远程登录，需要在openEuler虚拟机中做如下修改：</p>
+<p><strong>step1：</strong> 首先需要在openEuler虚拟机中切回root用户，如果不是root用户，输入exit即可返回root用户。</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[cs@localhost root]$ </span><span class="nb">exit</span>
+<span class="go">exit</span>
+<span class="gp">[root@localhost ~]#</span>
+</code></pre></div>
+<p><strong>step2：</strong> 在/etc/ssh/sshd_config文件中做如下修改：</p>
+<div class="highlight"><pre><span></span><code>AllowAgentForwarding yes
+AllowTcpForwarding yes
+GatewayPorts yes
+</code></pre></div>
+<p>用vi命令打开sshd_config：</p>
+<p>vi是所有Unix及Linux系统下标准的编辑器，它就相当于windows系统中的记事本一样，它是我们使用Linux系统不能缺少的工具。vim可以当作vi的升级版本，学会它，你将在Linux的世界里畅行无阻:-)</p>
+<div class="highlight"><pre><span></span><code><span class="gp"># </span>vi /etc/ssh/sshd_config
+</code></pre></div>
+<p>输入"/Allow"，按下回车，就会发现定位到了#AllowAgentForwarding yes这一行，我们把前面的#删去即可。</p>
+<p>如何删除呢？此时按下i会进入插入模式，下面显示一个--INSERT--，然后正常删除即可。接着修改AllowTcpForwarding yes和GatewayPorts yes。</p>
+<p>接下来如何保存呢？按下esc键，即可退出插入模式，然后，输入":wq"即可保存并退出。（输入":q!"是不保存并退出）</p>
+<p><strong>step3：</strong>  重启ssh服务</p>
+<p>设置好ssh的代理转发后，现在还没有生效，需要重启一下ssh服务，命令行如下：</p>
+<div class="highlight"><pre><span></span><code><span class="gp"># </span>systemctl restart sshd.service
+</code></pre></div>
+<h3 id="22-vscode">2.2 安装VScode<a class="headerlink" href="#22-vscode" title="Permanent link">&para;</a></h3>
+<p>在 <a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a> 下载并在物理机（Windows系统）上安装VSCode软件。</p>
+<p>打开后在左侧边栏的扩展商店中搜索并安装以下扩展</p>
+<blockquote>
+<ol>
+<li>Chinese (Simplified) Language Pack for Visual Studio Code</li>
+<li>Remote-SSH</li>
+<li>C/C++</li>
+</ol>
+</blockquote>
+<p>安装完成后重启VSCode。</p>
+<h3 id="23-vscode">2.3 使用VSCode登录远程环境<a class="headerlink" href="#23-vscode" title="Permanent link">&para;</a></h3>
+<div class="admonition 提示">
+<p class="admonition-title">提示</p>
+<p>使用前，需要安装Remote-SSH插件。</p>
+</div>
+<p>在左侧边栏的远程资源管理器工具栏中点击+号，在顶部输入 <code>ssh 你的用户名@IP地址 -p 端口号</code> 命令并一路回车。</p>
+<p>此时在工具栏中可以看到新添加的远程主机。在远程电脑上点击连接，输入密码后将会打开新窗口连接到远程主机中。</p>
+<p>在连接到远程主机之后，需要在再次搜索并安装上述扩展，将其安装在远程主机上。C/C++扩展在安装后可能需要一段时间来下载依赖文件。</p>
+<p><img alt="image-20201016162754878" src="../remote_env.assets/image-20201016162754878.png" /></p>
+<p>回车，提示Host Added!</p>
+<p>在此处点击连接：</p>
+<p><img alt="image-20201016162859685" src="../remote_env.assets/image-20201016162859685.png" /></p>
+<p>输入密码后，稍等片刻，等待窗口成为如下时，即连接成功：</p>
+<p><img alt="image-20201016163031421" src="../remote_env.assets/image-20201016163031421.png" /></p>
+<p>此时，可以像本地一样使用远程机器进行工作了。</p>
+<p>VScode的详细用法查看“使用VSCode阅读源代码教程.pdf”。</p>
+<h2 id="3-git">3 git<a class="headerlink" href="#3-git" title="Permanent link">&para;</a></h2>
+<div class="admonition question">
+<p class="admonition-title">question 3</p>
+<p>你是否遇到过这样的情况，一个项目由于不停地修改，每次都是复制粘贴副本，产出的文件副本就越来越多。而随着版本的增多，你还记得这些版本各自都修改了什么吗：？</p>
+</div>
+<p>为了能够更方便我们管理不同版本的文件/代码，强烈建议同学们使用git进行版本控制。</p>
+<h3 id="31">3.1 同步上游仓库<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<p>如果本课程实验修改了实验上游仓库（如果课程实验有修改，第一时间将在群里推送通知，请关注群消息！），而你需要将本课程实验的修改同步到自己的仓库，请按以下步骤操作：</p>
+<h4 id="311">3.1.1 检查上游仓库设置<a class="headerlink" href="#311" title="Permanent link">&para;</a></h4>
+<p>为了同步上游仓库，我们需要先设置上游仓库。检查上游仓库是否已经设置好，可以使用<code>git remote -v</code>指令查看。<br />
+如果上游仓库未设置完成，那么指令的执行效果大概是这样的：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">lgz_admin@OSLabExecNode0:~/xv6-labs-2020$ </span>git remote -v
+<span class="go">origin  git@gitee.com:willson0v0/xv6-labs-2020.git (fetch)</span>
+<span class="go">origin  git@gitee.com:willson0v0/xv6-labs-2020.git (push)</span>
+</code></pre></div>
+<p>可以看到，其中只有一个远程仓库，即<code>origin</code>；如果上游仓库已经设置完成，那么指令的执行效果大概是这样的：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">lgz_admin@OSLabExecNode0:~/xv6-labs-2020$ </span>git remote -v
+<span class="go">origin  git@gitee.com:willson0v0/xv6-labs-2020.git (fetch)</span>
+<span class="go">origin  git@gitee.com:willson0v0/xv6-labs-2020.git (push)</span>
+<span class="go">upstream        git@gitee.com:hitsz-lab/xv6-labs-2020.git (fetch)</span>
+<span class="go">upstream        git@gitee.com:hitsz-lab/xv6-labs-2020.git (push)</span>
+</code></pre></div>
+<p>其中，远程仓库<code>origin</code>的地址（在此处显示为<code>git@gitee.com:willson0v0/xv6-labs-2020.git</code>）应该是是你自己的远程仓库地址，而远程仓库<code>upstream</code>的地址应该显示为本课程实验提供的远程仓库地址，即<code>git@gitee.com:hitsz-lab/xv6-labs-2020.git</code>或者<code>https://gitee.com/hitsz-lab/xv6-labs-2020.git</code>。<br />
+如果你的远程仓库已经设置完成，那么跳到<a href="#313">3.1.3 同步上游仓库更改</a>继续。否则，请按照<a href="#312">3.1.2 完成远程仓库设置</a>节完成远程仓库设置。</p>
+<h4 id="312">3.1.2 完成远程仓库设置<a class="headerlink" href="#312" title="Permanent link">&para;</a></h4>
+<p>如果你没有设置上游仓库（即<code>upstream</code>），并且 <strong>origin仓库的链接被设置为本课程实验的远程仓库而非自己的远程仓库</strong> ，那么请先参照<a href="#32">3.2 将代码发布至自己的远程仓库</a>节，将代码发布至自己的远程仓库。
+如果你的<code>origin</code>仓库正确设置为自己的远程仓库，那么请输入以下指令，设置上游仓库为本课程实验提供的仓库：</p>
+<div class="highlight"><pre><span></span><code>$ git remote add upstream git@gitee.com:hitsz-lab/xv6-labs-2020.git
+</code></pre></div>
+<p>此时，如果在输入<code>git remote -v</code>，应该能显示出<a href="#311">3.1.1 检查上游仓库设置</a>中设置完成一样的效果。</p>
+<h4 id="313">3.1.3 同步上游仓库更改<a class="headerlink" href="#313" title="Permanent link">&para;</a></h4>
+<p>在这里，我们以将上游仓库的<code>syscall</code>分支同步到本地的<code>syscall</code>分支为例。键入以下指令，以获取上游更改、切换到本地<code>syscall</code>分支、完成与上游仓库<code>syscall</code>分支的合并，并最后上传到自己的远程仓库：</p>
+<div class="highlight"><pre><span></span><code>$ git fetch --all
+$ git checkout syscall
+$ git merge upstream/syscall --no-edit
+$ git push origin
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">检查工作区更改</p>
+<p>切换分支之前，我们需要保存工作区的更改。如果切换时提示<code>error: Your local changes to the following files would be overwritten by checkout</code>，参考<a href="#353-checkout">这篇Q&amp;A</a>，检查工作区并commit你的更改。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">初次Checkout？</p>
+<p>如果你此前从未Checkout过该分支，Checkout时可能会向你报告如下错误：
+<div class="highlight"><pre><span></span><code><span class="gp">lgz_admin@OSLabExecNode0:~/git_demo/xv6-labs-2020$ </span>git checkout syscall
+<span class="go">error: pathspec &#39;syscall&#39; did not match any file(s) known to git</span>
+<span class="go">hint: &#39;syscall&#39; matched more than one remote tracking branch.</span>
+<span class="go">hint: We found 2 remotes with a reference that matched. So we fell back</span>
+<span class="go">hint: on trying to resolve the argument as a path, but failed there too!</span>
+<span class="go">hint:</span>
+<span class="go">hint: If you meant to check out a remote tracking branch on, e.g. &#39;origin&#39;,</span>
+<span class="go">hint: you can do so by fully qualifying the name with the --track option:</span>
+<span class="go">hint:</span>
+<span class="go">hint:     git checkout --track origin/&lt;name&gt;</span>
+<span class="go">hint:</span>
+<span class="go">hint: If you&#39;d like to always have checkouts of an ambiguous &lt;name&gt; prefer</span>
+<span class="go">hint: one remote, e.g. the &#39;origin&#39; remote, consider setting</span>
+<span class="go">hint: checkout.defaultRemote=origin in your config.</span>
+</code></pre></div>
+这是由于，两个远程仓库（你自己的和上游的）都存在<code>syscall</code>分支，git不知道跟踪哪一个导致的。这个时候，只需要执行以下命令：
+<div class="highlight"><pre><span></span><code>git checkout --track origin/syscall
+</code></pre></div>
+即可。</p>
+</div>
+<p>如果在<code>git merge upstream/syscall</code>一步提示存在冲突，说明你和本课程实验修改过同一个文件，git无法自动合并。冲突的输出应该类似于下面这样：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">lgz_admin@OSLabExecNode0:~/git_demo/xv6-labs-2020$ </span>git merge upstream/syscall
+<span class="go">CONFLICT (add/add): Merge conflict in time.txt</span>
+<span class="go">Auto-merging time.txt</span>
+<span class="go">Automatic merge failed; fix conflicts and then commit the result.</span>
+</code></pre></div>
+<p>如果发生冲突，请参照<a href="#333">3.3.3 合并冲突更改</a>节完成冲突合并操作。</p>
+<h3 id="32">3.2 将代码发布至自己的远程仓库<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<p>如果你的代码是直接从本课程实验仓库clone而来，而非先fork出自己的远程仓库、再进行clone，那么这篇教程会指引你设置自己的远程仓库、并将代码发布至自己的远程仓库处。</p>
+<div class="admonition info">
+<p class="admonition-title">这么做有什么好处？</p>
+<p>如果你在不同的电脑上工作，比如同时在实验室的电脑、自己的电脑和远程实验环境上操作，那么远程仓库可以帮助你在不同设备之间同步自己的工作进度。</p>
+</div>
+<h4 id="321-gitee">3.2.1 设立自己的远程仓库（以gitee为例）<a class="headerlink" href="#321-gitee" title="Permanent link">&para;</a></h4>
+<p>登录gitee，右上角可见一个加号，点击它下拉菜单中的“新建仓库”。</p>
+<p><img alt="new_repo" src="../tools.assets/new_repo.png" /></p>
+<p>点击进入，并为自己的仓库设置一个你喜欢的名称。你可以选择公开仓库或者私有仓库。完成后点击“创建”，即可创建一个空的远程仓库。</p>
+<p><img alt="new_repo2" src="../tools.assets/new_repo2.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">请不要初始化仓库！</p>
+<p>你的仓库在本地，因此请不要初始化仓库、设置模板或选择分支模型。总的而言，我们的目标是创建一个空的远程仓库，并且把我们本地的仓库塞进去。</p>
+</div>
+<p>仓库创建完成后，会来到这个界面。将这个界面的SSH地址复制下来：</p>
+<p><img alt="new_repo3" src="../tools.assets/new_repo3.png" /></p>
+<h4 id="322">3.2.2 清理本地工作树<a class="headerlink" href="#322" title="Permanent link">&para;</a></h4>
+<p>在命令行界面，输入<code>git status</code>。如果工作树干净，其会显示如下内容：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">lgz_admin@OSLabExecNode0:~/git_demo/xv6-labs-2020$ </span>git status
+<span class="go">On branch syscall</span>
+<span class="go">Your branch is up to date with &#39;origin/syscall&#39;.</span>
+
+<span class="go">nothing to commit, working tree clean</span>
+</code></pre></div>
+<p>那么，你可以跳过这一步，前往<a href="#323">3.2.3 修改远程仓库地址并推送</a>继续。如果本地有尚未commit的更改，则命令会显示出你更改过的内容，提示其尚未被跟踪：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">lgz_admin@OSLabExecNode0:~/git_demo/xv6-labs-2020$ </span>git status
+<span class="go">On branch syscall</span>
+<span class="go">Your branch is up to date with &#39;origin/syscall&#39;.</span>
+
+<span class="go">Changes not staged for commit:</span>
+<span class="go">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span>
+<span class="go">  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)</span>
+<span class="go">        modified:   time.txt</span>
+
+<span class="go">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span>
+</code></pre></div>
+<p>如果本地有尚未commit的更改，请参照<a href="#3311">3.3.1.1 Commit</a>中的操作（命令行操作）或者<a href="#332">3.3.2 使用VS Code内建的图形化界面完成操作</a>中的操作（VS code图形化界面操作），完成commit。你没有推送到上游仓库（本课程实验提供的远程仓库）的权限，所以不必push。</p>
+<h4 id="323">3.2.3 修改远程仓库地址并推送<a class="headerlink" href="#323" title="Permanent link">&para;</a></h4>
+<p>在命令行中，输入以下命令：</p>
+<p><div class="highlight"><pre><span></span><code>$ git remote set-url origin git@gitee.com:willson0v0/my_xv6_repo.git
+</code></pre></div>
+将其中<code>git@gitee.com:willson0v0/my_xv6_repo.git</code>替换成<a href="#321">3.2.1 设立自己的远程仓库（以gitee为例）</a>中复制下来的远程仓库地址。可以输入<code>git remote -v</code>检视远程连接有没有更改成功。完成后，切换到你想要推送的分支，并上传到远程。这里以<code>syscall</code>分支为例：</p>
+<div class="highlight"><pre><span></span><code>$ git push -u origin syscall
+</code></pre></div>
+<p>这会将<code>syscall</code>分支设置成跟踪远程<code>origin</code>的<code>syscall</code>分支，并推送。现在回到浏览器并刷新仓库页面，你应该能看到上传已经完成。</p>
+<h3 id="33-git">3.3 常用git操作<a class="headerlink" href="#33-git" title="Permanent link">&para;</a></h3>
+<p>你可以选择使用命令行完成<code>commit</code>/<code>push</code>/<code>pull</code>/<code>merge</code>等操作，也可以通过VS Code内建的图形化界面完成这些操作。</p>
+<p>git工作过程</p>
+<p><img alt="img" src="../tools.assets/git-command.jpg" /></p>
+<p>说明：</p>
+<ul>
+<li>workspace：工作区</li>
+<li>staging area：暂存区/缓存区</li>
+<li>local respository：版本库或本地仓库</li>
+<li>remote repository：远程仓库</li>
+</ul>
+<p>以下是git的说明：</p>
+<p><a href="https://git-scm.com/book/zh/v2">https://git-scm.com/book/zh/v2</a></p>
+<div class="admonition info">
+<p class="admonition-title">什么是Commit？</p>
+<p>你可以将<code>Commit</code>视作是一个个小小的里程碑，它标示了你的代码进度；版本控制工具（比如git）的版本就是基于这一个个小里程碑实现的：你可以修改完代码后创建新的里程碑；也可以将放弃出现了问题的代码修改，将代码回溯到此前的某个里程碑处。<br />
+每一个Commit都有一个独特的hash值，用以和其他Commit区分；Commit还会标示是谁、在何时进行了这个Commit，这对协作开发有很大的帮助。</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">什么是Push/Pull？</p>
+<p>通过Commit系统，我们可以完成一定的版本控制功能。但是，为了完成代码协作与同步，我们还需要把代码放在一个各个写作者或者自己的各个工作环境都能访问到的地方——一般而言，也就是远程仓库。Push操作就是将本地的更改（也就是Commit们）推送到远程仓库的修改；而Pull则是将远程仓库的更改同步到本地。</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">什么是Merge？</p>
+<p>我们知道，Git作为版本控制工具可以允许我们在同一个代码仓库内进行协作。如果两个开发者同时进行了修改，那么就有可能出现冲突；又或者我们要将代码的两个分支合并。这个时候，我们就需要进行Merge操作。如果无法完成自动冲突合并，可能会需要手动完成冲突合并操作。</p>
+</div>
+<h4 id="331">3.3.1 使用命令行完成操作<a class="headerlink" href="#331" title="Permanent link">&para;</a></h4>
+<h5 id="3311-commit">3.3.1.1 Commit<a class="headerlink" href="#3311-commit" title="Permanent link">&para;</a></h5>
+<p><div class="highlight"><pre><span></span><code>$ git add 你要保存更改的文件们
+<span class="c1"># 或者，git add --all 以添加所有更改。</span>
+$ git commit -m <span class="s2">&quot;本次Commit你做了什么&quot;</span>
+</code></pre></div>
+建议每次Commit都使用有效的Commit信息，以便于自己追踪代码进度。</p>
+<h5 id="3312-push">3.3.1.2 push<a class="headerlink" href="#3312-push" title="Permanent link">&para;</a></h5>
+<p>push可以将自己的进度同步到远程仓库。
+<div class="highlight"><pre><span></span><code>$ git push
+</code></pre></div></p>
+<h5 id="3313-pull">3.3.1.3 pull<a class="headerlink" href="#3313-pull" title="Permanent link">&para;</a></h5>
+<p>pull可以将远程仓库的进度同步到本地。
+<div class="highlight"><pre><span></span><code>$ git pull
+</code></pre></div></p>
+<h5 id="3314-merge">3.3.1.4 merge<a class="headerlink" href="#3314-merge" title="Permanent link">&para;</a></h5>
+<p>merge一般用于分支之间的合并，也可以将上游的远程分支和本地分支进行合并。
+<div class="highlight"><pre><span></span><code>$ git checkout 你想合并的本地分支
+$ git merge 远程仓库名称/分支名称
+</code></pre></div></p>
+<div class="admonition waning">
+<p class="admonition-title">仓库权限</p>
+<p>你可以从公共仓库拉取，但你只能推送到你拥有权限的仓库。为了验证你的身份，你需要设置自己的ssh密钥对。请参照<a href="#34-ssh">3.4节 ssh密钥设置</a>完成设置。</p>
+</div>
+<h4 id="332-vs-code">3.3.2 使用VS Code内建的图形化界面完成操作<a class="headerlink" href="#332-vs-code" title="Permanent link">&para;</a></h4>
+<p>VS Code的版本控制界面在左侧从上往下数第二个按钮处；下方会显示当前所处的分支，点击可以切换当前所处分支；右侧的圆形双箭头则代表与远程环境同步。右侧Changes显示工作区中被修改的文件，而Staged则显示将被加入到下次Commit中的修改。如图，这个界面显示我们有两个被修改的文件：</p>
+<p><img alt="vs_git" src="../tools.assets/vs_git.png" /></p>
+<p>鼠标移至Changes或下面所列文件处，点击右侧的加号，可以将文件加入到Staged区中：
+<img alt="stage" src="../tools.assets/stage.png" />
+<img alt="stage2" src="../tools.assets/stage2.png" /></p>
+<p>此时，这些文件已经准备好被Commit。在上方框内输入Commit信息，并点击 √ 按钮以提交：</p>
+<p><img alt="commit" src="../tools.assets/commit.png" /></p>
+<p>在下方的同步按钮处，可以发现有0个提交需要拉取、1个提交需要推送。点击这个按钮以同步，或者点击左上方那个巨大的蓝色的Sync Changes（同步更改）：</p>
+<p><img alt="push" src="../tools.assets/push.png" /></p>
+<p>这样，你的代码就保存到云端了。</p>
+<div class="admonition waning">
+<p class="admonition-title">仓库权限</p>
+<p>你可以从公共仓库拉取，但你只能推送到你拥有权限的仓库。为了验证你的身份，你需要设置自己的ssh密钥对。请参照<a href="#34-ssh">3.4节 ssh密钥设置</a>完成设置。</p>
+</div>
+<h4 id="333">3.3.3 合并冲突更改<a class="headerlink" href="#333" title="Permanent link">&para;</a></h4>
+<p>如果有两个Commit的内容出现冲突，merge的时候就有可能需要合并冲突更改。建议在VSCode中进行冲突修改。例如此处，我在对本地<code>syscall</code>做修改之后，将其与远程<code>upstream/origin</code>做修改，并触发了冲突：
+<img alt="merge_cf" src="../tools.assets/merge_cf.png" />
+从左侧红框中“Merge Changes”栏中可以看到出现冲突的文件。点开文件，右侧会出现冲突视图。上方青色部分指的是当前（本地）的修改，而下方蓝色部分则是远程(<code>upstream/origin</code>)的修改。根据实际情况，可以从上方几个按钮中选择合适的那个。这次，我想要保存我自己的修改、而丢弃远程的修改，故选择<code>Accept Current Change</code>。随后，和Commit前一样，将刚才的修改Stage，并点击上方 √ 号提交Commit，并推送。这样，我们就完成了冲突更改的合并。</p>
+<h3 id="34-ssh">3.4 ssh密钥设置<a class="headerlink" href="#34-ssh" title="Permanent link">&para;</a></h3>
+<p>通过ssh密钥，我们可以简单的完成从本地到远程仓库的认证。跟随以下步骤，以完成ssh密钥创建，并部署到远程仓库：</p>
+<h4 id="341-ssh">3.4.1 生成ssh密钥对<a class="headerlink" href="#341-ssh" title="Permanent link">&para;</a></h4>
+<p>在终端中，输入以下指令以生成ssh密钥对:
+<div class="highlight"><pre><span></span><code>ssh-keygen -t ed25519 -C <span class="s2">&quot;name_of_ssh_keypair&quot;</span>  
+</code></pre></div></p>
+<div class="admonition info">
+<p class="admonition-title">密钥对的名字</p>
+<p>密钥对的名字在教程中常用邮箱地址代替，这是一个某种意义上的传统。此外，为了兼容性考虑，不建议在密钥对名字中使用除了ASCII之外的任何字符。</p>
+</div>
+<p>输入后，根据终端的提示，按下三次回车即可完成ssh密钥生成，或者你也可以自定义这些需要输入的内容：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">lgz_admin@OSLabExecNode0:~/.ssh$ </span>ssh-keygen -t ed25519 -C <span class="s2">&quot;willson0v0@willson0v0.com&quot;</span>
+<span class="go">Generating public/private ed25519 key pair.</span>
+<span class="go">Enter file in which to save the key (/home/lgz_admin/.ssh/id_ed25519):  # 按下回车以使用默认路径（~/.ssh/id_ed25519）</span>
+<span class="go">Enter passphrase (empty for no passphrase):                             # 按下回车以使用空密码，或者自定义密码再回车。通常可以不设密码。</span>
+<span class="go">Enter same passphrase again:                                            # 按下回车确认空密码，或者重新输入上一行中自定义的密码。</span>
+<span class="go">Your identification has been saved in /home/lgz_admin/.ssh/id_ed25519</span>
+<span class="go">Your public key has been saved in /home/lgz_admin/.ssh/id_ed25519.pub</span>
+<span class="go">The key fingerprint is:</span>
+<span class="go">SHA256:1oDtnF8c1FXpDc+6U1Gogf8Swur0N/Dh6uFJFIlVJ9o willson0v0@willson0v0.com</span>
+<span class="go">The key&#39;s randomart image is:</span>
+<span class="go">+--[ED25519 256]--+</span>
+<span class="go">|          .o+..o=|</span>
+<span class="go">|       o o.=.o+..|</span>
+<span class="go">|      . +.+.Eo.+o|</span>
+<span class="go">|       o +oo+. o+|</span>
+<span class="go">|        S.o.oo ..|</span>
+<span class="go">|       .oo..o o .|</span>
+<span class="go">|       o .++ o o |</span>
+<span class="go">|        .o.o= o  |</span>
+<span class="go">|         .=o . . |</span>
+<span class="go">+----[SHA256]-----+</span>
+</code></pre></div>
+<p>现在，你的密钥对已经生成完成。如果遵循默认设置，那么<code>~/.ssh/id_ed25519</code>是你的私钥文件，<code>~/.ssh/id_ed25519.pub</code>则是你的公钥文件。通过<code>cat</code>可以展示其中的内容：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">lgz_admin@OSLabExecNode0:~/.ssh$ </span>cat ~/.ssh/id_ed25519  <span class="c1"># 这是展示用的密钥对。请不要使用该密钥对，也不要讲自己的私钥展示给任何人。</span>
+<span class="go">-----BEGIN OPENSSH PRIVATE KEY-----</span>
+<span class="go">b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW</span>
+<span class="go">QyNTUxOQAAACB07KkIxYhV60DnPqKY1E0AFoRgqnKRUy1qoh5M9EYJeAAAAKDKf/BCyn/w</span>
+<span class="go">QgAAAAtzc2gtZWQyNTUxOQAAACB07KkIxYhV60DnPqKY1E0AFoRgqnKRUy1qoh5M9EYJeA</span>
+<span class="go">AAAEBixqKUUTawYfl+mnEcqtxWT5up8xfbyaN438Iqjs3Gu3TsqQjFiFXrQOc+opjUTQAW</span>
+<span class="go">hGCqcpFTLWqiHkz0Rgl4AAAAGXdpbGxzb24wdjBAd2lsbHNvbjB2MC5jb20BAgME</span>
+<span class="go">-----END OPENSSH PRIVATE KEY-----</span>
+<span class="gp">lgz_admin@OSLabExecNode0:~/.ssh$ </span>cat ~/.ssh/id_ed25519.pub
+<span class="go">ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHTsqQjFiFXrQOc+opjUTQAWhGCqcpFTLWqiHkz0Rgl4 willson0v0@willson0v0.com</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">存储位置</p>
+<p>ssh agent会自动装载<sub>/.ssh/id_rsa或者</sub>/.ssh/id_ed25519等密钥文件。如果你更改了密钥文件的位置，可能需要ssh-agent额外添加密钥到身份。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">保护好你的私钥！</p>
+<p>私钥（<code>~/.ssh/id_ed25519</code>）顾名思义，是只有你才知道的密钥。请绝对不要将私钥泄露，因为任何持有这个私钥的人都可以伪装成是你。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">关于密码</p>
+<p>可以为ssh密钥设置密码，以保证密钥的安全。不过，通常情况下这并没有必要，而且这会让各种ssh变得很麻烦：每次push或者pull都要输一次密码。因此，我们不建议你为ssh密钥设置密码。</p>
+</div>
+<h4 id="342-gitee">3.4.2 将密钥部署到Gitee<a class="headerlink" href="#342-gitee" title="Permanent link">&para;</a></h4>
+<p>如果你要访问的远程仓库位于Gitee，那么你需要将你的 <strong>ssh公钥</strong> 部署到Gitee。首先，打开<a href="https://gitee.com/">Gitee页面</a>，登录，并点击左上角个人头像-设置：</p>
+<p><img alt="gitee_config" src="../tools.assets/gitee_config.png" /></p>
+<p>随后，点击左侧的ssh公钥，并将此前生成的 <strong>ssh公钥</strong> 内容拷贝进公钥区。你可以通过<code>cat ~/.ssh/id_ed25519.pub</code>从终端获得这个文件的内容。随后，你可以编辑这个公钥的标题。最后，点击最下方橙色的“确定”，即可完成公钥的添加。</p>
+<p><img alt="gitee_addssh" src="../tools.assets/gitee_addssh.png" /></p>
+<p>我们可以通过以下指令，尝试连接到Gitee，以验证公钥是否添加成功：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">lgz_admin@OSLabExecNode0:~$ </span>ssh -T git@gitee.com
+<span class="go">Hi 用户名! You&#39;ve successfully authenticated, but GITEE.COM does not provide shell access.</span>
+</code></pre></div>
+<h4 id="343-github">3.4.3 将密钥部署到Github<a class="headerlink" href="#343-github" title="Permanent link">&para;</a></h4>
+<p>如果你要访问的远程仓库位于Github，那么你需要将你的 <strong>ssh公钥</strong> 部署到Gitee。首先，打开<a href="https://gitee.com/">Github页面</a>，登录，并点击左上角个人头像-Settings：</p>
+<p><img alt="github_setting" src="../tools.assets/github_setting.png" /></p>
+<p>随后，点击左侧SSH and GPG keys，并点击右上角的New SSH key：</p>
+<p><img alt="github_addssh" src="../tools.assets/github_addssh.png" /></p>
+<p>最后，输入SSH key的标题，将此前生成的 <strong>ssh公钥</strong> 内容拷贝进公钥区，并点击下方绿色<code>Add SSH key</code>即可。</p>
+<p><img alt="github_addssh2" src="../tools.assets/github_addssh2.png" /></p>
+<p>我们可以通过以下指令，尝试连接到Github，以验证公钥是否添加成功：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">lgz_admin@OSLabExecNode0:~$ </span>ssh -T git@github.com
+<span class="go">Hi 用户名! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</span>
+</code></pre></div>
+<h3 id="35">3.5 常见问题<a class="headerlink" href="#35" title="Permanent link">&para;</a></h3>
+<h4 id="351">3.5.1 无法推送怎么办？<a class="headerlink" href="#351" title="Permanent link">&para;</a></h4>
+<p>如果你尝试推送到远程仓库，或者从远程仓库拉取，但是git却显示出这样的错误：</p>
+<div class="highlight"><pre><span></span><code><span class="go">git@gitee.com: Permission denied (publickey).</span>
+<span class="go">fatal: Could not read from remote repository.</span>
+
+<span class="go">Please make sure you have the correct access rights </span>
+<span class="go">and the repository exists</span>
+</code></pre></div>
+<p>这表明你没有权限推送到这个远程仓库。一般而言，这是由于你没有设置好自己的ssh密钥造成的。请参照<a href="#34-ssh">3.4节 ssh密钥设置</a>，设置自己的ssh密钥。</p>
+<h4 id="352">3.5.2 我怎么知道我修改了哪些文件？<a class="headerlink" href="#352" title="Permanent link">&para;</a></h4>
+<p>通常而言，实验要求同学们提交 <strong>所有</strong> 被修改过的文件。通过将当前工作路径与上游仓库（课程实验提供的仓库）对应分支的内容相比较，可以方便地知道自己曾经修改过哪些文件，并打包提交。这里，我们将当前分支与上游仓库的<code>syscall</code>分支相比较：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">lgz_admin@OSLabExecNode0:~/git_demo/xv6-labs-2020$ </span>git fetch --all
+<span class="go">Fetching origin</span>
+<span class="go">Fetching upstream</span>
+<span class="gp">lgz_admin@OSLabExecNode0:~/git_demo/xv6-labs-2020$ </span>git diff --stat upstream/syscall *
+<span class="go"> kernel/kalloc.c  | 2 ++</span>
+<span class="go"> kernel/syscall.c | 1 +</span>
+<span class="go"> kernel/syscall.h | 1 +</span>
+<span class="go"> kernel/sysinfo.h | 1 +</span>
+<span class="go"> 4 files changed, 5 insertions(+)</span>
+</code></pre></div>
+<p>要比较其他分支，将第二条指令中的<code>syscall</code>改为对应分支名即可。</p>
+<div class="admonition warning">
+<p class="admonition-title">请先在本地切换到对应分支！</p>
+<p>在比较的时候，你需要将本地分支与上游对应分支进行比较。举例而言，你不会想比较本地的<code>util</code>分支和远程的<code>syscall</code>分支，因为这两个不是一个实验的。请先使用<code>git checkout 分支名</code>以切换到对应分支，并在使用<code>git diff --stat upstream/分支名 *</code>时指定 <strong>同一个</strong> 上游分支。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">未设置上游仓库？</p>
+<p>如果git报告“<code>fatal: ambiguous argument 'upstream/分支名': unknown revision or path not in the working tree.</code>”，说明你尚未设置上游仓库。请先按本指南中的<a href="#31">3.1-同步上游仓库</a>一节完成上游仓库的设置与同步，再进行比较。</p>
+</div>
+<h4 id="353-checkout">3.5.3 为什么我不能切换分支（checkout）？<a class="headerlink" href="#353-checkout" title="Permanent link">&para;</a></h4>
+<p>通常而言，不能切换分支的主要原因是你当前有尚未保存的修改，此时checkout的话会触发以下错误：
+<div class="highlight"><pre><span></span><code><span class="gp">lgz_admin@OSLabExecNode0: ~/git_demo/xv6-labs-2020$ </span>git checkout util                                                                                                ─╯
+<span class="go">error: Your local changes to the following files would be overwritten by checkout:</span>
+<span class="go">        Makefile</span>
+<span class="go">Please commit your changes or stash them before you switch branches.</span>
+<span class="go">Aborting</span>
+</code></pre></div></p>
+<p>通过<code>git status</code>指令，我们可以检查当前git的状态。如果你的输出如下所示：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">lgz_admin@OSLabExecNode0: ~/git_demo/xv6-labs-2020$ </span>git status
+<span class="go">On branch syscall</span>
+<span class="go">Your branch is up to date with &#39;origin/syscall&#39;.</span>
+
+<span class="go">Changes not staged for commit:</span>
+<span class="go">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span>
+<span class="go">  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)</span>
+<span class="go">        modified:   Makefile</span>
+
+<span class="go">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span>
+</code></pre></div>
+<p>这说明当前你的工作区有尚未保存的更改。请参考<a href="#331">3.3.1 使用命令行完成操作</a>或者<a href="#332-vs-code">3.3.2 使用VS Code内建的图形化界面完成操作</a>节，完成commit操作。
+或者，如果你希望直接放弃掉上一次commit后的 <strong>所有更改</strong> ，那么你也可以使用<code>-f</code>选项强制切换分支，例如<code>git checkout -f syscall</code>。</p>
+<h2 id="4-gcc">4 gcc<a class="headerlink" href="#4-gcc" title="Permanent link">&para;</a></h2>
+<div class="admonition question">
+<p class="admonition-title">question 4</p>
+<p>对于习惯使用Windows现有的IDE来编译程序的我们，面对Linux的命令行，应该如何编译自己写好的代码：？</p>
+</div>
+<p>通常情况下，Linux用户更喜欢直接编写相应的GCC命令来编译程序。大部分Linux发行版中都会默认安装GCC编译器。</p>
+<h3 id="41-gcc">4.1 GCC常用编译选项<a class="headerlink" href="#41-gcc" title="Permanent link">&para;</a></h3>
+<p>命令格式：gcc [选项] [文件名]</p>
+<p>-E: 仅执行编译预处理</p>
+<p>-S：将C代码转换为汇编代码</p>
+<p>-c：仅执行编译操作，不进行链接操作</p>
+<p>-o: 指定生成的输出文件</p>
+<h3 id="42-gcc">4.2 GCC编译的四个阶段<a class="headerlink" href="#42-gcc" title="Permanent link">&para;</a></h3>
+<p>1、将hello.c预处理输出hello.i文件</p>
+<div class="highlight"><pre><span></span><code>gcc -E hello.c -o hello.i
+</code></pre></div>
+<p>2、将预处理输出文件hello.i汇编成hello.s文件。</p>
+<div class="highlight"><pre><span></span><code>gcc -S hello.i -o hello.s
+</code></pre></div>
+<p>3、将汇编输出文件hello.s编译输出hello.o文件</p>
+<div class="highlight"><pre><span></span><code>gcc -c hello.s -o hello.o
+</code></pre></div>
+<p>4、将编译输出文件hello.o链接成最终可执行文件hello。</p>
+<div class="highlight"><pre><span></span><code>gcc hello.o -o hello
+</code></pre></div>
+<p>或直接输入下面代码一步到位</p>
+<div class="highlight"><pre><span></span><code>gcc hello.c -o hello
+</code></pre></div>
+<p>也可以有多个模块、多个文件一起编译，请自行百度。</p>
+<h2 id="5-makefile">5 Makefile<a class="headerlink" href="#5-makefile" title="Permanent link">&para;</a></h2>
+<div class="admonition question">
+<p class="admonition-title">question 5</p>
+<p>什么是makefile？作为一个专业的程序员，特别是在Unix（Linux）环境下开发的程序员，如果不会使用GNU make来构建和管理自己的工程，应该不能算是一个合格的专业程序员。会不会写Makefile，从一个侧面说明了一个人是否具备完成大型工程的能力。因为，Makefile关系到了整个工程的编译、连接等规则。为工程编写Makefile的好处是能够用一个make命令来完成“自动化编译"，极大地提高了软件开发的效率。make是一个命令工具，它用于解释makefile中的指令。</p>
+</div>
+<p>编写规则：</p>
+<div class="highlight"><pre><span></span><code><span class="nf">&lt;target&gt; </span><span class="o">:</span> &lt;<span class="n">prerequisites</span>&gt; 
+<span class="err">[tab]</span><span class="w">  </span><span class="err">&lt;commands&gt;</span><span class="w"></span>
+</code></pre></div>
+<p>为了大家能更为清晰地了解Makefile的基本概念，我们来写一个简单的Makefile。</p>
+<p>直接使用gcc编译hello.c</p>
+<div class="highlight"><pre><span></span><code>$ gcc -o hello hello.c
+</code></pre></div>
+<p>那么，简易的Makefile可以写成如下的样子，之后执行make即可产生hello可执行文件</p>
+<div class="highlight"><pre><span></span><code><span class="nf">all</span><span class="o">:</span> <span class="n">hello</span>.<span class="n">c</span>
+    gcc -o hello hello.c
+</code></pre></div>
+<p>建议同学们自己尝试写一个简单的Makefile文件，这里为同学们提供两个网址供大家学习参考：</p>
+<p><a href="https://wiki.ubuntu.org.cn/跟我一起写Makefile:MakeFile介绍">跟我一起写Makefile:MakeFile</a></p>
+<p><a href="http://www.gnu.org/software/make/manual/make.html#Reading-Makefiles">Reading-Makefiles</a> </p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../env/index.html" class="btn btn-neutral float-left" title="实验平台以及环境配置"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Linux/index.html" class="btn btn-neutral float-right" title="Linux开发环境基础知识">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2023 哈尔滨工业大学（深圳）</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../env/index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Linux/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../index.html';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../js/baidu-tongji.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/tools/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:40:53 GMT -->
+</html>

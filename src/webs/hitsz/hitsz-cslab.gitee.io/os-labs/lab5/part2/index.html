@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab5/part2/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:49:06 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>实验原理 - 操作系统2022秋 | 哈工大（深圳）</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u5b9e\u9a8c\u539f\u7406";
+        var mkdocs_page_input_path = "lab5\\part2.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../index.html" class="icon icon-home"> 操作系统2022秋 | 哈工大（深圳）
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://hitsz-cslab.gitee.io/os-labs/search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">实验概述</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../index.html">实验须知</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../env/index.html">实验平台以及环境配置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">实验实用工具</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Linux/index.html">Linux开发环境基础知识</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env/index.html">远程实验平台使用指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env_gdb/index.html">远程实验平台环境图形化调试指南</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OS竞赛招新</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../oscomp/oscomp/index.html">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">常见问题</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/faq-env/index.html">实验环境问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab1/index.html">Lab1问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab3/index.html">Lab3问题</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab1：XV6与Unix实用程序</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part3/index.html">实验步骤</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab2：系统调用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part5/index.html">GDB调试系统调用（补充材料）</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab3：锁机制的应用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part4/index.html">xv-6中Lock的实现（选读）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part5/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab4：页表</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab5：基于FUSE的青春版EXT2文件系统</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="index.html">实验原理</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-ext2">1.  EXT2文件系统原理简介</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11">1.1  文件系统是什么</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12">1.2  文件系统的基本操作</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#121">1.2.1  挂载</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#122">1.2.2  卸载</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#123">1.2.3  更多操作</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#13-ext2">1.3  EXT2文件系统的构成</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#131">1.3.1  整体布局</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#132">1.3.2  超级块</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#133">1.3.3  文件的表示</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#134">1.3.4  文件夹（目录）的表示</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#135">1.3.5  内容结构的表示</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-fusefilesystem-in-user-space">2.  FUSE（Filesystem in User SpacE）架构</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21-fuse">2.1  FUSE基本原理</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22">2.2  示例及说明</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-ddriver">3.  DDRIVER虚拟磁盘驱动</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part3-1/index.html">环境搭建与上手</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part3-2/index.html">任务一：熟悉DDRIVER驱动</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part3-3/index.html">任务二：基于FUSE实现青春版EXT2文件系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part3-4/index.html">选做任务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part5/index.html">实验提示</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">操作系统2022秋 | 哈工大（深圳）</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Lab5：基于FUSE的青春版EXT2文件系统 &raquo;</li><li>实验原理</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">实验原理<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="1-ext2">1.  EXT2文件系统原理简介<a class="headerlink" href="#1-ext2" title="Permanent link">&para;</a></h2>
+<h3 id="11">1.1  文件系统是什么<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p>文件系统是操作系统用于明确 <strong>存储设备</strong>（磁盘）或 <strong>分区</strong> 上的 <strong>文件（包括文件、目录、快捷方式等）</strong> 的方法和数据结构，即 <strong>在特定存储设备上组织文件的方法</strong> 。 <strong>简单地说</strong> ，文件系统就是在 <strong>特定存储设备上组织文件</strong> 的方法。</p>
+<p>文件系统 <strong>主要作用</strong> ：</p>
+<ol>
+<li>
+<p>管理和调度 <strong>设备的存储空间</strong> ，提供文件的逻辑结构、物理结构和存储方法;</p>
+</li>
+<li>
+<p>实现文件 <strong>从标识到实际地址的映射</strong> ，实现文件的控制操作和存取操作，提高 <strong>从设备上查找数据</strong> 的效率；</p>
+</li>
+<li>
+<p>实现文件信息的共享并提供可靠的 <strong>文件保密和保护措施</strong> ，提供文件的 <strong>安全措施</strong> 。</p>
+</li>
+<li>
+<p>优化设备空间利用率；</p>
+</li>
+</ol>
+<p>目前在各种操作系统中存在着各种各样的文件系统，在Windows平台主流有： <strong>FAT、FAT16、FAT32、NTFS</strong> 等；在Unix平台主流的有： <strong>EXT2、EXT3、EXT4</strong> 等。这些文件系统在 <strong>管理磁盘设备</strong> 时都有各自的一套策略和方法，随之也带来不同的优缺点。 <strong>EXT2</strong> 是GNU/Linux系统中标准的文件系统，其特点是 <strong>存取文件的性能较好</strong> ，对于中小型的文件更显示其优势。本实验以 <strong>EXT2</strong> 为模板，实现一个青春版文件系统。</p>
+<h3 id="12">1.2  文件系统的基本操作<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<h4 id="121">1.2.1  挂载<a class="headerlink" href="#121" title="Permanent link">&para;</a></h4>
+<p><a href="https://www.cnblogs.com/cangqinglang/p/12170828.html">这里</a>有更多讲解挂载的资料</p>
+<p>通常来讲，使用一个文件系统的第一步是 <strong>挂载（mount）</strong> ，那么，为什么我们在使用Linux的过程中没有这个步骤呢？这是由于操作系统为了简化用户操作， <strong>自动帮助</strong> 我们进行了这个步骤。相关文件可以在<code>/etc/fstab</code>中查看：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@localhost tests]# </span>cat /etc/fstab 
+<span class="gp">#</span>
+<span class="gp"># </span>/etc/fstab
+<span class="gp"># </span>Created by anaconda on Sun Oct  <span class="m">3</span> <span class="m">03</span>:53:55 <span class="m">2021</span>
+<span class="gp">#</span>
+<span class="gp"># </span>Accessible filesystems, by reference, are maintained under <span class="s1">&#39;/dev/disk/&#39;</span>.
+<span class="gp"># </span>See man pages fstab<span class="o">(</span><span class="m">5</span><span class="o">)</span>, findfs<span class="o">(</span><span class="m">8</span><span class="o">)</span>, mount<span class="o">(</span><span class="m">8</span><span class="o">)</span> and/or blkid<span class="o">(</span><span class="m">8</span><span class="o">)</span> <span class="k">for</span> more info.
+<span class="gp">#</span>
+<span class="gp"># </span>After editing this file, run <span class="s1">&#39;systemctl daemon-reload&#39;</span> to update systemd
+<span class="gp"># </span>units generated from this file.
+<span class="gp">#</span>
+<span class="go">/dev/mapper/openeuler-root /                       ext4    defaults        1 1</span>
+<span class="go">UUID=ee2c1ea8-62de-4241-8742-7cba36a7eaf9 /boot    ext4    defaults        1 2</span>
+<span class="go">/dev/mapper/openeuler-swap none                    swap    defaults        0 0</span>
+</code></pre></div>
+<p>这里以第一行为例，操作系统将设备<code>/dev/mapper/openeuler-root</code>以 <strong>EXT4</strong> 文件系统形式，挂载到根目录<code>/</code>下，从而让我们有了访问<code>/dev/mapper/openeuler-root</code>存储设备的能力。</p>
+<p><strong>等等</strong> ，什么叫 <strong>将设备xxx</strong> 以 <strong>xxx文件系统</strong> 形式， <strong>挂载</strong> 到 <strong>xxx目录</strong> 下？挂载到底是什么？我们来举个例子侃一侃。</p>
+<ul>
+<li>Step1：假设我们现在手里有一个金士顿U盘</li>
+</ul>
+<p><center>
+<img alt="OIP-C" src="../part2.assets/kingston.jpg" />
+</center></p>
+<ul>
+<li>Step2：现在，我们在主机上插入这个U盘</li>
+</ul>
+<p>在 <strong>Windows</strong> 系统上，可以看到下面的显示：</p>
+<p><img alt="image-20211023213227117" src="../part2.assets/image-20211023213227117.png" /></p>
+<p><strong>平时可能没有注意</strong> ，但这时，你可能注意到了金士顿U盘的 <strong>属性</strong> 中，有一栏告诉了我们这个U盘是 <strong>FAT32文件系统</strong> 。</p>
+<p><strong>事实上</strong> ，当我们插入U盘后，Windows <strong>自动识别</strong> 出该U盘上文件存储的格式是FAT32，因此 <strong>它自动将金士顿U盘以FAT32文件系统格式挂载到了Windows目录结构</strong> 中。</p>
+<p>而在 <strong>Linux</strong> 系统上，我们可能并没有这么好的用户体验，当插入金士顿U盘后，我们只发现在<code>/dev</code>目录下多出了一个异类：</p>
+<p><img alt="image-20211023215038949" src="../part2.assets/image-20211023215038949.png" /></p>
+<p>一般来说，设备<code>sdb1</code>装文件的设备。那么，我们 <strong>是否可以向Windows那样，直接对它访问呢</strong> ？来试试：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@localhost dev]# </span><span class="nb">cd</span> sdb1
+<span class="go">bash: cd: sdb1: Not a directory</span>
+<span class="gp">[root@localhost dev]# </span>ls sdb1/
+<span class="go">ls: cannot access &#39;sdb1/&#39;: Not a directory</span>
+</code></pre></div>
+<p>很遗憾，并不行。这是因为 <strong>U盘sdb1</strong> 还没有被 <strong>挂载</strong> 到Linux目录下，此时Linux不知道这个U盘里面的文件是什么，只能知道这里这个有个U盘设备。</p>
+<p>我们知道这个U盘里装的是 <strong>FAT32</strong> 文件系统，在Linux中， <strong>FAT32</strong> 又名 <strong>VFAT</strong> ，因此，我们可以尝试 <strong>将设备sdb1</strong> 以 <strong>VFAT文件系统</strong> 形式， <strong>挂载</strong> 到 <strong>/mnt目录</strong> 下，通过访问 <strong>/mnt</strong> 目录来 <strong>查看U盘中的文件</strong> ：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@localhost dev]# </span>mount -t vfat sdb1 /mnt/
+<span class="gp">[root@localhost dev]# </span>ls /mnt/
+<span class="go">&#39;???&#39;                         &#39;????PPT.pptx&#39;</span>
+<span class="go">&#39;?????&#39;                       &#39;???????.pptx&#39;</span>
+<span class="go">&#39;??????&#39;                      &#39;???_???_??_??_????.pptx&#39;</span>
+<span class="go">&#39;???????&#39;                      pynq_z2_v2.6.0.zip</span>
+<span class="go">&#39;????????&#39;                     Deadpool</span>
+</code></pre></div>
+<p><strong>还真成了！</strong></p>
+<ul>
+<li>Step3：现在，我们来缕一缕挂载的逻辑</li>
+</ul>
+<p>首先，我们可以将U盘抽象看作一段连续的存储空间：</p>
+<p><img alt="image-20211023220037443" src="../part2.assets/image-20211023220037443.png" /></p>
+<p>这个物理存储空间上用 <strong>FAT32类型</strong> 的文件系统保存着许多文件（可能FAT32文件布局不长下面这样， <strong>不过差不多理解就行了</strong> ）</p>
+<p><img alt="image-20211023220318053" src="../part2.assets/image-20211023220318053.png" /></p>
+<p>接着，我们使用<code>mount</code>命令告诉Linux，这个U盘用的是FAT32文件系统， <strong>你用FAT32文件系统代码规则来访问它就行了</strong> 。接着，我们同样要说明我们想 <strong>将哪个目录作为访问U盘的入口</strong> ，就在 <strong>/mnt</strong> 目录下吧！于是，我们便可以在 <strong>/mnt</strong> 目录下，以 <strong>FAT32</strong> 文件系统来访问U盘上的文件了。</p>
+<p>在我们用户来看，挂载了U盘后，Linux的目录树就变成下面这个样子了：</p>
+<p><img alt="image-20211023221226330" src="../part2.assets/image-20211023221226330.png" /></p>
+<h4 id="122">1.2.2  卸载<a class="headerlink" href="#122" title="Permanent link">&para;</a></h4>
+<p><strong>卸载操作</strong> 与 <strong>挂载操作</strong> 相对应，在Windows上来说，就类似于 <strong>”右键U盘，安全弹出“</strong> 一样。事实上，每个文件系统在开发的时候都要设计对应的 <strong>挂载与卸载</strong> 方法，它们需要 <strong>在卸载时</strong> 保存设备的必要状态（比如 <strong>当前设备的空闲大小</strong> 等）。 <strong>不正常的卸载会导致鲁棒性差的文件系统直接崩溃，也就是说下一次的挂载很可能直接失败</strong></p>
+<p>在Linux中，卸载文件系统的方式如下，我们还是以刚才挂载的金士顿U盘为例：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@localhost dev]# </span>umount /mnt/
+<span class="gp">[root@localhost dev]# </span>ls /mnt/
+<span class="gp">[root@localhost dev]#</span>
+</code></pre></div>
+<p>此时，U盘对应的所有文件从Linux目录树中移除，我们便可以 <strong>正常拔除U盘</strong> 了。</p>
+<h4 id="123">1.2.3  更多操作<a class="headerlink" href="#123" title="Permanent link">&para;</a></h4>
+<p>其他更多相关文件系统的操作都比较常见，这里将一些常用指令再简单提一下：</p>
+<ul>
+<li><code>ls</code></li>
+</ul>
+<p><code>ls</code>指令是<code>list</code>的缩写，其功能就是 <strong>列出指定目录下的所有文件/目录</strong> ，大家在学习 <strong>xv6</strong> 的过程中也有所接触，这里不在介绍；</p>
+<ul>
+<li><code>mv</code></li>
+</ul>
+<p><code>mv</code>指令是<code>move</code>的缩写，其功能是 <strong>剪切</strong> 某个文件。事实上，<code>mv</code>指令还常常被用于 <strong>文件的重命名</strong> 操作，例如：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@localhost mnt]# </span>touch her
+<span class="gp">[root@localhost mnt]# </span>ls
+<span class="go">her</span>
+<span class="gp">[root@localhost mnt]# </span>mv her me
+<span class="gp">[root@localhost mnt]# </span>ls
+<span class="go">me</span>
+<span class="gp">[root@localhost mnt]#</span>
+</code></pre></div>
+<ul>
+<li><code>cp</code></li>
+</ul>
+<p><code>cp</code>指令是<code>copy</code>的缩写，其功能是 <strong>复制</strong> 某个文件，<code>cp -r</code>可以复制目录；</p>
+<ul>
+<li><code>rm</code></li>
+</ul>
+<p><code>rm</code>指令是<code>remove</code>的缩写，其功能是 <strong>删除</strong> 某个文件，同样<code>rm -r</code>可以删除目录。当然，有一个业界梗： <code>rm -rf</code> <strong>删库跑路</strong> ，这里<code>f</code>代表<code>force</code>，也就是强制删除。如果你一不小心使用了<code>rm -rf /</code>，那么你的Linux回天乏术了；</p>
+<ul>
+<li><code>cd</code></li>
+</ul>
+<p><code>cd</code>指令是<code>change directory</code>的缩写，我们经常使用<code>cd</code>指令来进行路径的切换；</p>
+<ul>
+<li><code>--help</code></li>
+</ul>
+<p>上面说了一大堆，但远远还没把所有命令都介绍得完整、清楚，事实上，每个命令都有个<code>--help</code>参数可选，查看<code>--help</code>可以很快让你知道各个命令的用法、参数的意义，例如：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@localhost mnt]# </span>ln --help
+<span class="go">Usage: ln [OPTION]... [-T] TARGET LINK_NAME</span>
+<span class="go">  or:  ln [OPTION]... TARGET</span>
+<span class="go">  or:  ln [OPTION]... TARGET... DIRECTORY</span>
+<span class="go">  or:  ln [OPTION]... -t DIRECTORY TARGET..</span>
+<span class="go">...</span>
+</code></pre></div>
+<ul>
+<li><code>ln</code></li>
+</ul>
+<p>ln是link的缩写，使用此命令用来为文件创件链接，连接类型分为硬链接和软链接两种，默认的连接类型是硬链接。硬链接说白了是一个指针，指向文件索引节点，系统并不为它重新分配inode；软链接又叫符号链接，这个文件包含了另一个文件的路径名。可以是任意文件或目录，可以链接不同文件系统的文件，和win下的快捷方式差不多。</p>
+<h3 id="13-ext2">1.3  EXT2文件系统的构成<a class="headerlink" href="#13-ext2" title="Permanent link">&para;</a></h3>
+<p>介绍完了文件系统以及文件系统的基本操作，我们来正式看看EXT2文件系统。</p>
+<p>EXT2文件系统常常被用于 <strong>磁盘设备</strong> 的访问。一个物理磁盘可以划分为多个磁盘分区，每个磁盘分区可以从逻辑上看成是从0开始编号的大量扇区，各自可以格式化程不同类型的文件系统（如EXT2、NTFS等）。如果 <strong>格式化</strong> 成EXT2文件系统，则其内部按照EXT2的规范，将磁盘盘块组织成 <strong>超级块</strong> 、 <strong>组描述符</strong> 和 <strong>位图</strong> 、 <strong>索引节点</strong> 、 <strong>目录</strong> 等管理数据，放在分区前端称为 <strong>元数据区</strong> ，剩余空间用于 <strong>保存文件数据</strong> 。</p>
+<p>这一段介绍中出现了两个新概念： <strong>磁盘分区</strong> 与 <strong>格式化</strong> ，我们来简单理解一下：</p>
+<ul>
+<li><strong>磁盘分区</strong></li>
+</ul>
+<p>我们的笔记本通常只有一块SATA磁盘，为了方便用户进行数据管理，比如：我想划分磁盘的100个G作为游戏存放盘，400个G作为 <strong>学习资料</strong> 。我想让游戏盘用 <strong>EXT2</strong> 管理，学习资料用 <strong>EXT3</strong> 管理，那么便有了磁盘分区的概念：</p>
+<p><img alt="image-20211023224724044" src="../part2.assets/image-20211023224724044.png" /></p>
+<ul>
+<li><strong>格式化</strong></li>
+</ul>
+<p>我们还是以金士顿U盘为例，U盘一生产出来就有文件系统吗？可能有：），但是很多时候刚出厂的U盘都是 <strong>干干净净</strong> 的，这个时候，我们需要对其进行 <strong>格式化</strong> ，使之带有特定文件系统的特征。例如，我们想用 <strong>EXT2</strong> 文件系统来访问这个U盘，在Linux中，就可以使用：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@localhost mnt]# </span>mkfs.EXT2 sdb1
+<span class="gp">[root@localhost mnt]#</span>
+</code></pre></div>
+<p>这样做就把整个设备给格式化了，接着就可以用下面的命令来挂载U盘：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@localhost mnt]# </span>mount -t EXT2 sdb1 /mnt/
+<span class="gp">[root@localhost mnt]#</span>
+</code></pre></div>
+<h4 id="131">1.3.1  整体布局<a class="headerlink" href="#131" title="Permanent link">&para;</a></h4>
+<p>EXT2文件系统将盘块分成两大类：保存元数据（管理数据）的 <strong>元数据盘块</strong>，以及存放文件内容数据的 <strong>数据盘块</strong> 。本实验中，为了降低实验难度，简化了元数据区的结构（由超级块和inode数组构成）。简化后的EXT2文件系统的基本布局如下所示：</p>
+<p><img alt="image-20211023231540262" src="../part2.assets/image-20211023231540262.png" /></p>
+<p>系统主要包含以下五个部分：</p>
+<ol>
+<li>
+<p><strong>superblock</strong> ：超级块，包含整个系统的总体信息;</p>
+</li>
+<li>
+<p><strong>索引节点位图</strong> ：记录着 <strong>索引节点</strong> 表的使用情况， <strong>用1个比特</strong> 记录某一个索引节点是否被使用；</p>
+</li>
+<li>
+<p><strong>数据块位图</strong> ：记录着 <strong>数据块</strong> 的使用情况， <strong>用1个比特</strong> 记录某一个数据块是否被占用；</p>
+</li>
+<li>
+<p><strong>索引节点</strong> （inode） ：记录着文件的元数据，每个文件都与一个inode对应，但一个inode可能对应多个文件（硬链接）。在 <strong>本实验中可以认为一个inode对应一个文件</strong> 。</p>
+</li>
+<li>
+<p><strong>数据块</strong> ：记录文件内容.</p>
+</li>
+</ol>
+<h4 id="132">1.3.2  超级块<a class="headerlink" href="#132" title="Permanent link">&para;</a></h4>
+<p>超级块是文件系统的 <strong>起点结构</strong> ，记录了文件系统全局性的一些信息。下面给出一个参考的超级块结构体示例：</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">super_block_d</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w">           </span><span class="n">magic_num</span><span class="p">;</span><span class="w">                   </span><span class="c1">// 幻数</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w">                </span><span class="n">max_ino</span><span class="p">;</span><span class="w">                     </span><span class="c1">// 最多支持的文件数</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w">                </span><span class="n">map_inode_blks</span><span class="p">;</span><span class="w">              </span><span class="c1">// inode位图占用的块数</span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                </span><span class="n">map_inode_offset</span><span class="p">;</span><span class="w">            </span><span class="c1">// inode位图在磁盘上的偏移</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w">                </span><span class="n">map_data_blks</span><span class="p">;</span><span class="w">               </span><span class="c1">// data位图占用的块数</span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                </span><span class="n">map_data_offset</span><span class="p">;</span><span class="w">             </span><span class="c1">// data位图在磁盘上的偏移</span>
+<span class="p">};</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li>
+<p><code>magic_num</code>：幻数。用于识别文件系统。比如说，如果实现的文件系统幻数为 <strong>0x52415453</strong> ，那么如果读到的幻数不等于 <strong>0x52415453</strong> ，则表示当前磁盘中无系统，系统损坏，或者是其他不识别的文件系统；</p>
+</li>
+<li>
+<p><code>max_ino</code>：最多支持的文件数。为简单起见，我们允许该文件系统具有文件数上限；</p>
+</li>
+<li>
+<p><code>map_inode_blks</code>：inode位图占用的块数。每个 <strong>块的大小等于磁盘设备的IO大小（利用ddriver的ioctl获取）</strong> ；</p>
+</li>
+<li>
+<p><code>map_inode_offset</code>：inode位图在磁盘上的偏移。通过<code>map_inode_offset</code>和<code>map_inode_blks</code>字段，便可读出整个inode位图；</p>
+</li>
+<li>
+<p><code>map_data_blks</code>：与<code>map_inode_blks</code>相同，不再赘述；</p>
+</li>
+<li>
+<p><code>map_data_offset</code>：与<code>map_inode_offset</code>相同，不再赘述；</p>
+</li>
+</ul>
+<p><strong>如何决定位图大小呢</strong>？这里给出几个方案：</p>
+<ul>
+<li>
+<p>假设估算。 <strong>假定每个文件具有固定大小</strong> ，从而估算整个文件系统可以 <strong>管理多少文件</strong> ，从而计算位图大小；</p>
+</li>
+<li>
+<p>规定大小。为了简单起见，我们可以自行 <strong>规定位图</strong> 的大小，只要 <strong>保证指令运行成功</strong> 即可；</p>
+</li>
+</ul>
+<h4 id="133">1.3.3  文件的表示<a class="headerlink" href="#133" title="Permanent link">&para;</a></h4>
+<p>对于每个文件，都会有一个inode结构体包含其元数据（文件类型，文件大小）等。以下是一个简化的inode示例。</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">inode_d</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                </span><span class="n">ino</span><span class="p">;</span><span class="w">                </span><span class="c1">// 在inode位图中的下标</span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                </span><span class="n">size</span><span class="p">;</span><span class="w">               </span><span class="c1">// 文件已占用空间</span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                </span><span class="n">link</span><span class="p">;</span><span class="w">               </span><span class="c1">// 链接数</span>
+<span class="w">    </span><span class="n">FILE_TYPE</span><span class="w">          </span><span class="n">ftype</span><span class="p">;</span><span class="w">              </span><span class="c1">// 文件类型（目录类型、普通文件类型）</span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                </span><span class="n">dir_cnt</span><span class="p">;</span><span class="w">            </span><span class="c1">// 如果是目录类型文件，下面有几个目录项</span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                </span><span class="n">block_pointer</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span><span class="w">   </span><span class="c1">// 数据块指针（可固定分配）</span>
+<span class="p">};</span><span class="w">  </span>
+</code></pre></div>
+<p>文件的内容并 <strong>不会保存</strong> 在inode里，而是 <strong>保存</strong> 在另外的 <strong>数据块</strong> 中。inode里 <strong>保存了相应数据块的索引值</strong> 。读写文件时则通过索引值找到相应的数据块来读写。原理如下图所示：</p>
+<p><img alt="image-20211024102812913" src="../part2.assets/image-20211024102812913.png" /></p>
+<p>每个索引节点内包含<code>block_point</code>数组用于记录文件的数据块所在位置（编号）。 <strong>EXT2</strong> 文件系统中的 <strong>每个数据块大小为两个512B的物理磁盘块</strong> （即1KiB），那么采用直接索引方式，一个文件不能超过 6个（数据块） * 1KB（数据块大小）= 6KB大小；当文件超过6KB时，需要用一级间接索引，如果文件继续增大，就需要二级或二级以上间接索引。（ <strong>注：间接索引属于选做功能</strong> ）</p>
+<ul>
+<li>
+<p><code>link</code>：文件链接数（ <strong>注：文件软链接与硬链接属于选做功能</strong> ）</p>
+</li>
+<li>
+<p><code>ftype</code>：文件类型。可自定义枚举类型，方便编码，例如：</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">file_type</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">FILE</span><span class="p">,</span><span class="w">           </span><span class="c1">// 普通文件</span>
+<span class="w">    </span><span class="kt">DIR</span><span class="w">             </span><span class="c1">// 目录文件</span>
+<span class="p">}</span><span class="w"> </span><span class="n">FILE_TYPE</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+<h4 id="134">1.3.4  文件夹（目录）的表示<a class="headerlink" href="#134" title="Permanent link">&para;</a></h4>
+<p>文件夹（目录）用于将整个文件系统的文件结构 <strong>按路径名访问的树形组织结构排列</strong> 。Ext2文件系统并没有单独形成用于目录数据的数据块，而是 <strong>将目录与普通文件一样存放在数据块中</strong> 。也就是说， <strong>文件夹（目录）在Ext2中的存储方式与文件一致</strong> 。不同之处在于目录在数据块中的内容由文件系统直接管理，用户并不能像写普通文件一样直接使用编辑器写目录数据块中的内容。</p>
+<p>目录在存储管理上和普通文件相同——也是 <strong>通过索引节点来管理目录项数据的</strong> ，只不过目录数据块内容含有多条目录项数据结构，即目录数据块中的内容是目录项的数组，通过上一级目录项将其类型标识为“目录”以区分普通文件。</p>
+<p><strong>根目录有固定的起点</strong> （例如Ext2文件系统根目录的索引号为2），因此根目录文件就不需要上级目录来定位了。</p>
+<p>下面是简化的 <strong>目录项</strong> 结构体示例：</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">dentry_d</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">char</span><span class="w">               </span><span class="n">fname</span><span class="p">[</span><span class="n">MAX_FILE_NAME</span><span class="p">];</span><span class="w">          </span><span class="c1">// 指向的ino文件名</span>
+<span class="w">    </span><span class="n">FILE_TYPE</span><span class="w">          </span><span class="n">ftype</span><span class="p">;</span><span class="w">                         </span><span class="c1">// 指向的ino文件类型</span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                </span><span class="n">ino</span><span class="p">;</span><span class="w">                           </span><span class="c1">// 指向的ino号</span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                </span><span class="n">valid</span><span class="p">;</span><span class="w">                         </span><span class="c1">// 该目录项是否有效</span>
+<span class="p">};</span><span class="w">  </span>
+</code></pre></div>
+<p>对于目录中的每一个目录项都对应了当前目录下的一个文件/目录。具体表示方式见下图：</p>
+<p><img alt="image-20211024105315962" src="../part2.assets/image-20211024105315962.png" /></p>
+<p>图中<code>/</code>目录下第二个名为<code>JINX</code>的目录项的<code>valid</code>字段被标记为0， <strong>表示这一文件已被删除</strong> 。当然也可以使用其他的删除方式，比如 <strong>用后面的目录项覆盖被删除的目录项</strong> 。</p>
+<p>图中<code>/demo/</code>目录指向的数据块没有画出，其原理与根目录一致。</p>
+<h4 id="135">1.3.5  内容结构的表示<a class="headerlink" href="#135" title="Permanent link">&para;</a></h4>
+<p>大家可能注意到我们 <strong>前面展示的数据结构</strong> 后面都带有一个<code>_d</code>，事实上，这代表这些数据结构是存在于真实设备之上的，它们共同构建了文件系统的布局。但文件系统 <strong>结构布局</strong> 与 <strong>文件系统</strong> 两者还是有一定的偏差。这是因为文件系统不光要设计布局，还需要 <strong>针对布局</strong> 设计相应的 <strong>内存数据结构</strong> 来方便管理。</p>
+<p>我们举两个简单的例子来说明这个问题。</p>
+<ul>
+<li><strong>super_block</strong> 的内存表示</li>
+</ul>
+<p>在设备上，超级块中仅仅保存了文件系统的位图位置，我们需要 <strong>将位图读到内存中以便我们进行访问</strong> ；此外，为了方便查找根目录，我们也完全可以将根目录维护在超级块的内存表示中，以便我们全局访问。因此，可以简单设计超级块的内存表示如下：</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">super_block</span><span class="w"></span>
+<span class="p">{</span><span class="w">   </span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                </span><span class="n">max_ino</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">uint8_t</span><span class="o">*</span><span class="w">           </span><span class="n">map_inode</span><span class="p">;</span><span class="w">       </span><span class="c1">// inode位图</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="o">*</span><span class="w">           </span><span class="n">map_data</span><span class="p">;</span><span class="w">        </span><span class="c1">// data位图</span>
+
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">dentry</span><span class="o">*</span><span class="w">     </span><span class="n">root_dentry</span><span class="p">;</span><span class="w">     </span><span class="c1">// 根目录dentry</span>
+<span class="p">};</span><span class="w"></span>
+</code></pre></div>
+<p>这样，我们就能方便地对 <strong>inode</strong> <strong>位图</strong> 和 <strong>data</strong> <strong>位图</strong> 进行管理，并能够通过<code>root_dentry</code>轻松访问根目录，从而达到 <strong>快速解析路径</strong> 的目的。</p>
+<ul>
+<li><strong>inode</strong> 的内存表示</li>
+</ul>
+<p>在磁盘布局中，我们的<code>inode</code>定义如下：</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">inode_d</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                 </span><span class="n">ino</span><span class="p">;</span><span class="w">                 </span><span class="c1">// 在inode位图中的下标</span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                 </span><span class="n">size</span><span class="p">;</span><span class="w">                </span><span class="c1">// 文件已占用空间</span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                 </span><span class="n">link</span><span class="p">;</span><span class="w">                </span><span class="c1">// 链接数</span>
+<span class="w">    </span><span class="n">FILE_TYPE</span><span class="w">           </span><span class="n">ftype</span><span class="p">;</span><span class="w">               </span><span class="c1">// 文件类型（目录类型、普通文件类型）</span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                 </span><span class="n">dir_cnt</span><span class="p">;</span><span class="w">             </span><span class="c1">// 如果是目录类型文件，下面有几个目录项</span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                 </span><span class="n">block_pointer</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span><span class="w">    </span><span class="c1">// 数据块指针（可固定分配）</span>
+<span class="p">};</span><span class="w">  </span>
+</code></pre></div>
+<p>这个结构难以对指向<code>inode</code>的<code>dentry</code>进行访问，也就难以获得该文件的文件名。此外，对于 <strong>目录文件</strong> 而言，它缺少一种 <strong>快捷遍历每个目录项</strong> 的方法，因此，可以简单设置<code>inode</code>的内存结构如下：</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">inode</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                 </span><span class="n">ino</span><span class="p">;</span><span class="w">                  </span><span class="c1">// 在inode位图中的下标</span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                 </span><span class="n">size</span><span class="p">;</span><span class="w">                 </span><span class="c1">// 文件已占用空间</span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                 </span><span class="n">dir_cnt</span><span class="p">;</span><span class="w">              </span><span class="c1">// 目录项数量</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">dentry</span><span class="o">*</span><span class="w">      </span><span class="n">dentry</span><span class="p">;</span><span class="w">               </span><span class="c1">// 指向该inode的dentry</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">dentry</span><span class="o">*</span><span class="w">      </span><span class="n">dentrys</span><span class="p">;</span><span class="w">              </span><span class="c1">// 所有目录项  </span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                 </span><span class="n">block_pointer</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span><span class="w">     </span><span class="c1">// 数据块指针</span>
+<span class="p">};</span><span class="w">  </span>
+</code></pre></div>
+<p>这样一来，我们通过维护<code>dentry</code>和<code>dentrys</code>就能够很轻松地解决上述问题。</p>
+<p>这里给出的例子仅起一个抛砖引玉的作用，你 <strong>甚至可以不设计这种内存结构</strong> ，例如：直接声明 <strong>位图</strong> 、 <strong>根目录dentry</strong> 为全局变量等。</p>
+<h2 id="2-fusefilesystem-in-user-space">2.  FUSE（Filesystem in User SpacE）架构<a class="headerlink" href="#2-fusefilesystem-in-user-space" title="Permanent link">&para;</a></h2>
+<p>传统的、基于Linux的文件系统开发都是以内核模块（ <strong>Kernel Module</strong> ）的方式进行，这使得开发调试变得异常繁琐。此外，内核的开发与传统C程序开发不同，你需要使用内核的API，像<code>malloc</code>之类的用户态函数在内核开发中已不再适用。如果有同学希望了解更多内核模块开发相关知识，可以自行google或百度。</p>
+<p>由于内核文件系统开发的困难，FUSE架构由此登上了台面。FUSE全称Filesystem in User SpacE，它将 <strong>文件系统的实现从内核态搬到了用户态</strong> ，也就是我们可以 <strong>在用户态实现一个文件系统</strong> 。</p>
+<p>本次实验我们便是基于FUSE架构， <strong>在用户态</strong> 实现我们的青春版EXT2文件系统，从而完美接入Linux。</p>
+<p>接下来，我们简单介绍一下FUSE，当然，如果对FUSE不感兴趣的同学可以略过这一章节。在“任务二” 一节中，我们会详细介绍如何接入FUSE。</p>
+<p>以下内容参考自<a href="https://zhuanlan.zhihu.com/p/59354174">用户态文件系统框架FUSE的介绍及示例 - 知乎 (zhihu.com)</a></p>
+<h3 id="21-fuse">2.1  FUSE基本原理<a class="headerlink" href="#21-fuse" title="Permanent link">&para;</a></h3>
+<p>简单的理解， <strong>FUSE实现了一个对文件系统访问的回调</strong> 。FUSE分为 <strong>内核态的模块和用户态的库</strong> 两部分。其中 <strong>用户态的库</strong> 为 <strong>用户态程序开发</strong> 提供接口，我们通过这些接口 <strong>将请求处理功能注册到FUSE中</strong> 。 <strong>内核态模块</strong> 是具体的数据流程的功能实现，它 <strong>截获文件的访问请求，然后调用用户态注册的函数进行处理</strong> 。</p>
+<p><img alt="image-20211024114457361" src="../part2.assets/image-20211024114457361.png" /></p>
+<p>如上图所示，其中 <strong>hello</strong> 是用户态的文件系统程序， <strong>该程序启动的时候会将自己开发的接口注册到FUSE中</strong> ， <strong>比如读写文件的接口，遍历目录的接口</strong> 等等。同时， <strong>通过该程序在系统某个路径挂载FUSE文件系统</strong> ，比如<code>/tmp/fuse</code>。此时 <strong>如果在该目录中有相关操作</strong> 时，请求会经过 <strong>Linux虚拟文件系统</strong> （<a href="https://blog.csdn.net/weixin_36145588/article/details/73607463">VFS</a>）层 <strong>到FUSE的内核模块</strong> （如调用<code>ls</code>命令，如上图中的步骤①）， <strong>FUSE内核模块根据请求类型</strong> ，调用 <strong>用户态应用注册</strong> 的函数（上图中步骤②），然后 <strong>将处理结果通过VFS返回给系统调用</strong> （步骤③）。</p>
+<h3 id="22">2.2  示例及说明<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<p>获取实验包参考<a href="../part3-1/index-2.html#1">环境搭建与上手</a>。</p>
+<p>在我们提供的实验包中，已经有两个完全搭建好的FUSE文件系统：<code>simplefs</code>（<code>fs/simplefs</code>文件夹下）和<code>myfs</code>（<code>fs/samples</code>文件夹下），其中<code>simplefs</code>是一个类EXT2的文件系统，但 <strong>没有给予数据位图</strong> 的实现；<code>myfs</code>是<code>github</code>上的一个开源项目，也是一个FUSE文件系统实例。</p>
+<p>此外，这里我们给一个极简的Demo。该Demo非常简单，它并不是一个真正的文件系统， <strong>也不会访问设备</strong> ，而是在 <strong>该文件系统</strong> 的根目录中 <strong>显示一个固定的文件</strong> ，也就是<code>Hello-FUSE</code>文件。</p>
+<div class="highlight"><pre><span></span><code><span class="cm">/* main.c源码 */</span><span class="w"></span>
+
+<span class="cp">#define FUSE_USE_VERSION 26</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fuse.h&gt;</span><span class="cp"></span>
+
+<span class="cm">/* 这里实现了一个遍历目录的功能，当用户在目录执行ls时，会回调到该函数，我们这里只是返回一个固定的文件Hello-FUSE。 */</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">test_readdir</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="n">fuse_fill_dir_t</span><span class="w"> </span><span class="n">filler</span><span class="p">,</span><span class="w"> </span><span class="kt">off_t</span><span class="w"> </span><span class="n">offset</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">fuse_file_info</span><span class="o">*</span><span class="w"> </span><span class="n">fi</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">filler</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hello-FUSE&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="cm">/* 显示文件属性 */</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">test_getattr</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">stat</span><span class="w"> </span><span class="o">*</span><span class="n">stbuf</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">stbuf</span><span class="o">-&gt;</span><span class="n">st_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0755</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">S_IFDIR</span><span class="p">;</span><span class="w">            </span><span class="c1">// 说明该文件是目录文件</span>
+<span class="w">    </span><span class="k">else</span><span class="w"></span>
+<span class="w">        </span><span class="n">stbuf</span><span class="o">-&gt;</span><span class="n">st_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0644</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">S_IFREG</span><span class="p">;</span><span class="w">            </span><span class="c1">// 说明该文件是普通文件</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="cm">/*这里是回调函数集合，这里实现的很简单*/</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">fuse_operations</span><span class="w"> </span><span class="n">ops</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="p">.</span><span class="n">readdir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_readdir</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">.</span><span class="n">getattr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_getattr</span><span class="p">,</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fuse_main</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ops</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ret</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>接下来，编译运行<code>main.c</code>文件</p>
+<div class="highlight"><pre><span></span><code>gcc -o hello main.c -D_FILE_OFFSET_BITS<span class="o">=</span><span class="m">64</span> -lfuse
+</code></pre></div>
+<p>假设在<code>/tmp</code>目录下面有一个<code>fuse</code>目录，如果没有可以手动创建一个。然后执行如下命令可以在该目录挂载新的文件系统。</p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span>root@localhost test<span class="o">]</span><span class="c1"># ./hello /tmp/fuse</span>
+</code></pre></div>
+<p><strong>注意</strong> ， <strong>FUSE文件系统的挂载与传统文件系统</strong> 的挂载略有不同，它 <strong>不用mount选项</strong> ，直接运行二进制文件就可完成挂载。上面命令的意思是将文件系统<code>hello</code>挂载到<code>/tmp/fuse</code>。</p>
+<p>此时运行<code>ls</code>命令看看效果：</p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span>root@localhost tmp<span class="o">]</span><span class="c1"># ls /fuse</span>
+Hello-FUSE
+<span class="o">[</span>root@localhost tmp<span class="o">]</span><span class="c1"># </span>
+</code></pre></div>
+<p>可以看出正式我们期望的内容，也就是只有一个名为<code>Hello-FUSE</code>的文件。</p>
+<p>至于如何 <strong>利用FUSE文件系统挂载设备</strong> 、 <strong>如何创建文件</strong> ，我们将在<a href="../part3-3/index-2.html#1">任务二</a>中进行详细描述。</p>
+<h2 id="3-ddriver">3.  DDRIVER虚拟磁盘驱动<a class="headerlink" href="#3-ddriver" title="Permanent link">&para;</a></h2>
+<p>本次实验提供了虚拟磁盘接口，头文件<code>ddriver.h</code>中提供了完备的注释。该接口底层实现简单，且基本符合POSIX规范（即与标准<code>write</code>、<code>read</code>、<code>lseek</code>、<code>ioctl</code>等接口保持一致）。 <strong>唯一需要注意的是我们对单次读取、写入的IO大小做出了限制，保证其与磁盘块大小对齐</strong> 。其中，IO大小为512B，你也可以通过<code>ddriver_ioctl</code>来请求IO大小，具体我们在<a href="../part3-2/index-2.html#1">任务二</a>中介绍。</p>
+<p><strong>DDRIVER驱动</strong> 模拟了 <strong>对一个容量为4MiB的磁盘</strong> 的操作，同样，4MiB可以通过<code>ddriver_ioctl</code>函数访问得到。其中需要注意的是它 <strong>保留了磁盘的访问特性</strong> ，即 <strong>按块访问</strong> ，每次读写都需要 <strong>读写完整的512B</strong> 的磁盘块。这将引起一些很麻烦的情况，比如说要更新某个磁盘块中的某个inode时，需要先把整个磁盘块读出来，更新相应inode，再写回去，而不是直接往磁盘里写（除非一个inode比一个磁盘块大）。</p>
+<p>以下是DDRIVER驱动提供的头文件<code>ddriver.h</code></p>
+<div class="highlight"><pre><span></span><code><span class="cp">#ifndef _DDRIVER_H_</span>
+<span class="cp">#define _DDRIVER_H_</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ddriver_ctl_user.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;stdio.h&quot;</span><span class="cp"></span>
+
+<span class="cm">/**</span>
+<span class="cm">* @brief 打开ddriver设备</span>
+<span class="cm">* </span>
+<span class="cm">* @param path ddriver设备路径</span>
+<span class="cm">* @return int 0成功，否则失败</span>
+<span class="cm">*/</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">ddriver_open</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">path</span><span class="p">);</span><span class="w"></span>
+
+<span class="cm">/**</span>
+<span class="cm">* @brief 移动ddriver磁盘头</span>
+<span class="cm">* </span>
+<span class="cm">* @param fd ddriver设备handler</span>
+<span class="cm">* @param offset 移动到的位置，注意要和设备IO单位对齐</span>
+<span class="cm">* @param whence SEEK_SET即可</span>
+<span class="cm">* @return int 0成功，否则失败</span>
+<span class="cm">*/</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">ddriver_seek</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="kt">off_t</span><span class="w"> </span><span class="n">offset</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">whence</span><span class="p">);</span><span class="w"></span>
+
+<span class="cm">/**</span>
+<span class="cm">* @brief 写入数据</span>
+<span class="cm">* </span>
+<span class="cm">* @param fd ddriver设备handler</span>
+<span class="cm">* @param buf 要写入的数据Buf</span>
+<span class="cm">* @param size 要写入的数据大小，注意一定要等于单次设备IO单位</span>
+<span class="cm">* @return int 0成功，否则失败</span>
+<span class="cm">*/</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">ddriver_write</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">);</span><span class="w"></span>
+
+<span class="cm">/**</span>
+<span class="cm">* @brief 读出数据</span>
+<span class="cm">* </span>
+<span class="cm">* @param fd ddriver设备handler</span>
+<span class="cm">* @param buf 要读出的数据Buf</span>
+<span class="cm">* @param size 要读出的数据大小，注意一定要等于单次设备IO单位</span>
+<span class="cm">* @return int </span>
+<span class="cm">*/</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">ddriver_read</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">);</span><span class="w"></span>
+
+<span class="cm">/**</span>
+<span class="cm">* @brief ddriver IO控制</span>
+<span class="cm">* </span>
+<span class="cm">* @param fd ddriver设备handler</span>
+<span class="cm">* @param cmd 命令号，查看ddriver_ctl_user，IOC_开头</span>
+<span class="cm">* @param ret 返回值</span>
+<span class="cm">* @return int 0成功，否则失败</span>
+<span class="cm">*/</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">ddriver_ioctl</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">cmd</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">ret</span><span class="p">);</span><span class="w"></span>
+
+<span class="cm">/**</span>
+<span class="cm">* @brief 关闭ddriver设备</span>
+<span class="cm">* </span>
+<span class="cm">* @param fd ddriver设备handler</span>
+<span class="cm">* @return int 0成功，否则失败</span>
+<span class="cm">*/</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">ddriver_close</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="p">);</span><span class="w"></span>
+
+<span class="cp">#endif /* _DDRIVER_H_ *</span>
+</code></pre></div>
+<p><strong>值得一提的是</strong> ， <strong>DDRIVER</strong> 的实现有两个版本： <strong>内核版本</strong> 和 <strong>用户版本</strong> 。其中， <strong>内核版本</strong> 的编写是采用 <strong>内核模块</strong> 的方式，代码位于<code>user-land-filesystem/driver/kernel_ddriver</code>下，由于本次实验环境所致，内核版本暂停使用，如果大家有兴趣也可以去参考一下一个内核模块的编程方法； <strong>用户版本</strong> 位于<code>user-land-filesystem/driver/user_ddriver</code>下，用户版本的编译方式是静态链接库，因此你无法直接通过Debug调试进入到上述接口实现的代码中， <strong>这也是为了模拟真实驱动所做的考虑</strong> 。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../part1/index.html" class="btn btn-neutral float-left" title="实验概述"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../part3-1/index.html" class="btn btn-neutral float-right" title="环境搭建与上手">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2023 哈尔滨工业大学（深圳）</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../part1/index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../part3-1/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../index.html';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/baidu-tongji.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab5/part2/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:49:33 GMT -->
+</html>

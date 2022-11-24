@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab5/part3-4/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:50:56 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>选做任务 - 操作系统2022秋 | 哈工大（深圳）</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u9009\u505a\u4efb\u52a1";
+        var mkdocs_page_input_path = "lab5\\part3-4.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="../../../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../index.html" class="icon icon-home"> 操作系统2022秋 | 哈工大（深圳）
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://hitsz-cslab.gitee.io/os-labs/search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">实验概述</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../index.html">实验须知</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../env/index.html">实验平台以及环境配置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tools/index.html">实验实用工具</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Linux/index.html">Linux开发环境基础知识</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env/index.html">远程实验平台使用指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../remote_env_gdb/index.html">远程实验平台环境图形化调试指南</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OS竞赛招新</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../oscomp/oscomp/index.html">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">常见问题</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/faq-env/index.html">实验环境问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab1/index.html">Lab1问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/lab3/index.html">Lab3问题</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab1：XV6与Unix实用程序</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part3/index.html">实验步骤</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab2：系统调用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/part5/index.html">GDB调试系统调用（补充材料）</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab3：锁机制的应用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part4/index.html">xv-6中Lock的实现（选读）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/part5/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab4：页表</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab5：基于FUSE的青春版EXT2文件系统</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part3-1/index.html">环境搭建与上手</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part3-2/index.html">任务一：熟悉DDRIVER驱动</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part3-3/index.html">任务二：基于FUSE实现青春版EXT2文件系统</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="index.html">选做任务</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">1.  磁盘缓存（选做任务）</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11">1.1 磁盘缓存简介</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12">1.2 实现指南</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#121-sfs">1.2.1 SFS缓存实现</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#122">1.2.2 数据结构</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#123">1.2.3 关键方法</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#13-sfs">1.3 SFS缓存测试</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#14">1.4 实验要求</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2.  日志文件系统简介（选做任务）</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../part5/index.html">实验提示</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">操作系统2022秋 | 哈工大（深圳）</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Lab5：基于FUSE的青春版EXT2文件系统 &raquo;</li><li>选做任务</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">选做任务<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="1">1.  磁盘缓存（选做任务）<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h3 id="11">1.1 磁盘缓存简介<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p><strong>磁盘的访问速度远小于内存的访问速度</strong> ，而现实中磁盘的容量也远大于内存，所以为了提速 <strong>把整个磁盘内容读到内存中是不现实的</strong> 。但是，我们还是有一些手段提高对磁盘的访问速度。 <strong>根据局部性原理</strong> ，最近被访问过的空间接下来也很可能被访问到，所以我们可以做 <strong>一些缓存块</strong> ，把 <strong>最近最常被访问的数据放入缓存块中</strong> 。如何管理缓存块，采取怎样的 <strong>替换策略</strong> ，以及在什么时机下 <strong>写回</strong> ，如何保证 <strong>一致性</strong> ，这些都是磁盘缓存需要考虑的问题。</p>
+<h3 id="12">1.2 实现指南<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<p>SFS提供了一种简单的缓存方案。</p>
+<ul>
+<li><strong>缓存块分配</strong>：利用内存结构查找缓存中第一个空闲缓存块，若无空闲缓存块，则采用后述替换策略释放缓存块。</li>
+<li><strong>缓存块替换</strong>：被替换缓存块的挑选采用一种较为简单的 <strong>近似先入先出</strong> 方法。假设缓存块总共有<code>n</code>块，我们总是记录上一次被替换的缓存块<code>i</code>，则本次将要被替换的缓存块<code>j = (i + 1) mod n</code>。</li>
+<li><strong>缓存块命中</strong>：我们为每个缓存块都会维护一个元数据，元数据记录了该缓存块对应介质上的物理地址，我们通过检查物理地址是否重合来判断缓存块是否命中。</li>
+<li><strong>缓存块索引</strong>：SFS使用位图对缓存块的分配情况进行管理。但是位图面临的搜索时间为O(N)。SFS将位图划分为多个子位图，每个子位图由一个元数据节点管理，统计该子位图的分配情况。我们在后面进行更为详细的介绍。</li>
+<li><strong>缓存块回写方式</strong>：Write-Back模式</li>
+</ul>
+<p>SFS可以很容易地实现对文件数据的缓存，其伪代码可表示如下：</p>
+<ul>
+<li><strong>读数据</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">hit_cache</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span><span class="o">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">read_into_cache</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span><span class="w"></span>
+<span class="n">read_from_cache</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li><strong>写数据</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">hit_cache</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span><span class="o">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">read_into_cache</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span><span class="w"></span>
+<span class="n">write_to_cache</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+<h4 id="121-sfs">1.2.1 SFS缓存实现<a class="headerlink" href="#121-sfs" title="Permanent link">&para;</a></h4>
+<p>首先切换到<code>buf</code>分支以完成实验：</p>
+<div class="highlight"><pre><span></span><code>git checkout buf
+</code></pre></div>
+<p><strong>值得说明的是</strong>，为了更好地模拟磁盘延时，我们向<code>user_ddriver</code>中人为插入了延迟函数，相关代码可阅读<code>buf</code>分支下的<code>ddriver.c</code>。</p>
+<h4 id="122">1.2.2 数据结构<a class="headerlink" href="#122" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">sfs_bm_node</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">int</span><span class="w">       </span><span class="n">avai</span><span class="p">;</span><span class="w">                                   </span><span class="cm">/* 该位图剩余的记录数 */</span><span class="w">                 </span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w">   </span><span class="n">bm_indicators</span><span class="p">[</span><span class="n">SFS_CACHE_BMID_N</span><span class="p">];</span><span class="w">        </span><span class="cm">/* 元数据位图 */</span><span class="w">           </span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w">   </span><span class="n">bm</span><span class="p">[</span><span class="n">SFS_CACHE_BMND_N</span><span class="p">];</span><span class="w">                   </span><span class="cm">/* 数据位图 */</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</code></pre></div>
+<p><code>sfs_bm_node</code>位于内存中，用于缓存块管理，可以理解为一个子位图结构，其中<code>bm</code>字段代表数据位图，<code>bm_indicators</code>进而记录<code>bm</code>中每8位的分配情况：如果为0，代表该8位中无有效（被分配）位；为1代表该8位中有有效位。<strong>值得说明的是，如果仅记录每8位一组，完全可以通过&amp;0xFF操作实现，事实上，这个方法可以推广到记录每128位甚至更高的情况</strong>。最后，<code>avai</code>字段记录改为图剩余的记录数，非0代表还有空闲块，0代表无空闲块。因此单个<code>sfs_bm_node</code>节点可以画图表示为：</p>
+<p><img alt="image-20220727173918180" src="../part3-4.assets/image-20220727173918180.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="p">((</span><span class="n">packed</span><span class="p">))</span><span class="w"> </span><span class="n">sfs_cnode_hdr</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                </span><span class="n">phys_ofs</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                </span><span class="n">flags</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="p">((</span><span class="n">packed</span><span class="p">))</span><span class="w"> </span><span class="n">sfs_cnode</span><span class="w"></span>
+<span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">sfs_cnode_hdr</span><span class="w"> </span><span class="n">hdr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w">        </span><span class="n">data</span><span class="p">[];</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</code></pre></div>
+<p><code>sfs_cnode</code>代表一个缓存块节点，其包含一个元数据头不<code>hdr</code>与缓存的数据<code>data</code>，<code>hdr</code>中记录了缓存块对应的物理地址<code>phys_ofs</code>与一些标志位<code>flags</code>（是否写脏）。<strong>注意，在SFS中，缓存块大小默认与IO块大小对齐，因此不记录块大小</strong>。当然，你可以更粗粒度地去管理一个缓存块，例如2个IO块大小等。<code>sfs_cnode</code>的集合构成了SFS缓存Buffer，如下图所示：</p>
+<p><img alt="image-20220727164918401" src="../part3-4.assets/image-20220727164918401.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">sfs_cache</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                     </span><span class="n">sz_blk</span><span class="p">;</span><span class="w">                   </span><span class="cm">/* 每个缓存数据块大小 = io_sz */</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                     </span><span class="n">num_blk</span><span class="p">;</span><span class="w">                  </span><span class="cm">/* 缓存的数据块数 */</span><span class="w">  </span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">sfs_bm_node</span><span class="w">      </span><span class="o">*</span><span class="n">bms</span><span class="p">;</span><span class="w">                     </span><span class="cm">/* Cache分配位图 */</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                     </span><span class="n">num_bms</span><span class="p">;</span><span class="w">                  </span><span class="cm">/* 分配位图的个数 */</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                     </span><span class="n">last_evicted</span><span class="p">;</span><span class="w">             </span><span class="cm">/* 上一次驱逐块 */</span><span class="w"></span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w">           </span><span class="o">*</span><span class="n">buf</span><span class="p">;</span><span class="w">                     </span><span class="cm">/* Cnode存放区 */</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w">                     </span><span class="n">cache_hit</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                     </span><span class="n">cache_miss</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                     </span><span class="n">cache_wb</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w">                     </span><span class="n">cache_ld</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</code></pre></div>
+<p><code>sfs_cache</code>代表整个缓存结构，相关变量定义不再赘述。其中，<code>cache_</code>开头的字段代表缓存的命中、回写、加载信息。进而，我们用下图来描述缓存的整体结构：</p>
+<p><img alt="image-20220727174134879" src="../part3-4.assets/image-20220727174134879.png" /></p>
+<p><strong>值得说明的是，SFS中的缓存结构完全被部署在内存中，并非硬件Cache。</strong></p>
+<h4 id="123">1.2.3 关键方法<a class="headerlink" href="#123" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>命中或申请分配缓存块</strong>：</li>
+</ul>
+<p><strong>函数介绍</strong>：</p>
+<p>该方法做两个事情：</p>
+<ol>
+<li>根据传入参数<code>phys_ofs</code>判断是否命中Cache，若未命中Cache，则执行步骤二</li>
+<li>分配一个空闲的缓存块，若没有缓存块，则按前述替换算法进行缓存块替换释放</li>
+</ol>
+<p><strong>返回值</strong>：该方法返回 <strong>phys_ofs对应的缓存块块号</strong></p>
+<p>函数实现如下：</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">sfs_cache_hit_or_alloc_blk</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">sfs_cache</span><span class="w"> </span><span class="o">*</span><span class="n">cache</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">phys_ofs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">blk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">bm_id</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">num_bms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cache</span><span class="o">-&gt;</span><span class="n">num_bms</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">bm_lines</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SFS_CACHE_BMND_N</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">free_blk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">evict_blk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">sfs_bm_node</span><span class="w"> </span><span class="o">*</span><span class="n">bm_node</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">sfs_cnode</span><span class="w">   </span><span class="o">*</span><span class="n">cnode</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">bm_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">bm_id</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num_bms</span><span class="p">;</span><span class="w"> </span><span class="n">bm_id</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">        </span><span class="cm">/* 遍历所有为位图，查看Cache命中和空闲块 */</span><span class="w">   </span>
+<span class="w">        </span><span class="n">bm_node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cache</span><span class="o">-&gt;</span><span class="n">bms</span><span class="p">[</span><span class="n">bm_id</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bm_node</span><span class="o">-&gt;</span><span class="n">avai</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">SFS_CACHE_BMND_N</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">UINT8_BITS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">bm_lines</span><span class="p">;</span><span class="w"> </span><span class="n">line</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bm_test</span><span class="p">(</span><span class="n">bm_node</span><span class="o">-&gt;</span><span class="n">bm_indicators</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">blk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bm_id</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">SFS_CACHE_BMND_N</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">UINT8_BITS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">UINT8_BITS</span><span class="p">;</span><span class="w"></span>
+<span class="w">                    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">UINT8_BITS</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bm_test</span><span class="p">(</span><span class="n">bm_node</span><span class="o">-&gt;</span><span class="n">bm</span><span class="p">,</span><span class="w"> </span><span class="n">blk</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                            </span><span class="n">cnode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GET_CNODE</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span><span class="w"> </span><span class="n">blk</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
+<span class="w">                            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cnode</span><span class="o">-&gt;</span><span class="n">hdr</span><span class="p">.</span><span class="n">phys_ofs</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">phys_ofs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                                </span><span class="n">cache</span><span class="o">-&gt;</span><span class="n">cache_hit</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">                                </span><span class="k">return</span><span class="w"> </span><span class="n">blk</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
+<span class="w">                            </span><span class="p">}</span><span class="w"></span>
+<span class="w">                        </span><span class="p">}</span><span class="w"></span>
+<span class="w">                        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">free_blk</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                                </span><span class="n">free_blk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blk</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
+<span class="w">                            </span><span class="p">}</span><span class="w">        </span>
+<span class="w">                        </span><span class="p">}</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">free_blk</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">blk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bm_id</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">SFS_CACHE_BMND_N</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">UINT8_BITS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">UINT8_BITS</span><span class="p">;</span><span class="w"></span>
+<span class="w">                        </span><span class="n">free_blk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blk</span><span class="p">;</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">blk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bm_id</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">SFS_CACHE_BMND_N</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">UINT8_BITS</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">free_blk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blk</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">cache</span><span class="o">-&gt;</span><span class="n">cache_miss</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">free_blk</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">free_blk</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">cache</span><span class="o">-&gt;</span><span class="n">num_blk</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">                                                      </span><span class="cm">/* 驱逐缓存行 */</span><span class="w"></span>
+<span class="w">        </span><span class="n">evict_blk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">cache</span><span class="o">-&gt;</span><span class="n">last_evicted</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">cache</span><span class="o">-&gt;</span><span class="n">num_blk</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">sfs_cache_rls_blk</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span><span class="w"> </span><span class="n">evict_blk</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">cache</span><span class="o">-&gt;</span><span class="n">last_evicted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">evict_blk</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">free_blk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">evict_blk</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">blk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">free_blk</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">sfs_cache_alloc_blk</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span><span class="w"> </span><span class="n">blk</span><span class="p">,</span><span class="w"> </span><span class="n">phys_ofs</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">blk</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>其中，下述代码主要完成位图的遍历，对于每一个<code>sfs_bm_node</code>，严格按照顺序检查：<code>avai</code>→<code>bm_indicators</code>→<code>bm</code>。在遍历过程中，记录下第一个空闲块<code>free_blk</code>，便于缓存未命中时返回。</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">bm_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">bm_id</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num_bms</span><span class="p">;</span><span class="w"> </span><span class="n">bm_id</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">        </span><span class="cm">/* 遍历所有为位图，查看Cache命中和空闲块 */</span><span class="w">   </span>
+<span class="w">    </span><span class="n">bm_node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cache</span><span class="o">-&gt;</span><span class="n">bms</span><span class="p">[</span><span class="n">bm_id</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bm_node</span><span class="o">-&gt;</span><span class="n">avai</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">SFS_CACHE_BMND_N</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">UINT8_BITS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">bm_lines</span><span class="p">;</span><span class="w"> </span><span class="n">line</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bm_test</span><span class="p">(</span><span class="n">bm_node</span><span class="o">-&gt;</span><span class="n">bm_indicators</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">blk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bm_id</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">SFS_CACHE_BMND_N</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">UINT8_BITS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">UINT8_BITS</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">UINT8_BITS</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bm_test</span><span class="p">(</span><span class="n">bm_node</span><span class="o">-&gt;</span><span class="n">bm</span><span class="p">,</span><span class="w"> </span><span class="n">blk</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="p">...</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"></span>
+<span class="w">                    </span><span class="p">...</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">...</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>以下代码用于检测是否命中。首先获取目标缓存块<code>sfs_cnode</code>，再比对<code>phys_ofs</code>即可。</p>
+<div class="highlight"><pre><span></span><code><span class="n">cnode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GET_CNODE</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span><span class="w"> </span><span class="n">blk</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cnode</span><span class="o">-&gt;</span><span class="n">hdr</span><span class="p">.</span><span class="n">phys_ofs</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">phys_ofs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">cache</span><span class="o">-&gt;</span><span class="n">cache_hit</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">blk</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>如果发现既未命中缓存块，又没有<code>free_blk</code>，则触发缓存替换，被替换的块作为新的空闲块被分配。其中，需要说明两个函数：</p>
+<ul>
+<li><code>sfs_cache_rls_blk</code>：该函数用于将缓存块的内容调用 <strong>驱动写</strong> 回写到介质上，并更新相应的位图索引结构</li>
+<li><code>sfs_cache_alloc_blk</code>：该函数用于将对应phys_ofs的内容调用 <strong>驱动读</strong> 读取到相应的缓存块中，并更新缓存块元数据<code>hdr</code>，更新相应的位图索引结构</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">sfs_cache_hit_or_alloc_blk</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">sfs_cache</span><span class="w"> </span><span class="o">*</span><span class="n">cache</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">phys_ofs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">cache</span><span class="o">-&gt;</span><span class="n">cache_miss</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">free_blk</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">free_blk</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">cache</span><span class="o">-&gt;</span><span class="n">num_blk</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">                                                      </span><span class="cm">/* 驱逐缓存行 */</span><span class="w"></span>
+<span class="w">        </span><span class="n">evict_blk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">cache</span><span class="o">-&gt;</span><span class="n">last_evicted</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">cache</span><span class="o">-&gt;</span><span class="n">num_blk</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">sfs_cache_rls_blk</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span><span class="w"> </span><span class="n">evict_blk</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">cache</span><span class="o">-&gt;</span><span class="n">last_evicted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">evict_blk</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">free_blk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">evict_blk</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">blk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">free_blk</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">sfs_cache_alloc_blk</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span><span class="w"> </span><span class="n">blk</span><span class="p">,</span><span class="w"> </span><span class="n">phys_ofs</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">blk</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<ul>
+<li><strong>读写方法</strong></li>
+</ul>
+<p>读方法为<code>sfs_try_cache_read</code>，写方法为<code>sfs_try_cache_write</code>。主要思路几乎一致，首先通过调用<code>sfs_cache_hit_or_alloc_blk</code>获取<code>offset</code>对应的缓存块，然后对缓存块进行读取或写入即可。</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">sfs_try_cache_read</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">sfs_cache</span><span class="w"> </span><span class="o">*</span><span class="n">cache</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">offset</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">out_content</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">IS_CACHE_ENABLE</span><span class="p">(</span><span class="n">cache</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">blk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sfs_cache_hit_or_alloc_blk</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span><span class="w"> </span><span class="n">offset</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">cnode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GET_CNODE</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span><span class="w"> </span><span class="n">blk</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">memcpy</span><span class="p">(</span><span class="n">out_content</span><span class="p">,</span><span class="w"> </span><span class="n">cnode</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">sfs_try_cache_write</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">sfs_cache</span><span class="w"> </span><span class="o">*</span><span class="n">cache</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">offset</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">in_content</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">IS_CACHE_ENABLE</span><span class="p">(</span><span class="n">cache</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">blk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sfs_cache_hit_or_alloc_blk</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span><span class="w"> </span><span class="n">offset</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">cnode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GET_CNODE</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span><span class="w"> </span><span class="n">blk</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">memcpy</span><span class="p">(</span><span class="n">cnode</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">in_content</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>接下来，修改SFS封装的<code>sfs_driver_read</code>和<code>sfs_driver_write</code>即可，这两个函数原本的目的是为了适配任意<code>offset</code>与<code>size</code>，让修改符合IO块大小。修改方式很简单，只需要将原来的<code>ddriver_seek</code> + <code>ddriver_read</code>或<code>ddriver_write</code>更换为<code>sfs_try_cache_read</code>或<code>sfs_try_cache_write</code>即可，相关代码如下所示：</p>
+<div class="highlight"><pre><span></span><code><span class="cm">/* sfs_utils.c */</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">sfs_driver_read</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">offset</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">out_content</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// lseek(SFS_DRIVER(), offset_aligned, SEEK_SET);</span>
+<span class="w">    </span><span class="c1">// ddriver_seek(SFS_DRIVER(), offset_aligned, SEEK_SET);</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">size_aligned</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// read(SFS_DRIVER(), cur, SFS_IO_SZ());</span>
+<span class="w">        </span><span class="c1">// ddriver_read(SFS_DRIVER(), cur, SFS_IO_SZ());</span>
+<span class="w">        </span><span class="n">sfs_try_cache_read</span><span class="p">(</span><span class="n">SFS_CACHE</span><span class="p">(),</span><span class="w"> </span><span class="n">offset_aligned</span><span class="p">,</span><span class="w"> </span><span class="n">cur</span><span class="p">,</span><span class="w"> </span><span class="n">SFS_IO_SZ</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="n">cur</span><span class="w">          </span><span class="o">+=</span><span class="w"> </span><span class="n">SFS_IO_SZ</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">size_aligned</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">SFS_IO_SZ</span><span class="p">();</span><span class="w">   </span>
+<span class="w">        </span><span class="n">offset_aligned</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">SFS_IO_SZ</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">memcpy</span><span class="p">(</span><span class="n">out_content</span><span class="p">,</span><span class="w"> </span><span class="n">temp_content</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bias</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">sfs_driver_write</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">offset</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">in_content</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// lseek(SFS_DRIVER(), offset_aligned, SEEK_SET);</span>
+<span class="w">    </span><span class="c1">// ddriver_seek(SFS_DRIVER(), offset_aligned, SEEK_SET);</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">size_aligned</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// write(SFS_DRIVER(), cur, SFS_IO_SZ());</span>
+<span class="w">        </span><span class="n">sfs_try_cache_write</span><span class="p">(</span><span class="n">SFS_CACHE</span><span class="p">(),</span><span class="w"> </span><span class="n">offset_aligned</span><span class="p">,</span><span class="w"> </span><span class="n">cur</span><span class="p">,</span><span class="w"> </span><span class="n">SFS_IO_SZ</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="n">cur</span><span class="w">          </span><span class="o">+=</span><span class="w"> </span><span class="n">SFS_IO_SZ</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">size_aligned</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">SFS_IO_SZ</span><span class="p">();</span><span class="w">   </span>
+<span class="w">        </span><span class="n">offset_aligned</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">SFS_IO_SZ</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>此外，在原来的SFS设计中，我们实现的<code>sfs_write</code>和<code>sfs_read</code>直接在内存中进行，这样一来并不能体现缓存的作用，于是更换了读写数据函数如下（将<code>memcpy</code>更换为<code>sfs_driver_read</code>与<code>sfs_driver_write</code>）：</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">sfs_write</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">off_t</span><span class="w"> </span><span class="n">offset</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="k">struct</span><span class="w"> </span><span class="nc">fuse_file_info</span><span class="o">*</span><span class="w"> </span><span class="n">fi</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// memcpy(inode-&gt;data + offset, buf, size);</span>
+<span class="w">  </span><span class="n">sfs_driver_write</span><span class="p">(</span><span class="n">SFS_DATA_OFS</span><span class="p">((</span><span class="n">inode</span><span class="o">-&gt;</span><span class="n">ino</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">offset</span><span class="p">,</span><span class="w"> </span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">sfs_read</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kt">off_t</span><span class="w"> </span><span class="n">offset</span><span class="p">,</span><span class="w"></span>
+<span class="w">             </span><span class="k">struct</span><span class="w"> </span><span class="nc">fuse_file_info</span><span class="o">*</span><span class="w"> </span><span class="n">fi</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="p">...</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// memcpy(buf, inode-&gt;data + offset, size);</span>
+<span class="w">  </span><span class="n">sfs_driver_read</span><span class="p">(</span><span class="n">SFS_DATA_OFS</span><span class="p">((</span><span class="n">inode</span><span class="o">-&gt;</span><span class="n">ino</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">offset</span><span class="p">,</span><span class="w"> </span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">...</span><span class="w">            </span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="13-sfs">1.3 SFS缓存测试<a class="headerlink" href="#13-sfs" title="Permanent link">&para;</a></h3>
+<p>为了验证SFS缓存有效性，编写如下脚本测试：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="n">loop</span><span class="p">,</span> <span class="n">cblks</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="n">work_set_sz</span> <span class="o">=</span> <span class="mi">16</span> <span class="o">*</span> <span class="mi">512</span>                                <span class="c1"># 8KB</span>
+    <span class="n">iter_sz</span> <span class="o">=</span> <span class="mi">512</span>                                         <span class="c1"># 512B</span>
+    <span class="n">num_iters</span> <span class="o">=</span> <span class="n">work_set_sz</span> <span class="o">//</span> <span class="n">iter_sz</span>
+    <span class="o">...</span>
+    <span class="n">tot_sz</span> <span class="o">=</span> <span class="n">loop</span> <span class="o">*</span> <span class="n">work_set_sz</span>     <span class="c1"># B</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">f_path</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span> <span class="o">*</span> <span class="n">work_set_sz</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">loop</span><span class="p">):</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iters</span><span class="p">):</span>
+                <span class="c1"># print(&quot;Iter: &quot; + str(j))</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="n">j</span> <span class="o">*</span> <span class="n">iter_sz</span> <span class="p">:</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">iter_sz</span><span class="p">])</span>
+
+        <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">work_set_sz</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">data</span> <span class="o">!=</span> <span class="n">content</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;buf: read data is not equal to written data&#39;</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;umount </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mnt_point</span><span class="p">))</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Time: </span><span class="si">{}</span><span class="s1">ms BW: </span><span class="si">{}</span><span class="s1">MB/s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">),</span> <span class="n">tot_sz</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)))</span>
+
+<span class="n">loop</span> <span class="o">=</span> <span class="mi">1000000</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cache Blks: 512&quot;</span><span class="p">)</span>
+<span class="n">process</span><span class="p">(</span><span class="n">loop</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cache Blks: 0&quot;</span><span class="p">)</span>
+<span class="n">process</span><span class="p">(</span><span class="n">loop</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> 
+</code></pre></div>
+<p>该脚本以512B为单位写满SFS文件（大小为512B * 16）1000000次，然后计算写入带宽。测试对象是 <strong>无缓存块</strong> 与有 <strong>512个缓存块</strong> 两类，测试结果如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>无缓存块</th>
+<th>512个缓存块</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>84.38797875936444MB/s</em></td>
+<td><em>101.79038122398883MB/s</em></td>
+</tr>
+</tbody>
+</table>
+<p>由于在虚拟机上测试，结果难免不准，<strong>但有缓存块的时间开销一般来说比无缓存块小，本实验要求学生通过自己设计实验，最终结果能够体现出加入缓存的优势即可</strong></p>
+<h3 id="14">1.4 实验要求<a class="headerlink" href="#14" title="Permanent link">&para;</a></h3>
+<p>由于本实验仅要求在虚拟机上实现，因此本实验仅要求学生通过自己设计实验，最终结果能够体现出加入缓存的优势即可。学生可以通过修改<code>driver/user_ddriver/ddriver.c</code>中的下述结构体中的对应字段来进一步调整延迟：</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">ddriver</span><span class="w"> </span><span class="n">disk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">read_lat</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">       </span><span class="cm">/* 2ms */</span><span class="w">       </span>
+<span class="w">    </span><span class="p">.</span><span class="n">write_lat</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">       </span><span class="cm">/* 1ms */</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">seek_lat</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">       </span><span class="cm">/* 4.17ms per 360 degree */</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</code></pre></div>
+<p>其中，<code>read_lat</code>代表为<code>ddriver_read</code>插入延迟，<code>write_lat</code>代表为<code>ddriver_write</code>插入延迟，<code>seek_lat</code>用于模拟磁盘旋转，一般来说指旋转360°耗时，单位都是<code>ms</code>。</p>
+<p>修改<code>user_ddriver</code>后，需要使用<code>make</code>编译，从而使修改生效：</p>
+<div class="highlight"><pre><span></span><code><span class="o">[</span>root@localhost user_ddriver<span class="o">]</span><span class="c1"># pwd</span>
+/user-land-filesystem/driver/user_ddriver
+<span class="o">[</span>root@localhost user_ddriver<span class="o">]</span><span class="c1"># make</span>
+gcc  -Wall -O -g  -c ddriver.c
+</code></pre></div>
+<h2 id="2">2.  日志文件系统简介（选做任务）<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>日志机制是提高文件系统鲁棒性的一个重要机制。我们知道， <strong>文件系统的很多操作往往不止一个步骤</strong> ，以创建文件为例，它要经过： <strong>写文件inode</strong> 、 <strong>写目录项</strong> 、 <strong>更新位图</strong> 三个步骤。</p>
+<p>如果在写完目录项但没开始写超级块时发生了 <strong>系统崩溃或者停电等因素导致宕机</strong> ，那么第一步被分配出去的inode就无法被记录为已分配，重启系统后文件系统有可能把这一inode分配给其他文件。</p>
+<p>为了保证整个过程的 <strong>原子性</strong> ，我们可以加入日志机制。在磁盘中划出一块区域记为日志区。一开始不把更新后的数据写入数据区，而是把日志区状态记为记录中，并把更改写入日志区。写入完成后，把日志区状态改为写入中，并把日志区的更改更新到数据区。全部更新完成后，把日志区状态记为空闲。</p>
+<p>如果在记录时系统崩溃，在重启后会发现日志区状态为记录中。此时只需简单地丢弃日志内容，改状态为空闲，即可。这种情况下文件创建就好像从未发生过一样。</p>
+<p>如果在写入时系统崩溃，在重启后会发现日志区状态为写入中。此时日志区的更新信息是完整的，只是不知道崩溃前写到了哪一步。此时只要把日志区的信息全部重新写入到数据区，再把状态记为空闲，即可恢复被打断的操作。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../part3-3/index.html" class="btn btn-neutral float-left" title="任务二：基于FUSE实现青春版EXT2文件系统"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../part4/index.html" class="btn btn-neutral float-right" title="提交文档">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2023 哈尔滨工业大学（深圳）</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../part3-3/index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../part4/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../../index.html';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/baidu-tongji.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/lab5/part3-4/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:51:06 GMT -->
+</html>

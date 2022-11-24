@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:36:49 GMT -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>实验须知 - 操作系统2022秋 | 哈工大（深圳）</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u5b9e\u9a8c\u987b\u77e5";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="../../cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="index.html" class="icon icon-home"> 操作系统2022秋 | 哈工大（深圳）
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="http://hitsz-cslab.gitee.io/os-labs/search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">实验概述</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="index.html">实验须知</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#0">0. 导读</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1">1. 课程信息</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2. 实验相关链接</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-xv6">3. 获取XV6实验框架代码</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">致谢</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="env/index.html">实验平台以及环境配置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="tools/index.html">实验实用工具</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="Linux/index.html">Linux开发环境基础知识</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="remote_env/index.html">远程实验平台使用指南</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="remote_env_gdb/index.html">远程实验平台环境图形化调试指南</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">OS竞赛招新</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="oscomp/oscomp/index.html">2023年“全国大学生计算机系统能力大赛操作系统设计赛”火热报名中！</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">常见问题</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="faq/faq-env/index.html">实验环境问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="faq/lab1/index.html">Lab1问题</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="faq/lab3/index.html">Lab3问题</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab1：XV6与Unix实用程序</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="lab1/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="lab1/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="lab1/part3/index.html">实验步骤</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="lab1/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab2：系统调用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="lab2/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="lab2/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="lab2/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="lab2/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="lab2/part5/index.html">GDB调试系统调用（补充材料）</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab3：锁机制的应用</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="lab3/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="lab3/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="lab3/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="lab3/part4/index.html">xv-6中Lock的实现（选读）</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="lab3/part5/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab4：页表</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="lab4/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="lab4/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="lab4/part3/index.html">实验实现</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="lab4/part4/index.html">提交文档</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Lab5：基于FUSE的青春版EXT2文件系统</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="lab5/part1/index.html">实验概述</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="lab5/part2/index.html">实验原理</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="lab5/part3-1/index.html">环境搭建与上手</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="lab5/part3-2/index.html">任务一：熟悉DDRIVER驱动</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="lab5/part3-3/index.html">任务二：基于FUSE实现青春版EXT2文件系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="lab5/part3-4/index.html">选做任务</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="lab5/part4/index.html">提交文档</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="lab5/part5/index.html">实验提示</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">操作系统2022秋 | 哈工大（深圳）</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>实验概述 &raquo;</li><li>实验须知</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="-2022">操作系统实验指导书 - 2022秋季 | 哈工大（深圳）<a class="headerlink" href="#-2022" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">声明</p>
+<p>本课程资料仅限于哈尔滨工业大学（深圳）《操作系统》2022年课程实验使用，如有其他用途，请联系夏文老师：<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#120;&#105;&#97;&#119;&#101;&#110;&#64;&#104;&#105;&#116;&#46;&#101;&#100;&#117;&#46;&#99;&#110;">&#120;&#105;&#97;&#119;&#101;&#110;&#64;&#104;&#105;&#116;&#46;&#101;&#100;&#117;&#46;&#99;&#110;</a>。</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">注意事项</p>
+<p>请同学们遵守学术诚信（<a href="https://integrity.mit.edu/">What is Academic Integrity</a>)。
+你可能会在同一个时间段内需要完成多项课程任务，或者准备考试，或者其他……但是，无论你处于何种程度的压力之下，我们都希望你能做到管理好时间，以诚实正直的态度来完成课程实验。</p>
+</div>
+<h2 id="0">0. 导读<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
+<p>本实验文档为哈尔滨工业大学（深圳）《操作系统》课程实验指导材料。页面左侧为指导书的各个小节目录，页面左上角可详细搜索，页面下方可切换上下小节。</p>
+<p>本学期的操作系统课程实验有6次实验课，5个实验项目，前4个实验项目分别各占4个学时，最后一个实验项目8个学时，总共24个学时。其中，前4个实验是从开源操作系统 <strong>xv6-labs-2020</strong> 的实验课程中选取4个实验，并根据我们学校的操作系统课程要求进行修改。最后一个来自我校学生自主设计的文件系统实验案例（该实验案例获得2022年全国大学生计算机系统能力大赛操作系统设计大赛OS功能挑战赛道二等奖）。</p>
+<p>由于我们已经对XV6的实验内容及要求进行了修改，<strong>请大家务必从下面的<a href="#3-xv6">“3. 获取XV6实验框架代码”</a>小节中下载代码，在这套代码上完成实验</strong> 。在实验开始之前，请同学们务必先按顺序阅读指导书，掌握实验平台的搭建/使用方法，掌握Linux系统下的一些基本命令/操作，熟练使用GDB调试工具。对于有兴趣有余力的同学，建议完成XV6的所有实验，若能完成会有意想不到的惊喜！</p>
+<p>如果同学们对本课程实验内容、实验安排、实验指导书或者代码框架等各方面有宝贵的意见或建议，请在<a href="https://piazza.com/harbin_institute_of_technology_shenzhen/fall2022/comp3001">piazza在线交流平台</a>（access code：comp3001）提出来或私信老师或助教。</p>
+<h2 id="1">1. 课程信息<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>课程名称：操作系统（实验）</li>
+<li>学期：2022秋季</li>
+<li>理论课教师：刘川意、陈俊杰、陈芳林、陈斌、夏文（按任课班级1-16班顺序）</li>
+<li>实验课教师：仇洁婷、苏婷</li>
+</ul>
+<h2 id="2">2. 实验相关链接<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>实验代码</strong> 下载地址：<a href="https://gitee.com/hitsz-lab/xv6-labs-2020.git">https://gitee.com/hitsz-lab/xv6-labs-2020.git</a></li>
+<li><strong>实验工具</strong> 下载地址（校内网）：<a href="http://10.249.14.14:8000/index.php/s/7vlEVZPKaMTIpi0">http://10.249.14.14:8000/index.php/s/7vlEVZPKaMTIpi0</a></li>
+<li><strong>实验提交</strong> 地址（校内网）：<a href="http://10.249.12.98:8000/#/login">http://10.249.12.98:8000/#/login</a></li>
+<li><strong>远程实验环境</strong> （校内网），详见<a href="remote_env/index.html">远程实验环境使用指南</a></li>
+<li><strong>piazza在线交流平台（access code：comp3001）</strong> 欢迎同学们在piazza上提问，提问的内容第一时间会由助教或老师回答，当然也欢迎同学们来回答：<a href="https://piazza.com/harbin_institute_of_technology_shenzhen/fall2022/comp3001">https://piazza.com/harbin_institute_of_technology_shenzhen/fall2022/comp3001</a></li>
+</ul>
+<h2 id="3-xv6">3. 获取XV6实验框架代码<a class="headerlink" href="#3-xv6" title="Permanent link">&para;</a></h2>
+<p>在下载实验代码前，请先搭建好xv6实验平台，搭建方法参考<a href="env/index.html">实验平台搭建以及环境配置</a>。</p>
+<p>如果你已经进入实验平台，请在命令行终端中执行：</p>
+<div class="admonition note">
+<p class="admonition-title">注意事项</p>
+<p>第一个字符<code>$</code>不需要输入，只需要输入<code>$</code>后的字符串。</p>
+</div>
+<div class="highlight"><pre><span></span><code>$ git clone https://gitee.com/hitsz-lab/xv6-labs-2020.git
+</code></pre></div>
+<p>获取框架代码，将克隆xv6-labs-2020到当前目录。如遇问题请联系老师或助教。</p>
+<h2 id="_1">致谢<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>在实验教学过程中，我们有幸邀请到了一些本科生助教和研究生助教，这些同学共同完成了实验指导书的编写、实验代码的修改、调试和实验环境的搭建。感谢这些同学对实验做出的贡献。</p>
+<p>特别感谢对本课程实验贡献的助教同学：</p>
+<ul>
+<li>17级：胡博涵、施杨</li>
+<li>18级：李程浩、宫浩辰、潘延麒、黎庚祉、刘定邦</li>
+<li>19级：赵鹏宇、陈一邹、叶自立、张艺枫</li>
+</ul>
+<p>未来更多的可能，期待由现在的你们来书写！</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="env/index.html" class="btn btn-neutral float-right" title="实验平台以及环境配置">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Copyright &copy; 2022 - 2023 哈尔滨工业大学（深圳）</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="env/index.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = 'index.html';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="js/baidu-tongji.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+
+<!-- Mirrored from hitsz-cslab.gitee.io/os-labs/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Nov 2022 12:36:55 GMT -->
+</html>
